@@ -85,9 +85,9 @@ export class FooterComponent implements OnInit {
         '@type': 'ProfessionalService',
         'name': this.seoData.companyName,
         'description': this.seoData.description,
-        'url': 'https://intelligencia-genea.fr',
-        'logo': 'https://intelligencia-genea.fr/logo.jpeg',
-        'image': 'https://intelligencia-genea.fr/logo.jpeg',
+        'url': 'http://intelligencia-genea.com',
+        'logo': 'http://intelligencia-genea.com/logo.jpeg',
+        'image': 'http://intelligencia-genea.com/logo.jpeg',
         'telephone': this.seoData.phone,
         'email': this.seoData.email,
         'address': {
@@ -154,7 +154,7 @@ export class FooterComponent implements OnInit {
         },
         'telephone': this.seoData.phone,
         'email': this.seoData.email,
-        'url': 'https://intelligencia-genea.fr',
+        'url': 'http://intelligencia-genea.com',
         'openingHours': 'Mo-Fr 09:00-18:00',
         'priceRange': '$$',
         'servesCuisine': 'Professional Genealogy Services'

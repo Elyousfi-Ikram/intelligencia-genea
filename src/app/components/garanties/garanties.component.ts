@@ -128,7 +128,7 @@ export class GarantiesComponent implements OnInit {
     this.meta.updateTag({ property: 'og:title', content: this.seoData.title });
     this.meta.updateTag({ property: 'og:description', content: this.seoData.description });
     this.meta.updateTag({ property: 'og:type', content: 'website' });
-    this.meta.updateTag({ property: 'og:url', content: 'https://intelligencia-genea.fr/garanties' });
+    this.meta.updateTag({ property: 'og:url', content: 'http://intelligencia-genea.com/garanties' });
     
     // Twitter Cards
     this.meta.updateTag({ name: 'twitter:title', content: this.seoData.title });

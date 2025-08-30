@@ -205,12 +205,12 @@ export class GenealogiePage implements OnInit, OnDestroy {
           'name': 'INTELLIGENCIA-GENEA',
           'logo': {
             '@type': 'ImageObject',
-            'url': 'https://intelligencia-genea.fr/logo.jpeg'
+            'url': 'http://intelligencia-genea.com/logo.jpeg'
           }
         },
         'mainEntityOfPage': {
           '@type': 'WebPage',
-          '@id': 'https://intelligencia-genea.fr/genealogie'
+          '@id': 'http://intelligencia-genea.com/genealogie'
         },
         'datePublished': this.currentDateISO,
         'dateModified': this.currentDateISO,
@@ -278,8 +278,8 @@ export class GenealogiePage implements OnInit, OnDestroy {
       this.meta.updateTag({ property: 'og:title', content: this.seoData.title });
       this.meta.updateTag({ property: 'og:description', content: this.seoData.description });
       this.meta.updateTag({ property: 'og:type', content: 'article' });
-      this.meta.updateTag({ property: 'og:url', content: 'https://intelligencia-genea.fr/genealogie' });
-      this.meta.updateTag({ property: 'og:image', content: 'https://intelligencia-genea.fr/assets/genealogiePage/genealogiePage-header.png' });
+      this.meta.updateTag({ property: 'og:url', content: 'http://intelligencia-genea.com/genealogie' });
+      this.meta.updateTag({ property: 'og:image', content: 'http://intelligencia-genea.com/assets/genealogiePage/genealogiePage-header.png' });
       this.meta.updateTag({ property: 'og:image:width', content: '1200' });
       this.meta.updateTag({ property: 'og:image:height', content: '630' });
       this.meta.updateTag({ property: 'og:image:alt', content: 'Généalogie successorale et familiale INTELLIGENCIA-GENEA' });
@@ -290,15 +290,15 @@ export class GenealogiePage implements OnInit, OnDestroy {
       this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
       this.meta.updateTag({ name: 'twitter:title', content: this.seoData.title });
       this.meta.updateTag({ name: 'twitter:description', content: this.seoData.description });
-      this.meta.updateTag({ name: 'twitter:image', content: 'https://intelligencia-genea.fr/assets/genealogiePage/genealogiePage-header.png' });
+      this.meta.updateTag({ name: 'twitter:image', content: 'http://intelligencia-genea.com/assets/genealogiePage/genealogiePage-header.png' });
       this.meta.updateTag({ name: 'twitter:image:alt', content: 'Généalogie successorale et familiale INTELLIGENCIA-GENEA' });
       
       // Canonical URL
-      this.meta.updateTag({ rel: 'canonical', href: 'https://intelligencia-genea.fr/genealogie' });
+      this.meta.updateTag({ rel: 'canonical', href: 'http://intelligencia-genea.com/genealogie' });
       
       // Ajout de liens hreflang pour le SEO international
-      this.meta.updateTag({ rel: 'alternate', hreflang: 'fr', href: 'https://intelligencia-genea.fr/genealogie' });
-      this.meta.updateTag({ rel: 'alternate', hreflang: 'fr-FR', href: 'https://intelligencia-genea.fr/genealogie' });
+      this.meta.updateTag({ rel: 'alternate', hreflang: 'fr', href: 'http://intelligencia-genea.com/genealogie' });
+      this.meta.updateTag({ rel: 'alternate', hreflang: 'fr-FR', href: 'http://intelligencia-genea.com/genealogie' });
       
       // Métadonnées d'accessibilité et performance
       this.meta.updateTag({ name: 'theme-color', content: '#f3e1c2' });
@@ -325,8 +325,8 @@ export class GenealogiePage implements OnInit, OnDestroy {
         '@context': 'https://schema.org',
         '@type': 'Organization',
         'name': 'INTELLIGENCIA-GENEA',
-        'url': 'https://intelligencia-genea.fr',
-        'logo': 'https://intelligencia-genea.fr/logo.jpeg',
+        'url': 'http://intelligencia-genea.com',
+        'logo': 'http://intelligencia-genea.com/logo.jpeg',
         'description': 'Cabinet de généalogie successorale et familiale, expert en recherche d\'héritiers depuis 1995',
         'foundingDate': '1995',
         'areaServed': {
@@ -386,13 +386,13 @@ export class GenealogiePage implements OnInit, OnDestroy {
             '@type': 'ListItem',
             'position': 1,
             'name': 'Accueil',
-            'item': 'https://intelligencia-genea.fr'
+            'item': 'http://intelligencia-genea.com'
           },
           {
             '@type': 'ListItem',
             'position': 2,
             'name': 'Généalogie',
-            'item': 'https://intelligencia-genea.fr/genealogie'
+            'item': 'http://intelligencia-genea.com/genealogie'
           }
         ]
       };
@@ -465,7 +465,7 @@ export class GenealogiePage implements OnInit, OnDestroy {
       // Tracking amélioré pour le SEO
       window.gtag('config', 'GA_MEASUREMENT_ID', {
         page_title: 'Généalogie - Différences Successorale vs Familiale',
-        page_location: 'https://intelligencia-genea.fr/genealogie',
+        page_location: 'http://intelligencia-genea.com/genealogie',
         content_group1: 'Services',
         content_group2: 'Généalogie',
         custom_map: {

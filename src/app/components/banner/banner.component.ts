@@ -135,16 +135,16 @@ export class BannerComponent implements OnInit, OnDestroy {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "name": "INTELLIGENCIA-GENEA",
-      "url": "https://intelligencia-genea.fr",
+      "url": "http://intelligencia-genea.com",
       "potentialAction": {
         "@type": "SearchAction",
-        "target": "https://intelligencia-genea.fr/search?q={search_term_string}",
+        "target": "http://intelligencia-genea.com/search?q={search_term_string}",
         "query-input": "required name=search_term_string"
       },
       "publisher": {
         "@type": "Organization",
         "name": "INTELLIGENCIA-GENEA",
-        "logo": "https://intelligencia-genea.fr/logo.jpeg"
+        "logo": "http://intelligencia-genea.com/logo.jpeg"
       }
     };
 

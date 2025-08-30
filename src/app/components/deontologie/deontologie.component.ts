@@ -313,21 +313,21 @@ export class DeontologieComponent implements OnInit, OnDestroy {
                 'author': {
                     '@type': 'Organization',
                     'name': 'INTELLIGENCIA-GENEA',
-                    'url': 'https://intelligencia-genea.fr'
+                    'url': 'http://intelligencia-genea.com'
                 },
                 'publisher': {
                     '@type': 'Organization',
                     'name': 'INTELLIGENCIA-GENEA',
                     'logo': {
                         '@type': 'ImageObject',
-                        'url': 'https://intelligencia-genea.fr/logo.jpeg'
+                        'url': 'http://intelligencia-genea.com/logo.jpeg'
                     }
                 },
                 'datePublished': new Date().toISOString(),
                 'dateModified': new Date().toISOString(),
                 'mainEntityOfPage': {
                     '@type': 'WebPage',
-                    '@id': 'https://intelligencia-genea.fr/deontologie'
+                    '@id': 'http://intelligencia-genea.com/deontologie'
                 },
                 'articleSection': 'Déontologie professionnelle',
                 'keywords': 'charte déontologique, éthique généalogie, code professionnel, généalogiste',
@@ -335,7 +335,7 @@ export class DeontologieComponent implements OnInit, OnDestroy {
                 'isPartOf': {
                     '@type': 'WebSite',
                     'name': 'INTELLIGENCIA-GENEA',
-                    'url': 'https://intelligencia-genea.fr'
+                    'url': 'http://intelligencia-genea.com'
                 }
             };
             
