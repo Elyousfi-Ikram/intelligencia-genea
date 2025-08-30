@@ -1,0 +1,539 @@
+@use 'sass:color';
+
+$primary-color: #5d4e37;
+$secondary-color: #f3e1c2;
+$background-light: #f8f9fa;
+$background-white: #ffffff;
+$text-dark: #5d4e37;
+$border-color: rgba(93, 78, 55, 0.2);
+$shadow-color: rgba(93, 78, 55, 0.1);
+
+$legal-color: #5d4e37;
+$contract-color: #e6d4a7;
+$methodology-color: #6c757d;
+$insurance-color: #5d4e37;
+$values-color: #f3e1c2;
+
+.garanties-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, $background-light 0%, $background-white 100%);
+    color: $text-dark;
+    position: relative;
+
+    .garanties-container {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.garanties-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 4rem 0 1rem 0;
+    position: relative;
+    font-family: 'Cinzel', serif;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: linear-gradient(90deg, $primary-color 0%, $secondary-color 100%);
+    }
+
+    .garanties-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: $text-dark;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 4px 8px rgba(93, 78, 55, 0.1);
+        position: relative;
+    }
+
+    .garanties-subtitle {
+        font-size: 1.2rem;
+        color: $text-dark;
+        opacity: 0.85;
+        margin: 0 8rem;
+        line-height: 1.6;
+        font-weight: 400;
+    }
+}
+
+.garanties-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.garantie-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background: $background-white;
+    overflow: hidden;
+    box-shadow: 0 15px 50px $shadow-color;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.garantie-body {
+    padding: 1rem;
+    position: relative;
+
+    .garantie-intro {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+        text-align: center;
+        font-weight: 500;
+        position: relative;
+        padding-left: 1rem;
+    }
+
+    .garantie-list-container {
+        border-left: 5px solid #5d4e37;
+
+        .garantie-list-intro {
+            font-size: 1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+    }
+
+    .garantie-description {
+        font-size: 1rem;
+        line-height: 1.8;
+        margin-bottom: 0;
+        text-align: justify;
+        padding: 1rem;
+        position: relative;
+        overflow: hidden;
+
+        &.garantie-description--legal {
+            border-left: 5px solid $legal-color;
+        }
+    }
+
+    .garantie-conclusion {
+        margin: 0;
+        font-weight: 600;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+        color: #5d4e37;
+        padding: 1.5rem;
+    }
+}
+
+.garantie-layout {
+    display: flex;
+    align-items: center;
+
+}
+
+.garantie-visual {
+    flex: 1;
+
+    .garantie-image {
+        width: 100%;
+        height: auto;
+        transition: transform 0.3s ease;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    }
+}
+
+.garantie-content {
+    flex: 1;
+}
+
+.garantie-highlight {
+    color: $text-dark;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    .garantie-highlight-text {
+        margin: 0;
+        font-weight: 600;
+        font-size: 1.2rem;
+        line-height: 1.6;
+        text-align: center;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.garantie-quote {
+    margin-top: 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+        content: '"';
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+        font-size: 4rem;
+        color: rgba(255, 140, 0, 0.2);
+        font-family: serif;
+    }
+
+    .garantie-quote-text {
+        font-size: 1rem;
+        font-style: italic;
+        font-weight: 600;
+        color: $text-dark;
+        margin: 0;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.garantie-list {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+    padding: 0 1.5rem;
+
+    li {
+        position: relative;
+        padding: 1rem 0 1rem 3rem;
+        border-bottom: 1px solid rgba(93, 78, 55, 0.1);
+        transition: all 0.3s ease;
+
+        &::before {
+            content: '❱';
+            position: absolute;
+            left: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: $primary-color;
+            font-weight: bold;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.garantie-item--ethics,
+.garantie-item--methodology {
+    .garantie-layout {
+        flex-direction: row-reverse;
+    }
+}
+
+.garantie-item--contracts {
+    background: linear-gradient(135deg, #faf9f6 0%, #f2f0ea 100%);
+}
+
+.garantie-item--methodology {
+    background: linear-gradient(135deg, #f7f8f9 0%, #e9ecef 100%);
+}
+
+.garantie-item--insurance {
+    background: linear-gradient(135deg, #f8f6f0 0%, #e8e2d5 100%);
+}
+
+.garantie-item--values {
+    background: linear-gradient(135deg, #f9f7f4 0%, #f0ebe3 100%);
+
+    .garantie-layout {
+        flex-direction: row-reverse;
+    }
+}
+
+.garantie-item--timing {
+    .garantie-layout {
+        display: flex;
+        align-items: center;
+        min-height: auto;
+    }
+
+    .garantie-visual {
+        flex: 0 0 30%;
+        display: flex;
+        overflow: hidden;
+
+        .garantie-image {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+    }
+}
+
+.garantie-item--legal,
+.garantie-item--ethics,
+.garantie-item--contracts,
+.garantie-item--methodology,
+.garantie-item--insurance,
+.garantie-item--values {
+    .garantie-layout {
+        display: flex;
+        align-items: stretch;
+        min-height: auto;
+    }
+
+    .garantie-visual {
+        flex: 0 0 40%;
+        display: flex;
+        overflow: hidden;
+
+        .garantie-image {
+            width: 100%;
+            height: 100%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+    }
+
+    .garantie-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.9);
+    }
+}
+
+.copy-text {
+    position: relative;
+    top: -7px;
+    left: -4px;
+}
+
+.copy-title {
+    font-size: 2rem;
+    position: relative;
+    top: 3px;
+    left: -5px;
+}
+
+
+@media (max-width: 992px) {
+
+    .garantie-item--legal,
+    .garantie-item--ethics,
+    .garantie-item--contracts {
+        .garantie-visual {
+            flex: 0 0 40%;
+        }
+
+        .garantie-content {
+            padding: 1.5rem;
+        }
+    }
+}
+
+@media (max-width: 900px) {
+    .garantie-layout {
+        flex-direction: column;
+    }
+
+    .garantie-item--ethics,
+    .garantie-item--methodology {
+        .garantie-layout {
+            flex-direction: column;
+        }
+    }
+
+    .garantie-item--values {
+        .garantie-layout {
+            flex-direction: column;
+        }
+
+        .garantie-visual {
+            margin-left: 0;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .garantie-item--legal,
+    .garantie-item--ethics,
+    .garantie-item--contracts,
+    .garantie-item--methodology,
+    .garantie-item--insurance,
+    .garantie-item--values {
+        .garantie-layout {
+            flex-direction: column;
+            min-height: auto;
+        }
+
+        .garantie-visual {
+            flex: none;
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .garantie-content {
+            flex: none;
+            width: 100%;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .garanties-page {
+        .garanties-container {
+            padding: 1rem;
+        }
+
+        .garanties-header {
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+
+            .garanties-title {
+                font-size: 2.5rem;
+            }
+
+            .garanties-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+
+        .garantie-item .garantie-body {
+            padding: 2rem;
+        }
+    }
+
+    .garantie-intro,
+    .garantie-quote-text {
+        font-size: 1rem;
+    }
+
+    .garantie-item--legal,
+    .garantie-item--ethics,
+    .garantie-item--contracts {
+        .garantie-visual {
+            flex: 1;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .garanties-page {
+        .garanties-header {
+            .garanties-title {
+                font-size: 2rem;
+            }
+
+            .garanties-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        .garantie-item .garantie-body {
+            padding: 1.5rem;
+
+            .garantie-list li {
+                padding: 0.8rem 0 0.8rem 2.5rem;
+            }
+        }
+    }
+}
+
+// Classe pour contenu caché SEO (à ajouter à la fin du fichier)
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Optimisations pour Core Web Vitals
+.garantie-image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  content-visibility: auto;
+  contain-intrinsic-size: 400px 300px;
+  
+  // Optimisation LCP (Largest Contentful Paint)
+  content-visibility: auto;
+  contain-intrinsic-size: 400px 300px;
+  
+  // Optimisation CLS (Cumulative Layout Shift)
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  
+  // Support WebP avec fallback
+  &[src$=".jpg"], &[src$=".png"] {
+    background-image: 
+      url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNlMWMyIi8+PC9zdmc+);
+    background-size: cover;
+    background-position: center;
+  }
+}
+
+// Amélioration accessibilité focus
+.garantie-highlight,
+.garantie-item {
+  &:focus-within {
+    outline: 2px solid #5d4e37;
+    outline-offset: 2px;
+  }
+}
+
+// Optimisation pour les préférences utilisateur
+@media (prefers-reduced-motion: reduce) {
+  .garantie-image,
+  .garantie-item {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .garantie-highlight-text,
+  .garantie-conclusion {
+    color: #000000 !important;
+    background-color: #ffffff !important;
+  }
+}
+
+// Optimisation print
+@media print {
+  .garanties-page {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .garantie-image {
+    max-width: 200px !important;
+    height: auto !important;
+  }
+  
+  .sr-only {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    clip: auto !important;
+    overflow: visible !important;
+    white-space: normal !important;
+  }
+}

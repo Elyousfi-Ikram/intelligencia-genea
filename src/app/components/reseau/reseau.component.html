@@ -1,0 +1,93 @@
+<div class="reseau-page">
+  <div class="reseau-container">
+    <!-- En-tête -->
+    <header class="reseau-header">
+      <h1 class="reseau-title">Notre réseau</h1>
+      <p class="reseau-subtitle">
+        Un maillage territorial complet pour vous accompagner partout en France
+      </p>
+    </header>
+
+    <!-- Section principale -->
+    <section class="reseau-content">
+      <!-- Introduction -->
+      <div class="intro-section">
+        <p class="intro-text">
+          INTELLIGENCIA-GENEA<span class="copy">®</span> dispose d'un réseau étendu sur l'ensemble du territoire
+          français,
+          vous garantissant un service de proximité et une connaissance approfondie des spécificités locales.
+          Nos bureaux et correspondants sont stratégiquement implantés pour répondre efficacement à vos besoins.
+        </p>
+      </div>
+
+      <!-- Statistiques du réseau -->
+      <div class="network-stats">
+        <div class="stat-item">
+          <span class="stat-number">{{ locations.length }}</span>
+          <span class="stat-label">Bureaux</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">{{ regionKeys.length }}</span>
+          <span class="stat-label">Régions</span>
+        </div>
+      </div>
+
+      <h2 class="section-title">
+        {{ selectedRegion === 'all' ? 'Tous nos bureaux' : 'Bureaux en ' + regions[selectedRegion] }}
+        <span class="location-count"> ({{ filteredLocations.length }})</span>
+      </h2>
+
+      <!-- Section carte et bureaux côte à côte -->
+      <div class="carte-bureaux-container">
+        <div class="carte-container">
+          <img src="assets/reseauPage/carte.webp" alt="Carte de France" class="carte-france" />
+          <!-- Points sur la carte -->
+          <div *ngFor="let location of filteredLocations; trackBy: trackByLocationId" class="map-point"
+            [class.headquarters-point]="location.isHeadquarters"
+            [class.selected-point]="selectedLocation?.id === location.id" [style.left.%]="location.mapPosition.x"
+            [style.top.%]="location.mapPosition.y" [title]="location.city" (click)="handlePointClick(location)">
+            <span class="point-tooltip">{{ location.city }}</span>
+          </div>
+        </div>
+
+        <div class="locations-section">
+          <div class="locations-grid">
+            <div *ngFor="let location of filteredLocations; trackBy: trackByLocationId" [id]="'location-' + location.id"
+              class="location-card" [class.headquarters]="location.isHeadquarters"
+              [class.highlighted-card]="selectedLocation?.id === location.id">
+              <div *ngIf="location.isHeadquarters" class="headquarters-badge">
+                <span>Siège Social</span>
+              </div>
+
+              <div *ngIf="location.hasSecretariat" class="secretariat-badge">
+                <span>Secrétariat & envoi de vos courriers postaux</span>
+              </div>
+              <div class="location-header">
+                <h4 class="city-name">
+                  {{ getRegionIcon(location.region) }} {{ location.city }}
+                </h4>
+              </div>
+
+              <div class="location-details">
+                <div class="address-info">
+                  <span class="address-icon">📍</span>
+                  <p class="address-text">{{ location.address }}</p>
+                </div>
+
+                <div class="contact-info">
+                  <span class="phone-icon">📞</span>
+                  <a [href]="'tel:' + location.phone" class="phone-number"
+                    [attr.aria-label]="'Appeler le ' + location.displayPhone">
+                    {{ location.displayPhone }}
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<app-contact></app-contact>

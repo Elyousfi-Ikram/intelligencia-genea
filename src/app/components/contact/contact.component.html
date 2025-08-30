@@ -1,0 +1,20 @@
+<section class="home-cta" aria-labelledby="cta-title">
+  <div class="cta-content">
+    <h2 id="cta-title">Vous souhaitez enquêter sur vos origines familiales ?</h2>
+    <p>Contactez nos généalogistes experts pour une étude personnalisée, gratuite et confidentielle.</p>
+    <div class="cta-buttons">
+      <button [disabled]="disabled" (click)="onContactClick()" type="button" class="btn-primary"
+        aria-label="Demander une étude généalogique gratuite">
+        Demander une étude gratuite
+      </button>
+      <button class="btn-secondary" (click)="handleNavigateToHonoraires()"
+        aria-label="Consulter nos tarifs de généalogie">
+        Voir nos honoraires
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Modale de formulaire -->
+<app-study-modal [isOpen]="showModal" (closeModal)="onCloseModal()">
+</app-study-modal>

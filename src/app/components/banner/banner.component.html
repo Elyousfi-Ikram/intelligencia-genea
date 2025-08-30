@@ -1,0 +1,217 @@
+<header class="banner" [class.scrolled]="isScrolled" role="banner" itemscope itemtype="https://schema.org/Organization">
+  <!-- Section Contact en haut avec microdata enrichie -->
+  <div class="banner-contact-top" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
+    <div class="contact-info" role="list" aria-label="Informations de contact INTELLIGENCIA-GENEA">
+      <div 
+        *ngFor="let contact of contactInfo; let i = index" 
+        class="contact-item"
+      >
+        <span class="contact-icon" aria-hidden="true">{{ contact.icon }}</span>
+        <a 
+          *ngIf="contact.type === 'phone'; else emailTemplate"
+          [href]="getPhoneHref(contact.text)"
+          class="contact-text"
+          [attr.aria-label]="contact.ariaLabel"
+          itemprop="telephone"
+          title="Appelez INTELLIGENCIA-GENEA pour vos recherches généalogiques"
+        >
+          {{ contact.text }}
+        </a>
+        <ng-template #emailTemplate>
+          <a 
+            *ngIf="contact.type === 'email'; else textTemplate"
+            [href]="getEmailHref(contact.text)"
+            class="contact-text"
+            [attr.aria-label]="contact.ariaLabel"
+            itemprop="email"
+            title="Contactez INTELLIGENCIA-GENEA par email pour vos demandes de généalogie"
+          >
+            {{ contact.text }}
+          </a>
+        </ng-template>
+        <ng-template #textTemplate>
+          <span class="contact-text" itemprop="address">{{ contact.text }}</span>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ligne de séparation -->
+  <div class="banner-separator" role="presentation"></div>
+
+  <!-- Section Navigation en bas -->
+  <div class="banner-container" itemprop="mainEntity" itemscope itemtype="https://schema.org/Organization">
+    <!-- Bouton hamburger pour mobile -->
+    <button
+      class="mobile-menu-toggle"
+      (click)="toggleMobileMenu()"
+      aria-label="Ouvrir le menu de navigation"
+      [attr.aria-expanded]="isMobileMenuOpen"
+      aria-controls="mobile-navigation"
+    >
+      <span class="hamburger-line" [class.active]="isMobileMenuOpen"></span>
+      <span class="hamburger-line" [class.active]="isMobileMenuOpen"></span>
+      <span class="hamburger-line" [class.active]="isMobileMenuOpen"></span>
+    </button>
+
+    <div class="banner-content">
+      <!-- Logo à droite avec microdata enrichie -->
+      <div class="banner-logo" itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+        <img
+          src="assets/banner/logo.webp"
+          alt="INTELLIGENCIA-GENEA - Généalogistes professionnels experts en recherches généalogiques successorales et familiales - Réseau national 18 bureaux France"
+          class="logo-image"
+          loading="eager"
+          (click)="handleLogoClick()"
+          style="cursor: pointer"
+          itemprop="url"
+          width="110"
+          height="110"
+          title="INTELLIGENCIA-GENEA - Retour à l'accueil"
+        />
+      </div>
+
+      <!-- Section texte centrale avec microdata enrichie -->
+      <div class="banner-text" itemprop="mainEntity" itemscope itemtype="https://schema.org/Organization">
+        <h1 class="banner-title" itemprop="name">
+          INTELLIGENCIA-GENEA<span class="copy">®</span>
+          <span class="sr-only">Généalogistes professionnels France</span>
+        </h1>
+
+        <p class="banner-subtitle" itemprop="description">
+          Commencez votre enquête familiale aujourd'hui - Généalogistes professionnels
+          <span class="sr-only">spécialisés en généalogie successorale et recherche d'héritiers dans toute la France</span>
+        </p>
+        
+        <!-- Ajout d'informations SEO cachées -->
+        <div class="sr-only" itemprop="areaServed">
+          Aix-en-Provence, Nice, Marseille, Cannes, Saint-Tropez, Bordeaux, Nantes, Tours, Rennes, Le Havre, Ajaccio, Bastia
+        </div>
+        <div class="sr-only" itemprop="serviceType">
+          Généalogie successorale, recherche d'héritiers, généalogie familiale, expertise juridique généalogique
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation horizontale enrichie SEO -->
+    <nav class="banner-navigation" role="navigation" aria-label="Navigation principale INTELLIGENCIA-GENEA" itemscope itemtype="https://schema.org/SiteNavigationElement">
+      <ul class="nav-horizontal">
+        <li 
+          *ngFor="let item of navigationData" 
+          class="nav-item-horizontal" 
+          itemprop="hasPart" 
+          itemscope 
+          itemtype="https://schema.org/WebPage"
+        >
+          <div class="nav-item-wrapper">
+            <button
+              class="nav-link-horizontal"
+              (click)="handleNavigation(item)"
+              [attr.aria-expanded]="item.hasDropdown ? (activeDropdown === item.id) : null"
+              [attr.aria-haspopup]="item.hasDropdown ? 'true' : null"
+              type="button"
+              itemprop="name"
+              [attr.title]="getNavigationTitle(item)"
+            >
+              {{ item.title }}
+              <span 
+                *ngIf="item.hasDropdown" 
+                class="dropdown-arrow" 
+                [class.active]="activeDropdown === item.id"
+              >
+                <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+              </span>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div 
+              *ngIf="item.hasDropdown && activeDropdown === item.id" 
+              class="dropdown-menu" 
+              role="menu" 
+              [attr.aria-label]="'Sous-menu ' + item.title"
+            >
+              <ul class="dropdown-list">
+                <li *ngFor="let subItem of item.subItems" class="dropdown-item">
+                  <button
+                    class="dropdown-link"
+                    [attr.data-item]="subItem.id"
+                    (click)="handleSubItemClick(item.id, subItem)"
+                    role="menuitem"
+                    type="button"
+                  >
+                    <span 
+                      *ngIf="subItem.iconClass" 
+                      [class]="'dropdown-icon ' + subItem.iconClass" 
+                      aria-hidden="true"
+                    ></span>
+                    {{ subItem.title }}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <span class="nav-separator" aria-hidden="true">|</span>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <!-- Menu mobile overlay -->
+  <div 
+    *ngIf="isMobileMenuOpen" 
+    class="mobile-menu-overlay" 
+    [class.active]="isMobileMenuOpen" 
+    (click)="toggleMobileMenu()" 
+    role="presentation"
+  >
+    <nav
+      class="mobile-menu"
+      [class.active]="isMobileMenuOpen"
+      (click)="$event.stopPropagation()"
+      role="navigation"
+      aria-label="Menu mobile"
+      id="mobile-navigation"
+    >
+      <ul class="mobile-nav-list">
+        <li *ngFor="let item of navigationData" class="mobile-nav-item">
+          <button
+            class="mobile-nav-link"
+            (click)="handleNavigation(item); !item.hasDropdown && toggleMobileMenu()"
+            [attr.aria-expanded]="item.hasDropdown ? (activeDropdown === item.id) : null"
+            [attr.aria-haspopup]="item.hasDropdown ? 'true' : null"
+          >
+            {{ item.title }}
+            <span 
+              *ngIf="item.hasDropdown" 
+              class="mobile-dropdown-arrow" 
+              [class.active]="activeDropdown === item.id" 
+              aria-hidden="true"
+            >▼</span>
+          </button>
+
+          <!-- Mobile dropdown menu -->
+          <ul 
+            *ngIf="item.hasDropdown && activeDropdown === item.id" 
+            class="mobile-dropdown-list" 
+            role="menu"
+          >
+            <li *ngFor="let subItem of item.subItems" class="mobile-dropdown-item">
+              <button
+                class="mobile-dropdown-link"
+                (click)="handleSubItemClick(item.id, subItem); toggleMobileMenu()"
+                role="menuitem"
+              >
+                <span 
+                  *ngIf="subItem.iconClass" 
+                  [class]="'dropdown-icon ' + subItem.iconClass" 
+                  aria-hidden="true"
+                ></span>
+                {{ subItem.title }}
+              </button>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

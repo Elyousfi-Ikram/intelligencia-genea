@@ -1,0 +1,172 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="onOverlayClick($event)">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>{{ legalContent?.title || 'Information légale' }}</h3>
+            <button class="modal-close" (click)="onClose()" aria-label="Fermer">
+                ×
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="legal-content">
+                <!-- Mentions Légales -->
+                <div *ngIf="legalContent?.section === 'mentions'">
+                    <h3>Éditeur du site</h3>
+                    <p><strong>Intelligencia Genea</strong><br>
+                        67 Cours Mirabeau<br>
+                        13100 Aix-en-Provence<br>
+                        Téléphone : 06 45 82 06 97<br>
+                        Email : intelligencia.lagarde@gmail.com</p>
+
+                    <h3>Hébergement</h3>
+                    <p>
+                        Hébergeur : IONOS SARL (anciennement 1&1 IONOS)<br>
+                        Adresse : 7 place de la Gare, BP 70109, 57200 Sarreguemines Cedex, France<br>
+                        Téléphone : 0970 808 911 (appel non surtaxé)<br>
+                        Email : info@ionos.fr
+                    </p>
+
+
+                    <h3>Propriété intellectuelle</h3>
+                    <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur
+                        et la propriété intellectuelle.</p>
+                </div>
+
+                <!-- Politique de Confidentialité -->
+                <div *ngIf="legalContent?.section === 'confidentialite'">
+                    <h2>Politique de protection de la vie privée</h2>
+                    <p><em>Site internet de Sud Intelligence</em></p>
+
+                    <h3>Politique de protection de la vie privée</h3>
+                    <p>Cette politique de protection de la vie privée expose comment et pourquoi nous collectons et
+                        utilisons vos données personnelles lorsque vous visitez notre site web ou que vous utilisez nos
+                        services. Elle vous informe également sur vos droits en matière de protection des données et sur
+                        la façon dont la loi vous protège.</p>
+
+                    <h3>Identité du responsable du traitement</h3>
+                    <p>Le responsable du traitement des données est :</p>
+                    <p><strong>Intelligencia Genea</strong><br>
+                        Adresse : 67 Cours Mirabeau, 13100 Aix-en-Provence<br>
+                        Téléphone : 06 45 82 06 97<br>
+                        Email : intelligencia.lagarde@gmail.com</p>
+
+                    <h3>Les traitements relatifs à vos données personnelles</h3>
+
+                    <h4>Identité, coordonnées :</h4>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Finalité du traitement</th>
+                                <th>Base légale</th>
+                                <th>Catégories de données</th>
+                                <th>Durée de conservation</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Gestion de la relation client et des demandes de contact</td>
+                                <td>Intérêt légitime</td>
+                                <td>Nom, prénom, adresse email, téléphone, message</td>
+                                <td>3 ans à compter du dernier contact</td>
+                            </tr>
+                            <tr>
+                                <td>Prestations de généalogie et recherche</td>
+                                <td>Exécution d'un contrat</td>
+                                <td>Données d'identité, informations familiales, documents fournis</td>
+                                <td>Durée nécessaire à l'exécution de la prestation + 5 ans</td>
+                            </tr>
+                            <tr>
+                                <td>Amélioration de nos services et analyse statistique</td>
+                                <td>Consentement</td>
+                                <td>Données de navigation, cookies analytiques</td>
+                                <td>13 mois maximum</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <p><strong>Destinataires des données :</strong> Les données collectées sont destinées aux services
+                        internes d'Intelligencia Genea. Elles ne sont jamais transmises à des tiers sans votre
+                        consentement explicite, sauf obligation légale.</p>
+
+                    <p><strong>Transferts hors UE :</strong> Aucun transfert de données personnelles n'est effectué en
+                        dehors de l'Union Européenne.</p>
+
+                    <p><strong>Sécurité des données :</strong> Nous mettons en place des mesures techniques et
+                        organisationnelles appropriées pour protéger vos données contre la destruction accidentelle ou
+                        illicite, la perte accidentelle, l'altération, la diffusion ou l'accès non autorisés.</p>
+
+                    <h3>Quels sont vos droits ?</h3>
+                    <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits
+                        suivants concernant vos données personnelles :</p>
+
+                    <ul>
+                        <li><strong>Droit d'accès :</strong> Vous pouvez demander l'accès aux données personnelles que
+                            nous détenons à votre sujet</li>
+                        <li><strong>Droit de rectification :</strong> Vous pouvez demander la correction de données
+                            inexactes ou incomplètes</li>
+                        <li><strong>Droit à l'effacement :</strong> Vous pouvez demander la suppression de vos données
+                            dans certaines circonstances</li>
+                        <li><strong>Droit à la limitation :</strong> Vous pouvez demander la limitation du traitement de
+                            vos données</li>
+                        <li><strong>Droit à la portabilité :</strong> Vous pouvez demander à recevoir vos données dans
+                            un format structuré</li>
+                        <li><strong>Droit d'opposition :</strong> Vous pouvez vous opposer au traitement de vos données
+                            pour des raisons tenant à votre situation particulière</li>
+                        <li><strong>Droit de retrait du consentement :</strong> Lorsque le traitement est basé sur votre
+                            consentement, vous pouvez le retirer à tout moment</li>
+                    </ul>
+
+                    <p>Pour exercer ces droits, vous pouvez nous contacter à l'adresse :
+                        <strong>intelligencia.lagarde@gmail.com</strong>
+                    </p>
+
+                    <p>Vous disposez également du droit d'introduire une réclamation auprès de la Commission Nationale
+                        de l'Informatique et des Libertés (CNIL) si vous estimez que le traitement de vos données
+                        personnelles constitue une violation du RGPD.</p>
+                </div>
+
+                <!-- Politique de Cookies -->
+                <div *ngIf="legalContent?.section === 'cookies'">
+                    <h2>Politique de gestion des cookies de Sud Intelligence</h2>
+
+                    <h3 class="red-title">À quoi servent les cookies ?</h3>
+
+                    <p><strong>SUD INTELLIGENCE</strong>, éditeur de ce site, utilise différentes technologies (cookie
+                        et assimilables) pour recueillir des informations sur votre navigation (pouvant ou non contenir
+                        des données personnelles) ou pour assurer le bon fonctionnement du site. Nos partenaires sont
+                        listés sur notre CMP (consent management plateform) que vous pouvez retrouver sur Gérer les
+                        cookies.</p>
+
+                    <p>Certains cookies sont <strong>essentiels</strong> au fonctionnement de nos services et ne sont
+                        pas soumis à votre consentement. Ils permettent l'utilisation des principales fonctionnalités du
+                        site, comme le contenu de votre chariot ou la mémorisation des préférences d'affichage de votre
+                        terminal (langue, paramètres d'affichage) et d'en tenir compte lors de vos visites, selon la
+                        charte graphique et les logiciels de visualisation ou de lecture de votre terminal.</p>
+
+                    <p>Les cookies utilisés pour la mesure d'audience sont soumis à votre consentement. Ils permettent
+                        d'établir des statistiques, comptages de fréquentation et d'utilisation du contenu (mesure du
+                        nombre de visites, de pages vues ou encore de l'activité des visiteurs sur le site et de leur
+                        fréquence de retour).</p>
+
+                    <p>Les derniers cookies, présents sur notre site, concernent la publicité et sont donc soumis à
+                        votre consentement.</p>
+
+                    <p>Pour terminer ce tour d'horizon des cookies et assimilés utilisés sur notre site, nous vous
+                        informons qu'il existe des paramétrages sur vos navigateurs pour limiter votre suivi en ligne.
+                        La CNIL met à votre disposition, <a
+                            href="https://www.cnil.fr/fr/cookies-et-autres-traceurs/comment-se-proteger/maitriser-votre-navigateur"
+                            target="_blank" class="cnil-link">sur son site</a>, des informations sur ces sujets.</p>
+                </div>
+
+                <!-- Contenu par défaut -->
+                <div *ngIf="!legalContent?.section">
+                    <p>Contenu non disponible.</p>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-secondary" (click)="onClose()">
+                Fermer
+            </button>
+        </div>
+    </div>
+</div>

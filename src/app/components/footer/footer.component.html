@@ -1,0 +1,147 @@
+<footer class="footer" role="contentinfo" itemscope itemtype="https://schema.org/Organization">
+  <!-- Contenu caché pour SEO -->
+  <div class="sr-only">
+    <h2>INTELLIGENCIA-GENEA® - Cabinet Généalogie Professionnel Aix-en-Provence</h2>
+    <p>Généalogiste professionnel agréé Ministère Culture. Recherche héritiers successorale, généalogie familiale,
+      investigations privées. Expert juridique généalogie. Services notaires, banquiers, assureurs, particuliers.
+      Cabinet généalogie Aix-en-Provence Bouches-du-Rhône PACA France.</p>
+    <span>{{ getBusinessKeywords() }}</span>
+    <span>Services: {{ getStructuredServices() }}</span>
+    <span>Clientèle: {{ getStructuredClients() }}</span>
+  </div>
+
+  <div class="footer-content">
+    <div class="footer-container">
+      <!-- Section À Propos -->
+      <div class="footer-section about-section" itemscope itemtype="https://schema.org/AboutPage">
+        <h3 class="footer-title" itemprop="name">À Propos</h3>
+        <p class="footer-description" itemprop="description">
+          <span itemprop="name">Intelligencia Genea</span>, votre partenaire de confiance pour toutes vos recherches
+          généalogiques et successorales.
+          Expertise et confidentialité sont nos priorités. <strong itemprop="legalName">INTELLIGENCIA-GENEA®</strong>
+          est un
+          <span itemprop="hasCredential">cabinet de généalogie agréé par le Ministère de la Culture</span>.
+        </p>
+        <div class="social-links" itemscope itemtype="https://schema.org/Organization">
+          <a href="https://www.linkedin.com/in/olivier-lagarde-détective-8a7024239/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
+            target="_blank" class="social-link" aria-label="LinkedIn INTELLIGENCIA-GENEA généalogiste professionnel"
+            role="button" tabindex="0" itemprop="sameAs"
+            title="LinkedIn - Cabinet généalogie INTELLIGENCIA-GENEA Aix-en-Provence">
+            <i class="fab fa-linkedin" aria-hidden="true"></i>
+            <span class="sr-only">LinkedIn INTELLIGENCIA-GENEA cabinet généalogie professionnel</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Section Services -->
+      <div class="footer-section services-section" itemscope itemtype="https://schema.org/Service">
+        <h3 class="footer-title" itemprop="serviceType">Nos Services</h3>
+        <ul class="footer-links" role="list">
+          <li itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            Recherches d'Héritiers (Successorale)
+            <span class="separator" aria-hidden="true">|</span>
+            <span class="sr-only">Service généalogie successorale recherche héritiers notaires</span>
+          </li>
+          <li itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            Généalogie Familiale
+            <span class="separator" aria-hidden="true">|</span>
+            <span class="sr-only">Généalogie familiale arbre généalogique ascendance descendance</span>
+          </li>
+          <li itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            Investigations Privées
+            <span class="separator" aria-hidden="true">|</span>
+            <span class="sr-only">Investigations privées détective recherche personnes</span>
+          </li>
+          <li itemprop="hasOfferCatalog" itemscope itemtype="https://schema.org/OfferCatalog">
+            Expertise Juridique
+            <span class="sr-only">Expertise juridique généalogie conseil succession droit</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Section Clients -->
+      <div class="footer-section clients-section" itemscope itemtype="https://schema.org/Audience">
+        <h3 class="footer-title">Nos Clients</h3>
+        <ul class="footer-links" role="list">
+          <li itemprop="audienceType">Particuliers<span class="separator" aria-hidden="true">|</span></li>
+          <li itemprop="audienceType">Notaires<span class="separator" aria-hidden="true">|</span></li>
+          <li itemprop="audienceType">Banquiers<span class="separator" aria-hidden="true">|</span></li>
+          <li itemprop="audienceType">Assureurs<span class="separator" aria-hidden="true">|</span></li>
+          <li itemprop="audienceType">Syndics et copropriétaires<span class="separator" aria-hidden="true">|</span></li>
+          <li itemprop="audienceType">Administrateurs judiciaires<span class="separator" aria-hidden="true">|</span>
+          </li>
+          <li itemprop="audienceType">Avocats<span class="separator" aria-hidden="true">|</span></li>
+          <li itemprop="audienceType">Situations Particulières</li>
+        </ul>
+        <div class="sr-only">
+          <p>Clientèle professionnelle: notaires, banquiers, assureurs, syndics, administrateurs judiciaires, avocats.
+            Services particuliers généalogie succession.</p>
+        </div>
+      </div>
+
+      <!-- Section Contact -->
+      <div class="footer-section contact-section" itemscope itemtype="https://schema.org/ContactPoint">
+        <h3 class="footer-title">Contact</h3>
+        <div class="contact-items">
+          <div class="contact-item" itemprop="telephone">
+            <i class="fas fa-phone contact-icon" aria-hidden="true"></i>
+            <a (click)="onPhoneClick()" class="contact-text"
+              aria-label="Téléphone cabinet généalogie INTELLIGENCIA-GENEA" role="button" tabindex="0"
+              title="Appeler INTELLIGENCIA-GENEA - 06 45 82 06 97">
+              06 45 82 06 97
+            </a>
+            <span class="sr-only">Téléphone généalogiste professionnel Aix-en-Provence</span>
+          </div>
+          <div class="contact-item" itemprop="email">
+            <i class="fas fa-envelope contact-icon" aria-hidden="true"></i>
+            <a (click)="onEmailClick()" class="contact-text" aria-label="Email cabinet généalogie INTELLIGENCIA-GENEA"
+              role="button" tabindex="0" title="Contacter INTELLIGENCIA-GENEA par email">
+              intelligencia.lagarde@gmail.com
+            </a>
+            <span class="sr-only">Email généalogiste professionnel contact</span>
+          </div>
+          <div class="contact-item" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+            <i class="fas fa-map-marker-alt contact-icon" aria-hidden="true"></i>
+            <span class="address-line">
+              <span itemprop="streetAddress">67 Cours Mirabeau</span>, 
+              <span itemprop="postalCode">13100 </span> 
+              <span itemprop="addressLocality">Aix-en-Provence</span>
+            </span>
+            <span class="sr-only" itemprop="addressRegion">Bouches-du-Rhône Provence-Alpes-Côte d'Azur France</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section Copyright -->
+  <div class="footer-bottom">
+    <div class="footer-container">
+      <div class="footer-bottom-content">
+        <p class="copyright" itemprop="copyrightHolder">
+          © {{ currentYear }} <span itemprop="legalName">Intelligencia-Genea</span>. Tous droits réservés.
+          <span class="sr-only">Cabinet généalogie professionnel agréé Ministère Culture</span>
+        </p>
+        <div class="footer-legal">
+          <a (click)="onLegalClick('mentions')" style="cursor: pointer;" title="Mentions Légales INTELLIGENCIA-GENEA"
+            aria-label="Mentions Légales cabinet généalogie">Mentions Légales</a>
+          <span class="separator" aria-hidden="true">|</span>
+          <a (click)="onLegalClick('confidentialite')" style="cursor: pointer;"
+            title="Politique de Confidentialité INTELLIGENCIA-GENEA"
+            aria-label="Politique de Confidentialité généalogiste">Politique de Confidentialité</a>
+          <span class="separator" aria-hidden="true">|</span>
+          <a (click)="onLegalClick('cookies')" style="cursor: pointer;" title="Politique de Cookies INTELLIGENCIA-GENEA"
+            aria-label="Politique de Cookies cabinet généalogie">Politique de Cookies</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modale de contact -->
+  <app-study-modal [isOpen]="showModal" (closeModal)="onCloseModal()">
+  </app-study-modal>
+
+  <!-- Modale légale -->
+  <app-legal-modal [isOpen]="showLegalModal" [legalContent]="currentLegalContent" (closeModal)="onCloseLegalModal()">
+  </app-legal-modal>
+</footer>

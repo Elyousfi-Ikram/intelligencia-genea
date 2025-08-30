@@ -1,0 +1,467 @@
+@use 'sass:color';
+
+// Variables harmonisées avec le reste du site
+$primary-color: #5d4e37;
+$secondary-color: #8b7355;
+$accent-color: #f3e1c2;
+$light-accent: #e6d4a7;
+$background-light: #f8f9fa;
+$background-white: #ffffff;
+$text-dark: #5d4e37;
+$border-color: rgba(93, 78, 55, 0.2);
+$shadow-color: rgba(93, 78, 55, 0.1);
+
+.clients-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, $background-light 0%, $background-white 100%);
+    font-family: 'Cinzel', serif;
+    color: $text-dark;
+
+    .clients-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .clients-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        padding: 3rem 0;
+
+        .clients-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: $text-dark;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(93, 78, 55, 0.1);
+        }
+
+        .clients-subtitle {
+            font-size: 1.3rem;
+            color: $text-dark;
+            opacity: 0.85;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+    }
+
+    .clients-content {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+        margin-bottom: 4rem;
+    }
+
+    .client-category {
+        background: linear-gradient(135deg, $background-white 0%, rgba(248, 249, 250, 0.9) 100%);
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 30px $shadow-color;
+        border: 1px solid $border-color;
+        transition: all 0.4s ease;
+        position: relative;
+        overflow: hidden;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, $accent-color, $light-accent);
+        }
+
+        &.special {
+            background: linear-gradient(135deg, rgba(243, 225, 194, 0.15) 0%, $background-white 100%);
+            border-color: $accent-color;
+
+            &:before {
+                background: linear-gradient(90deg, $primary-color, $secondary-color);
+            }
+        }
+    }
+
+    .category-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 2px solid $border-color;
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+            margin: 0;
+            position: relative;
+            padding: 3rem;
+            border-radius: 15px;
+            text-align: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 4px 15px rgba(93, 78, 55, 0.3);
+            transition: all 0.3s ease;
+            z-index: 2;
+            width: 100%;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(93, 78, 55, 0.4);
+                border-radius: 15px;
+                z-index: 1;
+            }
+
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(93, 78, 55, 0.4);
+            }
+
+            // Classes spécifiques pour chaque image de fond
+            &.particuliers-bg {
+                background-image: url('/assets/servicesPage/particuliers.webp');
+            }
+
+            &.successorale-bg {
+                background-image: url('/assets/servicesPage/successorale.webp');
+            }
+
+            &.immobiliers-bg {
+                background-image: url('/assets/servicesPage/immobiliers.webp');
+            }
+
+            &.conseil-bg {
+                background-image: url('/assets/servicesPage/conseil.webp');
+
+            }
+        }
+    }
+
+    .category-content {
+        h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: $text-dark;
+            margin: 2rem 0 1.5rem 0;
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, rgba(243, 225, 194, 0.2), rgba(230, 212, 167, 0.1));
+            border-radius: 10px;
+            border-bottom: 4px solid $accent-color;
+            position: relative;
+
+            &:before {
+                content: '▼';
+                position: absolute;
+                right: 50%;
+                bottom: -27px;
+                transform: translateY(-50%);
+                color: $accent-color;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .client-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 2rem 0;
+        display: grid;
+        gap: 0.8rem;
+
+        li {
+            padding: 1rem 1.5rem;
+            background: linear-gradient(135deg, rgba(243, 225, 194, 0.1), rgba(248, 249, 250, 0.8));
+            border-radius: 12px;
+            border-left: 1px solid $secondary-color;
+            border-right: 1px solid $secondary-color;
+            color: $text-dark;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+    }
+
+    // Section CTA améliorée
+    .clients-cta {
+        background: linear-gradient(135deg, rgba(93, 78, 55, 0.95) 0%, rgba(139, 115, 85, 0.95) 100%);
+        border-radius: 25px;
+        padding: 4rem 3rem;
+        text-align: center;
+        color: white;
+        position: relative;
+        overflow: hidden;
+        margin-top: 3rem;
+    
+        &:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('../../../assets/homePage/Archives.webp') center/cover;
+            opacity: 0.15;
+            z-index: 0;
+        }
+    
+        &:after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(243, 225, 194, 0.1) 0%, transparent 70%);
+            z-index: 1;
+            animation: pulse 4s ease-in-out infinite;
+        }
+    
+        .cta-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            
+            h2 {
+                font-size: 2.8rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: white;
+                text-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+                background: linear-gradient(135deg, #ffffff, $accent-color);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                position: relative;
+                
+                &:after {
+                    content: '';
+                    position: absolute;
+                    bottom: -10px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    width: 80px;
+                    height: 3px;
+                    background: linear-gradient(90deg, $accent-color, $light-accent);
+                    border-radius: 2px;
+                }
+            }
+            
+            p {
+                font-size: 1.3rem;
+                margin-bottom: 3rem;
+                opacity: 0.95;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+                line-height: 1.7;
+                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        
+            .btn-primary,
+            .btn-secondary {
+                padding: 1.3rem 3rem;
+                border-radius: 50px;
+                font-weight: 600;
+                font-size: 1.1rem;
+                border: none;
+                cursor: pointer;
+                transition: all 0.4s ease;
+                font-family: 'Cinzel', serif;
+                position: relative;
+                overflow: hidden;
+                min-width: 180px;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                
+                &:before {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    background: rgba(255, 255, 255, 0.2);
+                    border-radius: 50%;
+                    transition: all 0.4s ease;
+                    transform: translate(-50%, -50%);
+                }
+                
+                &:hover:before {
+                    width: 300px;
+                    height: 300px;
+                }
+                
+                &:active {
+                    transform: translateY(2px);
+                }
+            }
+            
+            .btn-primary {
+                background: linear-gradient(135deg, $accent-color, $light-accent);
+                color: $text-dark;
+                box-shadow: 0 8px 25px rgba(243, 225, 194, 0.4);
+                
+                &:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 12px 35px rgba(243, 225, 194, 0.6);
+                    background: linear-gradient(135deg, $light-accent, $accent-color);
+                }
+            }
+            
+            .btn-secondary {
+                background: transparent;
+                color: white;
+                border: 2px solid white;
+                box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+                
+                &:hover {
+                    transform: translateY(-3px);
+                    background: white;
+                    color: $text-dark;
+                    box-shadow: 0 12px 35px rgba(255, 255, 255, 0.4);
+                }
+            }
+        }
+    }
+}
+
+// Composant image de catégorie
+.category-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(93, 78, 55, 0.2);
+    transition: all 0.3s ease;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(93, 78, 55, 0.3);
+
+        img {
+            transform: scale(1.1);
+        }
+    }
+}
+
+// Animation pour l'effet de particules
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.2;
+        transform: scale(1.05);
+    }
+}
+
+// Responsive design
+@media (max-width: 1200px) {
+    .clients-page {
+        .clients-cta {
+            padding: 3rem 2rem;
+            
+            .cta-content h2 {
+                font-size: 2.4rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 850px) {
+    .clients-page {
+
+        .clients-content {
+            grid-template-columns: 1fr;
+        }
+
+        .category-header h2 {
+            min-height: 100px;
+            padding: 2rem;
+        }
+
+        .clients-cta {
+            padding: 2.5rem 1.5rem;
+            margin-top: 2rem;
+            border-radius: 20px;
+            
+            .cta-content {
+                h2 {
+                    font-size: 2rem;
+                    margin-bottom: 1rem;
+                }
+                
+                p {
+                    font-size: 1.1rem;
+                    margin-bottom: 2rem;
+                }
+            }
+            
+            .cta-buttons {
+                gap: 1rem;
+                flex-direction: column;
+                align-items: center;
+                
+                .btn-primary,
+                .btn-secondary {
+                    padding: 1rem 2rem;
+                    font-size: 1rem;
+                    min-width: 200px;
+                }
+            }
+        }
+    }
+
+    .category-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .clients-page {
+        .clients-cta {
+            .cta-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .cta-buttons {
+                .btn-primary,
+                .btn-secondary {
+                    min-width: 100%;
+                    max-width: 280px;
+                }
+            }
+        }
+    }
+}

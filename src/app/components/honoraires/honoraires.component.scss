@@ -1,0 +1,489 @@
+@use 'sass:color';
+
+// Variables harmonisées avec le reste du site
+$primary-color: #5d4e37;
+$secondary-color: #8b7355;
+$accent-color: #f3e1c2;
+$light-accent: #e6d4a7;
+$background-light: #f8f9fa;
+$background-white: #ffffff;
+$text-dark: #5d4e37;
+$border-color: rgba(93, 78, 55, 0.2);
+$shadow-color: rgba(93, 78, 55, 0.1);
+$types-color: #4a90e2;
+$verification-color: #27ae60;
+$recherche-color: #e67e22;
+$contrat-color: #9b59b6;
+$obligation-color: #34495e;
+$ethique-color: #e74c3c;
+
+.honoraires-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, $background-light 0%, $background-white 100%);
+    font-family: 'Cinzel', serif;
+    color: $text-dark;
+    position: relative;
+
+    // Effet de particules en arrière-plan
+    &::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+            radial-gradient(circle at 25% 75%, rgba(93, 78, 55, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 75% 25%, rgba(139, 115, 85, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 50% 50%, rgba(243, 225, 194, 0.05) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .honoraires-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 2rem;
+        position: relative;
+        z-index: 1;
+    }
+
+    .honoraires-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        padding: 4rem 0;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 3px;
+            background: linear-gradient(90deg, $primary-color 0%, $secondary-color 100%);
+            border-radius: 2px;
+        }
+
+        .honoraires-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: $text-dark;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 8px rgba(93, 78, 55, 0.1);
+            position: relative;
+        }
+
+        .honoraires-subtitle {
+            font-size: 1.5rem;
+            color: $text-dark;
+            opacity: 0.85;
+            margin: 0 auto;
+            line-height: 1.6;
+            max-width: 600px;
+            font-weight: 600;
+            font-style: italic;
+        }
+    }
+
+    .honoraires-content {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        margin-bottom: 4rem;
+    }
+
+    .intro-section {
+        background: $background-white;
+        padding: 3rem;
+        border-radius: 20px;
+        box-shadow: 0 12px 40px $shadow-color;
+        border: 1px solid $border-color;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, $primary-color 0%, $secondary-color 50%, $accent-color 100%);
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin: 0;
+            text-align: justify;
+            font-weight: 500;
+            position: relative;
+            z-index: 1;
+
+            .copy {
+                position: relative;
+                top: 4px;
+                left: -1px;
+                font-size: xx-large;
+            }
+        }
+    }
+
+    .honoraire-category {
+        background: $background-white;
+        border-radius: 25px;
+        overflow: hidden;
+        box-shadow: 0 15px 50px $shadow-color;
+        border: 1px solid $border-color;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(243, 225, 194, 0.02) 0%, rgba(139, 115, 85, 0.02) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .category-header {
+            position: relative;
+            padding: 3rem;
+            color: white;
+            text-align: center;
+            overflow: hidden;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+                transition: left 0.6s ease;
+            }
+
+            h2 {
+                font-size: 2rem;
+                font-weight: 600;
+                margin: 0;
+                text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+                position: relative;
+                z-index: 2;
+                transition: transform 0.3s ease;
+
+                &.types-bg {
+                    background: linear-gradient(135deg, #e6d4a7 0%, rgb(246.9247787611, 241.110619469, 226.5752212389) 100%);
+                    padding: inherit;
+                    margin: -3rem;
+                    position: relative;
+                }
+
+                &.verification-bg {
+                    background: linear-gradient(135deg, #e6d4a7 0%, rgb(246.9247787611, 241.110619469, 226.5752212389) 100%);
+                    padding: inherit;
+                    margin: -3rem;
+                    position: relative;
+                }
+
+                &.recherche-bg {
+                    background: linear-gradient(135deg, #e6d4a7 0%, rgb(246.9247787611, 241.110619469, 226.5752212389) 100%);
+                    padding: inherit;
+                    margin: -3rem;
+                    position: relative;
+                }
+
+                &.contrat-bg {
+                    background: linear-gradient(135deg, #e6d4a7 0%, rgb(246.9247787611, 241.110619469, 226.5752212389) 100%);
+                    padding: inherit;
+                    margin: -3rem;
+                    position: relative;
+                }
+
+                &.obligation-bg {
+                    background: linear-gradient(135deg, #e6d4a7 0%, rgb(246.9247787611, 241.110619469, 226.5752212389) 100%);
+                    padding: inherit;
+                    margin: -3rem;
+                    position: relative;
+                }
+
+                &.ethique-bg {
+                    background: linear-gradient(135deg, #e6d4a7 0%, rgb(246.9247787611, 241.110619469, 226.5752212389) 100%);
+                    padding: inherit;
+                    margin: -3rem;
+                    position: relative;
+                }
+            }
+        }
+
+        .category-content {
+            padding: 3rem;
+            position: relative;
+
+            .category-intro {
+                font-size: 1.2rem;
+                line-height: 1.8;
+                margin-bottom: 2rem;
+                text-align: justify;
+                font-weight: 500;
+                position: relative;
+                padding-left: 1rem;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 3px;
+                    height: 100%;
+                    background: linear-gradient(180deg, $primary-color 0%, $secondary-color 100%);
+                    border-radius: 2px;
+                }
+            }
+
+            .category-text {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                margin-bottom: 2rem;
+                text-align: justify;
+            }
+
+            .category-conclusion {
+                font-size: 1.1rem;
+                line-height: 1.8;
+                margin-top: 2rem;
+                text-align: justify;
+                font-style: italic;
+                color: color.adjust($text-dark, $lightness: -10%);
+                padding: 1.5rem;
+                background: linear-gradient(135deg, rgba(243, 225, 194, 0.3) 0%, rgba(230, 212, 167, 0.2) 100%);
+                border-radius: 10px;
+                border-left: 3px solid $accent-color;
+            }
+
+            .highlight-box {
+                background: linear-gradient(135deg, $accent-color 0%, $light-accent 100%);
+                padding: 2rem;
+                border-radius: 15px;
+                border: 2px solid rgba(93, 78, 55, 0.1);
+                margin: 2rem 0;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 8px 25px rgba(243, 225, 194, 0.4);
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    top: -50%;
+                    left: -50%;
+                    width: 200%;
+                    height: 200%;
+                    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+                    animation: shimmer 3s ease-in-out infinite;
+                }
+
+                .highlight-text {
+                    margin: 0;
+                    font-weight: 600;
+                    font-size: 1.2rem;
+                    line-height: 1.6;
+                    text-align: center;
+                    position: relative;
+                    z-index: 1;
+                }
+            }
+
+            .final-commitment {
+                background: linear-gradient(135deg, rgba(93, 78, 55, 0.05) 0%, rgba(139, 115, 85, 0.03) 100%);
+                padding: 2rem;
+                border-radius: 15px;
+                border: 2px solid $border-color;
+                margin-top: 2rem;
+                position: relative;
+
+                .commitment-text {
+                    margin: 0;
+                    font-size: 1.1rem;
+                    line-height: 1.7;
+                    text-align: justify;
+                    font-weight: 500;
+                    color: color.adjust($text-dark, $lightness: -5%);
+                }
+            }
+
+            .honoraire-list {
+                list-style: none;
+                padding: 0;
+                margin: 2rem 0;
+                background: rgba(248, 249, 250, 0.5);
+                border-radius: 15px;
+                padding: 1.5rem;
+
+                &.secondary {
+                    background: rgba(243, 225, 194, 0.2);
+                    border-left: 4px solid $accent-color;
+                }
+
+                li {
+                    position: relative;
+                    padding: 1rem 0 1rem 3rem;
+                    margin-bottom: 0.8rem;
+                    border-bottom: 1px solid rgba(93, 78, 55, 0.1);
+                    transition: all 0.3s ease;
+                    border-radius: 8px;
+
+                    &::before {
+                        content: '◆';
+                        position: absolute;
+                        left: 0.5rem;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        font-size: 1.2rem;
+                        width: 2rem;
+                        height: 2rem;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        // box-shadow: 0 2px 8px rgba(93, 78, 55, 0.2);
+                        color: $primary-color;
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// Animation pour l'effet shimmer
+@keyframes shimmer {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+// Responsive Design
+@media (max-width: 1200px) {
+    .honoraires-page {
+        .honoraires-container {
+            padding: 1.5rem;
+        }
+
+        .honoraires-header {
+            .honoraires-title {
+                font-size: 3rem;
+            }
+        }
+
+        .honoraire-category .category-header {
+            padding: 2.5rem;
+
+            h2 {
+                margin: -2.5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .honoraires-page {
+        .honoraires-container {
+            padding: 1rem;
+        }
+
+        .honoraires-header {
+            margin-bottom: 2rem;
+            padding: 2rem 0;
+
+            .honoraires-title {
+                font-size: 2.5rem;
+            }
+
+            .honoraires-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+
+        .intro-section,
+        .honoraire-category .category-content {
+            padding: 2rem;
+        }
+
+        .honoraire-category .category-header {
+            padding: 2rem;
+
+            h2 {
+                font-size: 1.6rem;
+                margin: -2rem;
+                padding: inherit;
+
+                &::after {
+                    display: none;
+                }
+            }
+        }
+
+        .honoraire-category {
+            &:hover {
+                transform: translateY(-4px) scale(1.01);
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .honoraires-page {
+        .honoraires-header {
+            .honoraires-title {
+                font-size: 2rem;
+            }
+
+            .honoraires-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        .intro-section,
+        .honoraire-category .category-content {
+            padding: 1.5rem;
+        }
+
+        .honoraire-category .category-header {
+            padding: 1.5rem;
+
+            h2 {
+                font-size: 1.3rem;
+                margin: -1.5rem;
+                padding: inherit;
+            }
+        }
+
+        .honoraire-category .category-content {
+            .honoraire-list li {
+                padding: 0.8rem 0 0.8rem 2.5rem;
+
+                &::before {
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    font-size: 1rem;
+                }
+            }
+        }
+    }
+}

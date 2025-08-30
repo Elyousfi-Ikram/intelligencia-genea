@@ -1,0 +1,1325 @@
+@use 'sass:color';
+
+// === VARIABLES OPTIMISÉES ===
+:root {
+  --primary-color: #5d4e37;
+  --secondary-color: #f3e1c2;
+  --accent-color: #e6d4a7;
+  --gold-accent: #d4af37;
+  --text-dark: #2c3e50;
+  --text-light: #6c757d;
+  --bg-light: #f8f9fa;
+  --background-article: linear-gradient(135deg, #fefefe 0%, #f8f9fa 100%);
+  --border-radius: 16px;
+  --article-padding: 1rem;
+  --article-margin: 2rem;
+  --h3-size: 1.5rem;
+  --h4-size: 1.1rem;
+  --text-size: 0.9rem;
+  --line-height: 1.8;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.12);
+  --shadow-heavy: 0 12px 40px rgba(0, 0, 0, 0.15);
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast: all 0.2s ease;
+}
+
+// === CLASSE SR-ONLY POUR SEO ===
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// === MIXINS POUR RÉUTILISABILITÉ ===
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin page-shadow($intensity: light) {
+  @if $intensity ==light {
+    box-shadow: var(--shadow-light);
+  }
+
+  @else if $intensity ==medium {
+    box-shadow: var(--shadow-medium);
+  }
+
+  @else {
+    box-shadow: var(--shadow-heavy);
+  }
+}
+
+@mixin gradient-background($color1, $color2, $angle: 135deg) {
+  background: linear-gradient($angle, $color1 0%, $color2 100%);
+}
+
+@mixin text-shadow-subtle {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+// === OPTIMISATIONS PERFORMANCE ===
+.book-container {
+  contain: layout style paint;
+  will-change: transform;
+  content-visibility: auto;
+  contain-intrinsic-size: 100vh;
+}
+
+.book-desktop {
+  contain: layout style;
+  will-change: transform;
+}
+
+.page-content {
+  contain: layout style;
+  content-visibility: auto;
+  contain-intrinsic-size: 750px;
+}
+
+// === OPTIMISATIONS IMAGES WEBP ===
+.book-container {
+  background-image: 
+    url('/assets/deontologie/charte-background.webp'),
+    linear-gradient(135deg, #f3e1c2 0%, #f8f9fa 100%);
+  background-image: 
+    url('/assets/deontologie/charte-background.jpg'),
+    linear-gradient(135deg, #f3e1c2 0%, #f8f9fa 100%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.book-cover {
+  background-image: 
+    url('/assets/deontologie/book-texture.webp'),
+    linear-gradient(135deg, #8B4513 0%, #F5DEB3 100%);
+  background-image: 
+    url('/assets/deontologie/book-texture.jpg'),
+    linear-gradient(135deg, #8B4513 0%, #F5DEB3 100%);
+}
+
+// === CONTENEUR PRINCIPAL OPTIMISÉ ===
+.book-container {
+  @include flex-center;
+  @include gradient-background(#f3e1c2, #f8f9fa);
+  padding: 2rem;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+// === LIVRE OPTIMISÉ ===
+.book-desktop {
+  position: relative;
+  width: min(1300px, 90vw);
+  height: min(750px, 90vh);
+  perspective: 1200px;
+  margin: 0 auto;
+}
+
+// === COUVERTURE AMÉLIORÉE ===
+.book-cover {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  @include gradient-background(#8B4513, #F5DEB3);
+  right: 0;
+  border-radius: 0 15px 15px 0;
+  transform-origin: left center;
+  z-index: 10;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+
+  // Décoration de couverture
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    @include gradient-background(transparent, rgba(255, 255, 255, 0.1), 45deg);
+  }
+
+  &.open {
+    transform: rotateY(-180deg);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .cover-front {
+    @include flex-center;
+    flex-direction: column;
+    height: 100%;
+    padding: 3rem 2rem;
+    color: #f4f1de;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+
+    .cover-decoration {
+      position: absolute;
+      top: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      @include gradient-background(transparent, var(--gold-accent), 90deg);
+      border-radius: 2px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 3rem;
+      font-style: italic;
+      opacity: 0.9;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .open-book-btn {
+      @include gradient-background(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      padding: 1.2rem 2.5rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      backdrop-filter: blur(10px);
+      @include flex-center;
+      gap: 0.8rem;
+      @include page-shadow(light);
+      color: #5d4e37;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+  }
+}
+
+// === PAGES OPTIMISÉES ===
+.book-pages {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  @include gradient-background(#fefefe, #f8f8f8);
+  border-radius: 15px;
+  @include page-shadow(heavy);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s ease;
+  overflow: hidden;
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 80%, rgba(120, 119, 108, 0.02) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.8) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+// === TRANCHE DU LIVRE OPTIMISÉE ===
+.book-spine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  transform: translateX(-50%);
+  z-index: 15;
+  box-shadow:
+    inset 0 0 10px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 2px;
+    height: 80%;
+    @include gradient-background(transparent, rgba(255, 255, 255, 0.3), to bottom);
+    border-radius: 1px;
+  }
+}
+
+// === CONTENEUR DES PAGES ===
+.pages-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 10;
+}
+
+// Contenu des pages amélioré
+.page-content {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 2rem 1rem 4rem 1rem;
+  opacity: 1;
+  visibility: visible;
+  overflow-y: auto;
+  transition: none;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  line-height: var(--line-height);
+
+  // Scrollbar personnalisée améliorée
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    @include gradient-background(var(--accent-color), color-mix(in srgb, var(--accent-color) 80%, black));
+    border-radius: 5px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+  }
+
+  // Forcer l'affichage quand la classe active est présente
+  &.active {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  // Titres principaux améliorés
+  h3 {
+    font-size: var(--h3-size);
+    color: var(--primary-color);
+    border-bottom: none;
+    padding-bottom: 1rem;
+    margin-bottom: 2.5rem;
+    font-weight: 700;
+    position: relative;
+    text-align: center;
+    @include text-shadow-subtle;
+    letter-spacing: 0.5px;
+
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      @include gradient-background(var(--accent-color), var(--gold-accent));
+      border-radius: 2px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background: var(--gold-accent);
+      border-radius: 1px;
+    }
+  }
+
+  // Articles améliorés
+  .article {
+    // background: var(--background-article);
+    padding: var(--article-padding);
+    margin-bottom: var(--article-margin);
+    // border-radius: var(--border-radius);
+    // border: 1px solid rgba(0, 0, 0, 0.05);
+    // @include page-shadow(light);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      @include gradient-background(var(--accent-color), var(--gold-accent), 90deg);
+    }
+
+
+
+    // Sous-titres améliorés
+    h4 {
+      font-size: var(--h4-size);
+      color: var(--primary-color);
+      margin-top: 2.5rem;
+      font-weight: 600;
+      position: relative;
+      padding-left: 1.3rem;
+      @include text-shadow-subtle;
+      letter-spacing: 0.3px;
+
+      &::before {
+        content: '◆';
+        color: var(--gold-accent);
+        font-size: 0.9em;
+        position: absolute;
+        left: 0;
+        top: 0;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
+    }
+
+    // Paragraphes améliorés
+    p {
+      text-align: justify;
+      font-size: var(--text-size);
+      color: #2c3e50;
+      margin-bottom: 0;
+    }
+
+    // Listes améliorées
+    ul {
+      margin-left: 0;
+      margin-bottom: 1.5rem;
+      padding-left: 2rem;
+
+      li {
+        margin-bottom: 0.2rem;
+        list-style: none;
+        font-size: var(--text-size);
+        line-height: var(--line-height);
+        color: #2c3e50;
+        position: relative;
+        padding-left: 1.5rem;
+        text-align: justify;
+
+        &::before {
+          content: '▸';
+          color: var(--gold-accent);
+          font-weight: bold;
+          position: absolute;
+          left: 0;
+          top: 0;
+          font-size: 1.1em;
+          text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+      }
+    }
+  }
+
+  // Styles pour le contenu personnalisé améliorés
+  .custom-content {
+    h3 {
+      color: var(--primary-color);
+      border-bottom: 3px solid var(--accent-color);
+      padding-bottom: 0.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .signature-space {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: var(--border-radius);
+      border: 2px dashed var(--accent-color);
+
+      p {
+        text-align: center;
+        font-style: italic;
+        color: var(--text-light);
+        margin-bottom: 2rem;
+        text-indent: 0;
+      }
+
+      .signature-line {
+        width: 60%;
+        height: 2px;
+        background: var(--accent-color);
+        margin: 2rem auto;
+        border-radius: 1px;
+      }
+    }
+  }
+
+  .final-signature {
+    text-align: center;
+    padding: 3rem;
+    background: var(--background-article);
+    border-radius: var(--border-radius);
+    @include page-shadow(light);
+
+    h3 {
+      color: var(--primary-color);
+      margin-bottom: 2rem;
+      border-bottom: none;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+
+    .signature-block {
+      margin-top: 3rem;
+      padding: 2rem;
+      border: 3px solid var(--accent-color);
+      border-radius: var(--border-radius);
+      background: rgba(255, 255, 255, 0.8);
+      @include page-shadow(light);
+
+      p {
+        margin-bottom: 1rem;
+        text-indent: 0;
+        font-weight: 500;
+
+        &.date {
+          font-size: 0.9rem;
+          color: var(--text-light);
+          margin-top: 2rem;
+          font-style: italic;
+        }
+
+        &:last-child:not(.date) {
+          font-style: italic;
+          color: var(--text-light);
+          font-size: 0.95rem;
+        }
+      }
+    }
+  }
+
+  // Numéros de page améliorés
+  .page-number {
+    position: fixed;
+    bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    @include page-shadow(light);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-family: 'Georgia', serif;
+  }
+}
+
+.page-left .page-number {
+  position: fixed;
+  bottom: 2rem;
+  left: 3rem;
+}
+
+.page-right .page-number {
+  position: fixed;
+  bottom: 2rem;
+  right: 3rem;
+}
+
+// === NAVIGATION OPTIMISÉE ===
+.book-navigation {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  @include flex-center;
+  justify-content: space-between;
+  padding: 2rem 4rem;
+  @include gradient-background(rgba(0, 0, 0, 0.1), transparent, to top);
+  z-index: 30;
+}
+
+.nav-btn {
+  @include gradient-background(var(--accent-color), color-mix(in srgb, var(--accent-color) 85%, black));
+  border: none;
+  padding: 1.2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  transition: var(--transition-smooth);
+  @include page-shadow(light);
+  width: 60px;
+  height: 60px;
+  @include flex-center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+  }
+
+  &:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .nav-icon {
+    font-size: 2.2rem;
+    line-height: 1;
+    z-index: 1;
+  }
+}
+
+// Classes spécifiques pour le positionnement
+.nav-btn-left {
+  position: absolute;
+  left: 16rem;
+  bottom: 1.2rem;
+}
+
+.nav-btn-right {
+  position: absolute;
+  right: 16rem;
+  bottom: 1.2rem;
+}
+
+.close-btn {
+  @include gradient-background(#5d4e37, #f3e1c2);
+  border: none;
+  padding: 1rem 4rem;
+  border-radius: 30px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  transition: var(--transition-smooth);
+  @include page-shadow(light);
+  @include flex-center;
+  gap: 0.8rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.1rem;
+  z-index: 40;
+
+  .close-icon {
+    font-size: 1.2rem;
+  }
+
+  .close-text {
+    font-size: 1rem;
+  }
+}
+
+// === CONTENEUR DES PAGES STATIQUES ===
+.static-pages {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+// === STYLES POUR LES PAGES ===
+.page-left,
+.page-right {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  @include gradient-background(#fefefe, #f8f8f8);
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.page-left {
+  border-radius: 15px 0 0 15px;
+  border-right: 3px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset -15px 0 25px rgba(0, 0, 0, 0.05);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    @include gradient-background(rgba(0, 0, 0, 0.1), transparent, to right);
+    pointer-events: none;
+  }
+}
+
+.page-right {
+  border-radius: 0 15px 15px 0;
+  border-left: 3px solid rgba(0, 0, 0, 0.1);
+  box-shadow: inset 15px 0 25px rgba(0, 0, 0, 0.05);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    @include gradient-background(rgba(0, 0, 0, 0.1), transparent, to left);
+    pointer-events: none;
+  }
+}
+
+// === ANIMATIONS DE PAGES AMÉLIORÉES ===
+.turning-page {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  z-index: 20;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 0 30px rgba(0, 0, 0, 0.4));
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &.turning-right {
+    transform: rotateY(-180deg);
+  }
+
+  &.turning-left {
+    transform: rotateY(0deg);
+  }
+
+  .page-front,
+  .page-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    @include gradient-background(#fefefe, #f8f8f8);
+    backface-visibility: hidden;
+    border-radius: 0 15px 15px 0;
+    box-shadow: -3px 0 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .page-front {
+    z-index: 2;
+  }
+
+  .page-back {
+    transform: rotateY(180deg);
+    z-index: 1;
+    border-radius: 15px 0 0 15px;
+    box-shadow: 3px 0 15px rgba(0, 0, 0, 0.2);
+  }
+}
+
+// === AMÉLIORATIONS ACCESSIBILITÉ ===
+
+// Focus visible pour navigation clavier
+.open-book-btn:focus,
+.nav-btn:focus,
+.close-btn:focus,
+.timeline-header:focus {
+  outline: 3px solid var(--gold-accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(212, 175, 55, 0.3);
+}
+
+// États hover améliorés
+.open-book-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 100%);
+}
+
+.nav-btn:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: var(--shadow-medium);
+  
+  &::before {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.close-btn:hover {
+  transform: translate(-50%, -50%) translateY(-2px);
+  box-shadow: var(--shadow-medium);
+  background: linear-gradient(135deg, #4a3d2a 0%, #e6d4a7 100%);
+}
+
+.timeline-header:hover {
+  background: linear-gradient(135deg, #fefefe 0%, #f0f0f0 100%);
+  transform: translateX(5px);
+}
+
+// === RESPONSIVE DESIGN AMÉLIORÉ ===
+
+// Version desktop uniquement (masquée sur tablette)
+.desktop-only {
+  display: block;
+}
+
+.tablet-only {
+  display: none;
+}
+
+// Version tablette avec timeline
+.tablet-version {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: 'Georgia', 'Times New Roman', serif;
+
+  .tablet-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    @include gradient-background(var(--secondary-color), var(--accent-color));
+    border-radius: var(--border-radius);
+    @include page-shadow(light);
+
+    h1 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+      @include text-shadow-subtle;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      color: var(--text-light);
+      font-style: italic;
+    }
+  }
+
+  .timeline-container {
+    position: relative;
+
+    .timeline-item {
+      position: relative;
+      display: flex;
+      // margin-bottom: 2rem;
+
+      .timeline-marker {
+        position: relative;
+
+        .timeline-dot {
+          width: 20px;
+          height: 20px;
+          background: var(--gold-accent);
+          border-radius: 50%;
+          border: 4px solid white;
+          box-shadow: 0 0 0 3px var(--accent-color);
+          position: relative;
+          z-index: 2;
+        }
+
+        .timeline-line {
+          position: absolute;
+          left: 50%;
+          top: 20px;
+          width: 2px;
+          height: 95%;
+          background: var(--accent-color);
+          transform: translateX(-50%);
+          z-index: 1;
+          transition: height 0.4s ease;
+        }
+      }
+
+      .timeline-content {
+        flex: 1;
+        background: white;
+        // border-radius: var(--border-radius);
+        @include page-shadow(light);
+        overflow: hidden;
+        border-bottom: 2px solid var(--accent-color);
+
+        .timeline-header {
+          padding: 1.5rem 2rem;
+          // background: var(--background-article);
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          transition: var(--transition-fast);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+          h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            font-weight: 600;
+          }
+
+          .collapse-icon {
+            font-size: 1.2rem;
+            color: var(--gold-accent);
+            transition: transform 0.3s ease;
+
+            &.expanded {
+              transform: rotate(180deg);
+            }
+          }
+        }
+
+        .timeline-body {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.4s ease;
+
+          &.expanded {
+            max-height: 2000px;
+          }
+
+          .article-content {
+            padding: 2rem;
+
+            .article-item {
+              margin-bottom: 1.5rem;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+
+              h4 {
+                font-size: 1.1rem;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+                padding-left: 1.5rem;
+                position: relative;
+
+                &::before {
+                  content: '◆';
+                  color: var(--gold-accent);
+                  position: absolute;
+                  left: 0;
+                  top: 0;
+                }
+              }
+
+              p {
+                font-size: 0.95rem;
+                line-height: 1.6;
+                color: var(--text-dark);
+                margin-bottom: 1rem;
+                text-align: justify;
+              }
+
+              ul {
+                margin-left: 0;
+                padding-left: 1.5rem;
+
+                li {
+                  font-size: 0.95rem;
+                  line-height: 1.6;
+                  color: var(--text-dark);
+                  margin-bottom: 0.5rem;
+                  list-style: none;
+                  position: relative;
+                  padding-left: 1.5rem;
+
+                  &::before {
+                    content: '▸';
+                    color: var(--gold-accent);
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// === MEDIA QUERIES OPTIMISÉES ===
+
+// Préférences utilisateur - Réduction de mouvement
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .turning-page {
+    transition: none;
+  }
+  
+  .nav-btn:hover,
+  .open-book-btn:hover,
+  .close-btn:hover {
+    transform: none;
+  }
+}
+
+// Mode sombre
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #8b7355;
+    --text-dark: #e8e8e8;
+    --text-light: #b0b0b0;
+    --bg-light: #1a1a1a;
+    --background-article: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+  }
+  
+  .book-container {
+    background: linear-gradient(135deg, #2c2416 0%, #1a1a1a 100%);
+  }
+  
+  .book-pages,
+  .page-left,
+  .page-right {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
+    color: #e8e8e8;
+  }
+}
+
+// Optimisations pour différentes tailles d'écran
+@media (max-width: 1200px) {
+  .book-desktop {
+    width: 95vw;
+    height: 85vh;
+  }
+  
+  .page-content {
+    padding: 1.5rem 0.8rem 3rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}
+
+// Masquer uniquement la section SOMMAIRE sur les écrans de moins de 900px
+@media (max-width: 899px) {
+  .tablet-version {
+    .timeline-item.sommaire-section {
+      display: none !important;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .desktop-only {
+    display: none !important;
+  }
+
+  .tablet-only {
+    display: block !important;
+  }
+
+  .tablet-version {
+    padding: 1rem;
+    contain: layout style;
+
+    .tablet-header {
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      contain: layout style paint;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .copy-cover {
+        position: relative;
+        bottom: 12px;
+        right: 9px;
+        font-size: small;
+      }
+    }
+
+    .subtitle {
+      font-size: 1rem;
+    }
+  }
+
+  .timeline-container {
+    contain: layout style;
+    
+    .timeline-item {
+      contain: layout style;
+      
+      &.expanded {
+        .timeline-line {
+          height: calc(100% - 20px);
+        }
+      }
+
+      .timeline-marker {
+        margin-right: 1rem;
+
+        .timeline-dot {
+          width: 16px;
+          height: 16px;
+        }
+
+        .timeline-line {
+          top: 16px;
+          height: 50px;
+        }
+      }
+
+      .timeline-content {
+        .timeline-header {
+          padding: 1rem 1.5rem;
+          
+          h3 {
+            font-size: 1.2rem;
+          }
+        }
+
+        .timeline-body {
+          .article-content {
+            padding: 1.5rem;
+            
+            .article-item {
+              h4 {
+                font-size: 1rem;
+              }
+              
+              p, li {
+                font-size: 0.9rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+
+  // Forcer la version tablette même sur mobile
+  .desktop-only {
+    display: none !important;
+  }
+
+  .tablet-only {
+    display: block !important;
+  }
+
+  .book-container {
+    padding: 1rem;
+  }
+
+  .book-desktop {
+    width: 95vw;
+    height: 80vh;
+  }
+
+  .page-content {
+    padding: 2rem 1.5rem;
+    font-size: 0.9rem;
+
+    .article {
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+
+      p:first-of-type::first-letter {
+        font-size: 2.5em;
+      }
+    }
+  }
+
+  .book-navigation {
+    padding: 1rem 2rem;
+  }
+
+  .nav-btn {
+    width: 50px;
+    height: 50px;
+
+    .nav-icon {
+      font-size: 1.8rem;
+    }
+  }
+
+  .nav-btn-left {
+    left: 12rem;
+  }
+
+  .nav-btn-right {
+    right: 12rem;
+  }
+
+  .close-btn {
+    right: 11rem;
+    bottom: 7rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .tablet-version {
+    .tablet-header {
+      padding: 1rem;
+      
+      h1 {
+        font-size: 1.8rem;
+      }
+      
+      h2 {
+        font-size: 1.3rem;
+      }
+    }
+    
+    .timeline-container {
+      .timeline-item {
+        .timeline-content {
+          .timeline-header {
+            padding: 0.8rem 1rem;
+            
+            h3 {
+              font-size: 1.1rem;
+            }
+          }
+          
+          .timeline-body {
+            .article-content {
+              padding: 1rem;
+              
+              .article-item {
+                p, li {
+                  font-size: 0.85rem;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .page-content {
+    padding: 1.5rem 1rem;
+    font-size: 0.85rem;
+
+    .article {
+      padding: 1rem;
+      margin-bottom: 1rem;
+
+      p:first-of-type::first-letter {
+        font-size: 2em;
+      }
+    }
+  }
+
+  .nav-btn {
+    width: 40px;
+    height: 40px;
+
+    .nav-icon {
+      font-size: 1.5rem;
+    }
+  }
+
+  .nav-btn-left {
+    left: 6rem;
+  }
+
+  .nav-btn-right {
+    right: 6rem;
+  }
+
+  .close-btn {
+    right: 5rem;
+    bottom: 5rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+// === OPTIMISATIONS PRINT ===
+@media print {
+  .book-container {
+    background: white !important;
+    box-shadow: none !important;
+  }
+  
+  .nav-btn,
+  .close-btn,
+  .open-book-btn {
+    display: none !important;
+  }
+  
+  .page-content {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+  }
+  
+  .sr-only {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    clip: auto !important;
+    overflow: visible !important;
+  }
+}

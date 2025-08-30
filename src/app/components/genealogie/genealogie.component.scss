@@ -1,0 +1,1583 @@
+@use 'sass:color';
+
+// ===== VARIABLES =====
+$primary-color: #5d4e37;
+$secondary-color: #8b6914;
+$accent-color: #f3e1c2;
+$background-light: #f8f9fa;
+$background-white: #ffffff;
+$text-dark: #5d4e37;
+$border-light: #e0d5c7;
+$success-color: #8b6914;
+$info-color: #f3e1c2;
+$warning-color: #b8860b;
+$danger-color: #8b4513;
+
+// Variables pour l'espacement
+$section-spacing: 80px;
+$content-spacing: 60px;
+$element-spacing: 40px;
+$small-spacing: 20px;
+
+// Variables pour les breakpoints
+$mobile: 480px;
+$tablet: 768px;
+$desktop: 1024px;
+$large-desktop: 1200px;
+$xl-desktop: 1400px;
+
+// Variables pour les images
+$image-height-hero: 450px;
+$image-height-section: 320px;
+$image-height-evolution: 450px;
+$icon-size: 120px;
+
+// ===== MIXINS =====
+@mixin gradient-background($color1: #ffffff, $color2: #f8f9fa) {
+  background: linear-gradient(145deg, $color1, $color2);
+}
+
+@mixin card-shadow($opacity: 0.12) {
+  box-shadow: 0 15px 40px rgba(93, 78, 55, $opacity);
+}
+
+@mixin section-header-background($image-url) {
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url($image-url);
+  background-size: cover;
+  background-position: center;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 25px;
+  position: relative;
+  border: 2px solid rgba(243, 225, 194, 0.3);
+  height: 280px;
+  text-align: center;
+}
+
+@mixin responsive-text($min-size, $max-size) {
+  font-size: clamp($min-size, 4vw, $max-size);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin grid-responsive($min-width: 280px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min-width, 1fr));
+  gap: 25px;
+}
+
+// ===== PLACEHOLDERS COMMUNS =====
+%card-base {
+  @include gradient-background();
+  border-radius: 20px;
+  @include card-shadow();
+  border: 2px solid #e0d5c7;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+%section-base {
+  @extend %card-base;
+  border-radius: 30px;
+  padding: 25px;
+  @include card-shadow();
+  border: 2px solid rgba(243, 225, 194, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+%content-grid {
+  @include grid-responsive();
+  margin: 40px 0;
+  width: 100%;
+}
+
+%grid-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 25px;
+  @include gradient-background();
+  border-radius: 18px;
+  border: 2px solid rgba(243, 225, 194);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+%image-base {
+  width: 100%;
+  border-radius: 25px;
+  overflow: hidden;
+  @include card-shadow(0.2);
+  position: relative;
+  border: 3px solid transparent;
+  background: linear-gradient(145deg, #ffffff, #f8f9fa) padding-box,
+    linear-gradient(45deg, $accent-color, $secondary-color) border-box;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: all 0.3s ease;
+  }
+}
+
+// ===== 1. GENEALOGIE-PAGE (conteneur principal) =====
+.genealogie-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f8f9fa 100%);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(243, 225, 194, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(139, 105, 20, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+}
+
+// ===== 2. GENEALOGIE-CONTAINER =====
+.genealogie-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 30px;
+  position: relative;
+  z-index: 1;
+}
+
+// ===== 3. GENEALOGIE-HEADER =====
+.genealogie-header {
+  @include flex-center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: 80px;
+  padding: 60px 0;
+  background-image: 
+    linear-gradient(135deg, rgba(93, 78, 55, 0.7) 0%, rgba(139, 105, 20, 0.6) 50%, rgba(93, 78, 55, 0.7) 100%),
+    url('/assets/genealogiePage/genealogiePage-header.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  top: 0;
+  position: relative;
+  width: 99.5vw;
+  margin-left: calc(-50vw + 50%);
+  height: 80vh;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit;
+    z-index: -1;
+    will-change: transform;
+  }
+
+  .page-title,
+  .page-subtitle {
+    font-family: "Cinzel", serif;
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+}
+
+// ===== 4. PAGE-TITLE =====
+.page-title {
+  @include responsive-text(2.2rem, 3.5rem);
+  margin-bottom: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  }
+}
+
+// ===== 5. PAGE-SUBTITLE =====
+.page-subtitle {
+  @include responsive-text(1rem, 1.3rem);
+  opacity: 0.95;
+  max-width: 700px;
+  margin: 0 auto;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+// ===== 7. INTRO-SECTION =====
+.intro-section {
+  margin-bottom: 30px;
+
+  h2 {
+    @include responsive-text(1.8rem, 2.5rem);
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: $element-spacing;
+    position: relative;
+    line-height: 1.3;
+  }
+}
+
+// ===== 8. INTRO-TEXT =====
+.intro-text {
+  @include responsive-text(1rem, 1.2rem);
+  line-height: 1.8;
+  color: $primary-color;
+  text-align: center;
+  padding: 30px;
+  @include gradient-background();
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(243, 225, 194, 0.2);
+  @include card-shadow(0.08);
+
+  h3 {
+    position: relative;
+    z-index: 2;
+    color: $primary-color;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    margin: 0;
+    line-height: 1.3;
+    letter-spacing: 0.5px;
+    transition: all 0.4s ease;
+    padding-bottom: 1rem
+  }
+
+  p {
+    @include responsive-text(1rem, 1.2rem);
+    line-height: 1.8;
+    color: $primary-color;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+// ===== 9. TYPES-OVERVIEW =====
+.types-overview {
+  @include grid-responsive(350px);
+  margin-bottom: $section-spacing;
+}
+
+// ===== 10. TYPE-CARD =====
+.type-card {
+  @extend %card-base;
+  padding: 19px;
+  text-align: center;
+  @include flex-center;
+  flex-direction: column;
+
+  h3 {
+    @include responsive-text(1.2rem, 1.5rem);
+    color: $primary-color;
+    margin: $small-spacing 0 15px;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  p {
+    color: $text-dark;
+    opacity: 0.85;
+    line-height: 1.7;
+    @include responsive-text(0.9rem, 1.1rem);
+    margin: 0;
+  }
+}
+
+// ===== 11. TYPE-ICON =====
+.type-icon {
+  width: $icon-size;
+  height: $icon-size;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(93, 78, 55, 0.15);
+  transition: all 0.3s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+// ===== 13. SECTION-CARD-CONTAINER =====
+.section-card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: $section-spacing;
+}
+
+// ===== 14. SECTION-CARD =====
+.section-card {
+  @extend %card-base;
+  padding: 25px;
+  margin-bottom: 0;
+  border: 1px solid rgba(243, 225, 194, 0.3);
+  display: flex;
+  flex-direction: column;
+
+  &.successoral,
+  &.familial {
+    .section-header {
+      h2 {
+        color: white;
+        text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+        font-weight: 700;
+        position: relative;
+        z-index: 2;
+      }
+    }
+
+    .mission-details {
+      background: linear-gradient(135deg, rgba(139, 105, 20, 0.1), rgba(139, 105, 20, 0.05));
+    }
+
+    .section-description {
+      background: linear-gradient(135deg, rgba(139, 105, 20, 0.15), rgba(139, 105, 20, 0.08));
+    }
+  }
+
+  &.successoral {
+    
+    .section-header {
+      @include section-header-background('/assets/genealogiePage/successoral-icon.webp');
+    }
+
+    .section-description {
+      min-height: 119.65px;
+    }
+  }
+
+  &.familial {
+    .section-header {
+      @include section-header-background('/assets/genealogiePage/genealogiste-table.webp');
+    }
+  }
+
+  .features-grid .feature {
+    border: 1px solid rgba(139, 105, 20, 0.2);
+
+    h4 {
+      color: $secondary-color;
+      margin: 0;
+    }
+  }
+
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 25px;
+  }
+
+  .section-description {
+    margin-bottom: 0;
+  }
+
+  .mission-details {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .features-grid {
+    margin: 0;
+    flex: 1;
+
+    .feature {
+      min-height: min-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  .comparison-note {
+    margin-top: 0;
+  }
+}
+
+// ===== 15. SECTION-HEADER =====
+.section-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $element-spacing;
+  gap: $small-spacing;
+  padding-bottom: $small-spacing;
+  border-bottom: 2px solid rgba(243, 225, 194, 0.3);
+
+  h2 {
+    @include responsive-text(1.8rem, 2.5rem);
+    color: $primary-color;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 1.2;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: white;
+    font-style: italic;
+  }
+}
+
+// ===== 16. SECTION-BADGE =====
+.section-badge {
+  background: linear-gradient(135deg, $secondary-color, $primary-color);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 25px rgba(139, 105, 20, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-card .section-header .section-badge {
+  background: linear-gradient(135deg, rgba(139, 105, 20, 0.95), rgba(93, 78, 55, 0.9));
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  padding: 2px 8px;
+}
+
+// ===== 18. SECTION-DESCRIPTION =====
+.section-description {
+  text-align: justify;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: $text-dark;
+  margin-bottom: 30px;
+  padding: 25px;
+  background: linear-gradient(135deg, $accent-color, #f5f3ed);
+  border-radius: 15px;
+  position: relative;
+}
+
+// ===== 19. MISSION-DETAILS =====
+.mission-details {
+  background: linear-gradient(135deg, rgba(243, 225, 194, 0.3), rgba(243, 225, 194, 0.1));
+  padding: 25px;
+  border-radius: 15px;
+  margin: 25px 0;
+  border: 1px solid rgba(243, 225, 194, 0.5);
+  text-align: justify;
+
+  h4 {
+    color: $secondary-color;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    text-align: start;
+    margin-top: 0;
+    position: relative;
+    padding-left: 30px;
+  }
+
+  p {
+    line-height: 1.7;
+    color: $text-dark;
+    margin: 0;
+  }
+}
+
+// ===== 20. FEATURES-GRID =====
+.features-grid {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+
+  &.features-grid-2x2 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+
+// ===== 21. FEATURE =====
+.feature {
+  @extend %card-base;
+  padding: 10px;
+  border-radius: 18px;
+  border: 1px solid $border-light;
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 50px;
+  @include flex-center;
+  flex-direction: column;
+
+  h4 {
+    @include responsive-text(1rem, 1.2rem);
+    color: $primary-color;
+    margin-bottom: 15px;
+    @include flex-center;
+    gap: 10px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  p {
+    color: $text-dark;
+    opacity: 0.85;
+    line-height: 1.7;
+    margin: 0;
+    text-align: center;
+    @include responsive-text(0.9rem, 1rem);
+  }
+}
+
+// ===== 22. CAROUSEL-CONTAINER =====
+.carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 60px 0;
+  overflow: hidden;
+  border-radius: 25px;
+  @include card-shadow(0.15);
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.98) 0%,
+      rgba(248, 249, 250, 0.95) 50%,
+      rgba(243, 225, 194, 0.1) 100%);
+  backdrop-filter: blur(15px);
+  border: 3px solid rgba(243, 225, 194, 0.5);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 20px 60px rgba(93, 78, 55, 0.15),
+    0 8px 25px rgba(139, 105, 20, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  &.user-interacted {
+    .carousel-btn {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .carousel-track {
+      transition-duration: 0.6s;
+    }
+  }
+
+  // Effet de lueur subtile
+  &::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg,
+        transparent,
+        rgba(243, 225, 194, 0.3),
+        transparent,
+        rgba(139, 105, 20, 0.2),
+        transparent);
+    border-radius: 27px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+}
+
+// ===== CAROUSEL INDICATORS =====
+.carousel-indicators {
+  gap: 10px;
+
+  @media (max-width: $tablet) {
+    gap: 5px;
+  }
+}
+
+.carousel-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(139, 105, 20, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid white;
+
+  @media (max-width: $tablet) {
+    width: 10px;
+    height: 10px;
+  }
+
+  @media (max-width: $mobile) {
+    width: 8px;
+    height: 8px;
+  }
+
+  @media (min-width: $large-desktop) {
+    width: 14px;
+    height: 14px;
+  }
+
+  @media (min-width: $xl-desktop) {
+    width: 16px;
+    height: 16px;
+  }
+
+  &.active {
+    background-color: #8b6914;
+    transform: scale(1.3);
+
+    @media (max-width: $mobile) {
+      transform: scale(1.2);
+    }
+
+    @media (min-width: $large-desktop) {
+      transform: scale(1.4);
+    }
+
+    @media (min-width: $xl-desktop) {
+      transform: scale(1.5);
+    }
+  }
+
+  &:hover {
+    background-color: rgba(139, 105, 20, 0.7);
+    transform: scale(1.1);
+  }
+
+  &:focus {
+    outline: 2px solid rgba(139, 105, 20, 0.8);
+    outline-offset: 2px;
+
+    @media (max-width: $mobile) {
+      outline: 1px solid rgba(139, 105, 20, 0.8);
+      outline-offset: 1px;
+    }
+  }
+}
+
+// ===== 23. CAROUSEL-WRAPPER =====
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: 450px;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      transparent 50%,
+      rgba(243, 225, 194, 0.05) 100%);
+
+  &::before {
+    left: 0;
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.7) 30%,
+        transparent 100%);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(-90deg,
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(255, 255, 255, 0.7) 30%,
+        transparent 100%);
+  }
+}
+
+// ===== 24. CAROUSEL-BTN =====
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg,
+      rgba(93, 78, 55, 0.95),
+      rgba(139, 105, 20, 0.9));
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  @include flex-center;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  box-shadow:
+    0 8px 25px rgba(93, 78, 55, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 2px rgba(255, 255, 255, 0.2);
+  opacity: 0.85;
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+
+  &:active {
+    transform: translateY(-50%) scale(1.1);
+    transition-duration: 0.15s;
+  }
+
+  &:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+    background: linear-gradient(135deg,
+        rgba(93, 78, 55, 0.3),
+        rgba(139, 105, 20, 0.2));
+    transform: translateY(-50%) scale(0.85);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  &--prev {
+    left: 0;
+  }
+
+  &--next {
+    right: 0;
+  }
+
+  svg {
+    width: 28px;
+    height: 28px;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.4s ease;
+  }
+
+  // Effet de lueur au survol
+  &::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg,
+        transparent,
+        rgba(243, 225, 194, 0.4),
+        transparent,
+        rgba(139, 105, 20, 0.3),
+        transparent);
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+}
+
+// ===== 25. CAROUSEL-CONTENT =====
+.carousel-content {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+
+  // Masque pour créer un effet de fondu
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 5%,
+        transparent 95%,
+        rgba(255, 255, 255, 0.1) 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+
+// ===== 26. CAROUSEL-TRACK =====
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: calc(100% * var(--total-slides, 5));
+  will-change: transform;
+
+  // Animation de rebond subtile
+  &.bouncing {
+    animation: carouselBounce 0.3s ease-out;
+  }
+}
+
+@keyframes carouselBounce {
+  0% {
+    transform: translateX(var(--current-transform)) scale(1);
+  }
+
+  50% {
+    transform: translateX(var(--current-transform)) scale(1.02);
+  }
+
+  100% {
+    transform: translateX(var(--current-transform)) scale(1);
+  }
+}
+
+// ===== 27. CAROUSEL-SLIDE =====
+.carousel-slide {
+  flex-shrink: 0;
+  width: calc(100% / var(--total-slides, 5));
+  min-width: calc(100% / var(--total-slides, 5));
+  padding: 60px 50px;
+  border-bottom: 2px solid rgba(243, 225, 194, 0.2);
+  position: relative;
+  transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.6;
+  transform: scale(0.96) translateY(10px);
+  box-sizing: border-box;
+
+  &.active {
+    opacity: 1;
+  }
+
+  // Effet de bordure lumineuse
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+        transparent 0%,
+        rgba(243, 225, 194, 0.1) 25%,
+        transparent 50%,
+        rgba(139, 105, 20, 0.08) 75%,
+        transparent 100%);
+    opacity: 0;
+    transition: opacity 0.7s ease;
+    pointer-events: none;
+  }
+
+  &.active::after {
+    opacity: 1;
+  }
+}
+
+@keyframes enhancedFloatingParticles {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+
+  25% {
+    transform: translateY(-10px) rotate(90deg) scale(1.1);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(180deg) scale(1);
+  }
+
+  75% {
+    transform: translateY(-10px) rotate(270deg) scale(0.9);
+  }
+
+  100% {
+    transform: translateY(0) rotate(360deg) scale(1);
+  }
+}
+
+// ===== 28. SLIDE-CONTENT =====
+.slide-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 3;
+
+  // Animation d'entrée pour le contenu
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s;
+
+  .carousel-slide.active & {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ===== 29. SLIDE-TITLE =====
+.slide-title {
+  text-align: center;
+  padding: 20px 0;
+  position: relative;
+
+  h3 {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 700;
+    margin: 0;
+    text-shadow:
+      3px 3px 6px rgba(0, 0, 0, 0.8),
+      0 0 25px rgba(255, 255, 255, 0.15),
+      0 0 40px rgba(243, 225, 194, 0.1);
+    line-height: 1.3;
+    letter-spacing: 0.8px;
+    transition: all 0.5s ease;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.95),
+        rgba(243, 225, 194, 0.9));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  // Effet de fond décoratif
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg,
+        transparent,
+        rgba(243, 225, 194, 0.6),
+        rgba(139, 105, 20, 0.4),
+        rgba(243, 225, 194, 0.6),
+        transparent);
+    border-radius: 2px;
+    z-index: 1;
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.6;
+    transform: scale(1.1);
+  }
+}
+
+// ===== 30. SLIDE-MAIN-CONTENT =====
+.slide-main-content {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+// Nouvelle disposition pour le contenu des slides
+.slide-main-layout {
+  display: flex;
+  // grid-template-columns: 1fr 5fr;
+  gap: 40px;
+  align-items: center;
+  margin-top: 30px;
+
+  // Media query pour écrans de 768px maximum
+  @media (max-width: $tablet) {
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.slide-image {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.slide-illustration {
+  width: 320px;
+  height: 320px;
+  border-radius: 25px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow:
+    0 15px 40px rgba(93, 78, 55, 0.25),
+    0 5px 15px rgba(139, 105, 20, 0.15),
+    inset 0 1px 3px rgba(255, 255, 255, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+
+  // Effet de lueur
+  &::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    background: linear-gradient(45deg,
+        rgba(243, 225, 194, 0.4),
+        rgba(139, 105, 20, 0.3),
+        rgba(243, 225, 194, 0.4));
+    border-radius: 29px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+
+  // Effet de reflet
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.3) 0%,
+        transparent 30%,
+        transparent 70%,
+        rgba(255, 255, 255, 0.1) 100%);
+    border-radius: 21px;
+    pointer-events: none;
+  }
+
+  // Images spécifiques pour chaque slide
+  &.illustration--1 {
+    background-image: url('/assets/genealogiePage/evolution-familles.webp');
+  }
+
+  &.illustration--2 {
+    background-image: url('/assets/genealogiePage/livres-droit.webp');
+  }
+
+  &.illustration--3 {
+    background-image: url('/assets/genealogiePage/archives-francaises.webp');
+  }
+
+  &.illustration--4 {
+    background-image: url('/assets/genealogiePage/carte-investigations.webp');
+  }
+
+  &.illustration--5 {
+    background-image: url('/assets/genealogiePage/poignee-main.webp');
+  }
+}
+
+.slide-text-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+// ===== FEATURES-LIST =====
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  width: 100%;
+
+  .feature-item {
+    padding: 15px;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.9),
+        rgba(248, 249, 250, 0.8));
+    border-radius: 15px;
+    border-left: 4px solid $secondary-color;
+    box-shadow:
+      0 4px 15px rgba(93, 78, 55, 0.1),
+      inset 0 1px 2px rgba(255, 255, 255, 0.6);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: visible;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: $text-dark;
+    text-align: start;
+  }
+}
+
+.slide-conclusion {
+  margin-top: 30px;
+  padding: 20px;
+  background: rgb(255, 255, 255);
+  border-radius: 15px;
+  border: 2px solid rgba(243, 225, 194, 0.3);
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-style: italic;
+    color: $text-dark;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+}
+
+// ===== COMPARISON-NOTE =====
+.comparison-note {
+  background: linear-gradient(135deg, rgba(243, 225, 194, 0.2), rgba(243, 225, 194, 0.1));
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 25px;
+  border: 1px solid rgba(243, 225, 194, 0.4);
+  text-align: center;
+
+  p {
+    margin: 0;
+    font-style: italic;
+    color: $text-dark;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+}
+
+// ===== EXPERTISE SECTION =====
+.expertise-section {
+  // margin: $section-spacing 0;
+  padding: 60px 40px;
+
+  border-radius: 25px;
+  position: relative;
+  overflow: hidden;
+
+  // Contenu au-dessus de l'effet
+  >* {
+    position: relative;
+    z-index: 2;
+  }
+
+  h2 {
+    @include responsive-text(2rem, 2.8rem);
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 700;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg,
+          transparent,
+          $secondary-color,
+          $primary-color,
+          $secondary-color,
+          transparent);
+      border-radius: 2px;
+    }
+  }
+}
+
+.expertise-content {
+  display: flex;
+  flex-direction: column;
+
+  p {
+    @include responsive-text(1.1rem, 1.3rem);
+    line-height: 1.8;
+    color: $text-dark;
+    text-align: center;
+    margin: 0;
+    opacity: 0.9;
+
+    strong {
+      color: $secondary-color;
+      font-weight: 700;
+    }
+  }
+
+  .copy {
+    position: relative;
+    top: -8px;
+    left: -3px;
+    font-size: medium;
+  }
+}
+
+.expertise-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.highlight-item {
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(248, 249, 250, 0.8));
+  padding: 25px 20px;
+  border-radius: 18px;
+  text-align: center;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(243, 225, 194, 0.3);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  span {
+    @include responsive-text(1rem, 1.2rem);
+    color: $primary-color;
+    font-weight: 600;
+    line-height: 1.6;
+    position: relative;
+    z-index: 2;
+    transition: color 0.3s ease;
+
+  }
+
+  // Animation d'apparition
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease forwards;
+
+  @for $i from 1 through 6 {
+    &:nth-child(#{$i}) {
+      animation-delay: #{$i * 0.1}s;
+    }
+  }
+}
+
+// Animation keyframes
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ===== OPTIMISATIONS SEO ET PERFORMANCE =====
+
+// Classe pour contenu caché SEO-friendly
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Optimisations Core Web Vitals
+.genealogie-page {
+  // Optimisation CLS (Cumulative Layout Shift)
+  contain: layout style paint;
+}
+
+// Optimisations d'accessibilité
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track,
+  .carousel-slide,
+  .carousel-btn,
+  .carousel-dot {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (prefers-contrast: high) {
+  .genealogie-page {
+    --primary-color: #000000;
+    --secondary-color: #000000;
+    --text-dark: #000000;
+    --background-white: #ffffff;
+    --border-light: #000000;
+  }
+}
+
+// Focus visible amélioré pour l'accessibilité
+.carousel-btn:focus-visible,
+.carousel-dot:focus-visible {
+  outline: 3px solid $secondary-color;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 6px rgba(139, 105, 20, 0.2);
+}
+
+// Optimisations pour les écrans haute densité
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .slide-illustration {
+    background-size: contain;
+    background-repeat: no-repeat;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+// ===== RESPONSIVE DESIGN =====
+@media (max-width: $xl-desktop) {
+  .genealogie-container {
+    max-width: 1200px;
+    padding: 0 25px;
+  }
+
+  .carousel-slide {
+    padding: 50px 40px;
+  }
+
+  .slide-illustration {
+    width: 280px;
+    height: 280px;
+  }
+}
+
+@media (max-width: $large-desktop) {
+  .genealogie-container {
+    max-width: 1000px;
+    padding: 0 20px;
+  }
+
+  .section-card-container {
+    gap: 30px;
+  }
+
+  .carousel-slide {
+    padding: 40px 30px;
+  }
+
+  .slide-main-layout {
+    gap: 30px;
+  }
+
+  .slide-illustration {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: $desktop) {
+  .genealogie-container {
+    padding: 0 15px;
+  }
+
+  .carousel-wrapper {
+    min-height: 400px;
+  }
+
+  .carousel-slide {
+    padding: 30px 31px;
+  }
+
+  .slide-main-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .slide-illustration {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+  }
+
+  .carousel-btn {
+    width: 50px;
+    height: 50px;
+
+    &--prev {
+      left: 0;
+    }
+
+    &--next {
+      right: 0;
+    }
+
+    svg {
+      width: 22px;
+      height: 22px;
+    }
+  }
+}
+
+@media (max-width: $tablet) {
+  .genealogie-header {
+    padding: 40px 0;
+    margin-bottom: 60px;
+  }
+
+  .section-card-container {
+    grid-template-columns: 2fr;
+    gap: 25px;
+  }
+
+  .types-overview {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .carousel-wrapper {
+    min-height: 350px;
+  }
+
+  .carousel-slide {
+    padding: 25px 15px;
+  }
+
+
+
+  .slide-illustration {
+    width: 90vw;
+  }
+
+  .features-list .feature-item {
+    padding: 15px 20px;
+    font-size: 1rem;
+  }
+
+  .expertise-section {
+    padding: 40px 25px;
+    margin: 60px 0;
+
+    h2 {
+      @include responsive-text(1.8rem, 2.2rem);
+    }
+  }
+
+  .expertise-highlights {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+
+  .highlight-item {
+    padding: 20px 15px;
+
+    span {
+      @include responsive-text(0.95rem, 1.1rem);
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .genealogie-container {
+    padding: 0 10px;
+  }
+
+  .genealogie-header {
+    padding: 30px 0;
+    margin-bottom: 40px;
+    background-attachment: scroll; // Améliore les performances sur mobile
+  }
+
+  .carousel-wrapper {
+    min-height: 300px;
+  }
+
+  .carousel-slide {
+    padding: 20px 10px;
+  }
+
+  // Réduction de la complexité sur mobile
+  .carousel-container {
+    backdrop-filter: none;
+    box-shadow: 0 10px 30px rgba(93, 78, 55, 0.1);
+  }
+
+  .features-list .feature-item {
+    padding: 12px 15px;
+    font-size: 0.95rem;
+  }
+
+  .expertise-section {
+    padding: 30px 20px;
+    margin: 40px 0;
+    border-radius: 20px;
+  }
+
+  .expertise-content {
+    gap: 30px;
+
+    p {
+      @include responsive-text(1rem, 1.2rem);
+      text-align: left;
+    }
+  }
+
+  .expertise-highlights {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .highlight-item {
+    padding: 18px 15px;
+    border-radius: 15px;
+
+    &:hover {
+      transform: translateY(-4px) scale(1.01);
+    }
+
+    span {
+      @include responsive-text(0.9rem, 1rem);
+
+      &::before {
+        font-size: 1.3em;
+        margin-bottom: 8px;
+      }
+    }
+  }
+}
+
+// Optimisations d'impression
+@media print {
+  .genealogie-page {
+    background: white !important;
+    color: black !important;
+    
+    .carousel-container {
+      display: none !important;
+    }
+    
+    .section-card {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  }
+}

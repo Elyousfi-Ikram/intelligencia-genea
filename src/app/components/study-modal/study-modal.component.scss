@@ -1,0 +1,317 @@
+@use 'sass:color';
+
+// Variables
+$primary-color: #5d4e37;
+$secondary-color: #8b6914;
+$accent-color: #f3e1c2;
+$background-white: #FFFFFF;
+$border-color: #d4af37;
+$shadow-color: rgba(93, 78, 55, 0.15);
+$error-color: #dc3545;
+$success-color: #28a745;
+
+// Modal overlay
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+// Modal content
+.modal-content {
+  background: $background-white;
+  border-radius: 20px;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+// Modal header
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #eee;
+  background: linear-gradient(135deg, $accent-color, color.adjust($accent-color, $lightness: 5%));
+
+  h3 {
+    margin: 0;
+    color: $primary-color;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+
+  .modal-close {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: $primary-color;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: rgba(93, 78, 55, 0.1);
+      transform: rotate(90deg);
+    }
+  }
+}
+
+// Modal body
+.modal-body {
+  padding: 2rem;
+}
+
+// Study modal content
+.study-modal-content {
+  .study-intro {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    p {
+      color: #666;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+  }
+
+  .success-message,
+  .error-message {
+    padding: 1rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  .success-message {
+    background-color: color.adjust($success-color, $lightness: 45%);
+    color: color.adjust($success-color, $lightness: -10%);
+    border: 1px solid lighten($success-color, 20%);
+  }
+
+  .error-message {
+    background-color: color.adjust($error-color, $lightness: 45%);
+    color: color.adjust($error-color, $lightness: -10%);
+    border: 1px solid lighten($error-color, 20%);
+  }
+}
+
+// Form styles
+.study-form {
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: $primary-color;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid #e1e5e9;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background-color: #fafafa;
+
+      &:focus {
+        outline: none;
+        border-color: $secondary-color;
+        background-color: $background-white;
+        box-shadow: 0 0 0 3px rgba(139, 105, 20, 0.1);
+      }
+
+      &::placeholder {
+        color: #999;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    &.error {
+
+      input,
+      select,
+      textarea {
+        border-color: $error-color;
+        background-color: lighten($error-color, 50%);
+      }
+    }
+
+    .error-message {
+      color: $error-color;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+      display: block;
+    }
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .select-group select {
+    cursor: pointer;
+  }
+
+  .form-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem 0;
+    padding: 1rem;
+    background: linear-gradient(135deg, lighten($accent-color, 10%), lighten($accent-color, 15%));
+    border-radius: 15px;
+    border: 1px solid lighten($border-color, 20%);
+
+    .info-item {
+      text-align: center;
+      color: $primary-color;
+      font-size: 0.9rem;
+      font-weight: 500;
+
+      &::before {
+        content: '✓';
+        display: block;
+        color: $secondary-color;
+        font-size: 1.2rem;
+        margin-bottom: 0.25rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  .form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+
+    button {
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+    }
+
+    .btn-secondary {
+      background-color: #f8f9fa;
+      color: #6c757d;
+      border: 2px solid #dee2e6;
+
+      &:hover:not(:disabled) {
+        background-color: #e9ecef;
+        border-color: #adb5bd;
+      }
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, $primary-color, $secondary-color);
+      color: white;
+      border: 2px solid transparent;
+
+      &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(139, 105, 20, 0.3);
+      }
+
+      &.loading {
+        .loading-spinner {
+          width: 16px;
+          height: 16px;
+          border: 2px solid transparent;
+          border-top: 2px solid white;
+          border-radius: 50%;
+          animation: spin 1s linear infinite;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .modal-overlay {
+    padding: 0.5rem;
+  }
+
+  .modal-header {
+    padding: 1rem 1.5rem;
+
+    h3 {
+      font-size: 1.25rem;
+    }
+  }
+
+  .modal-body {
+    padding: 1.5rem;
+  }
+}

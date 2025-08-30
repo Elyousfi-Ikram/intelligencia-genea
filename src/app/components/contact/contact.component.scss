@@ -1,0 +1,147 @@
+@use 'sass:color';
+
+:root {
+    --primary-color: #5d4e37;
+    --secondary-color: #f3e1c2;
+    --accent-color: #e6d4a7;
+    --text-dark: #2c3e50;
+    --text-light: #6c757d;
+    --bg-light: #f8f9fa;
+    --shadow-light: 0 4px 16px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 25px rgba(0, 0, 0, 0.12);
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --font-primary: 'Cinzel', serif;
+    --border-radius: 20px;
+}
+
+.home-cta {
+    background: linear-gradient(135deg, rgba(44, 62, 80, 1), rgba(52, 73, 94, 0.6)),
+        url('/assets/contactPage/Archives.webp') center/cover;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    border-radius: 0;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+    }
+
+    .cta-content {
+        position: relative;
+        z-index: 2;
+        padding: 4rem 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+
+        h2 {
+            color: #c9c7c4;
+            font-size: clamp(1.6rem, 3.45vw, 2.4rem);
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-family: 'Cinzel', serif;
+            padding-top: 2rem;
+
+            &::after {
+                content: '';
+                display: block;
+                width: 80px;
+                height: 3px;
+                margin: 1rem auto 0;
+                border-radius: 2px;
+            }
+        }
+
+        p {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-family: 'Cinzel', serif;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            .btn-primary,
+            .btn-secondary {
+                padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 3vw, 2.5rem);
+                border: none;
+                border-radius: 25px;
+                font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-family: 'Cinzel', serif;
+
+                &:focus {
+                    outline: 2px solid var(--secondary-color);
+                    outline-offset: 2px;
+                }
+
+                &:hover,
+                &:focus {
+                    transform: translateY(-2px);
+                }
+            }
+
+            .btn-primary {
+                background: linear-gradient(135deg, #f3e1c2, #e6d4a7);
+                color: #2c3e50;
+
+                &:hover,
+                &:focus {
+                    box-shadow: 0 8px 25px rgba(243, 225, 194, 0.4);
+                }
+            }
+
+            .btn-secondary {
+                background: transparent;
+                color: #f3e1c2;
+                border: 2px solid #f3e1c2;
+
+                &:hover,
+                &:focus {
+                    background: rgba(243, 225, 194, 0.1);
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .home-cta {
+        .cta-content {
+            padding: 3rem 1.5rem;
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+
+                .btn-primary,
+                .btn-secondary {
+                    width: 100%;
+                    max-width: 280px;
+                    padding: 1rem 2rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,719 @@
+@use 'sass:color';
+
+// ===== VARIABLES =====
+$primary-color: #5d4e37; // Couleur principale du banner
+$secondary-color: #8b6914; // Couleur de survol du banner
+$accent-color: #f3e1c2; // Couleur de fond du banner
+$light-accent: #f8f6f0; // Couleur claire similaire au banner
+$text-dark: #5d4e37; // Couleur de texte du banner
+$text-light: #8b6914; // Couleur de survol pour le texte secondaire
+$background-white: #FFFFFF;
+$border-color: #d4af37; // Couleur dorée du banner
+$shadow-color: rgba(93, 78, 55, 0.15);
+$success-color: #8b6914; // Couleur de survol du banner
+$info-color: #d4af37; // Couleur dorée du banner
+
+// ===== ANIMATIONS =====
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+// ===== LAYOUT PRINCIPAL =====
+.reseau-page {
+    min-height: 100vh;
+    background: linear-gradient(135deg, $light-accent 0%, $background-white 100%);
+    padding: 2rem 0;
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+            radial-gradient(circle at 20% 80%, rgba(139, 69, 19, 0.03) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(210, 105, 30, 0.03) 0%, transparent 50%);
+        pointer-events: none;
+    }
+}
+
+.reseau-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+// ===== HEADER SECTION =====
+.reseau-header {
+    text-align: center;
+    // margin-bottom: 4rem;
+    padding: 3rem 0;
+    // background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, transparent 100%);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+
+    .reseau-title {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        color: $primary-color;
+        margin-bottom: 1rem;
+        position: relative;
+        z-index: 1;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+        &::before {
+            content: '🌐';
+            color: #3e2723;
+            margin-right: 0.5rem;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, $secondary-color, $primary-color, $secondary-color);
+            border-radius: 2px;
+        }
+    }
+
+    .reseau-subtitle {
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        color: $text-light;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+        position: relative;
+        z-index: 1;
+    }
+}
+
+// ===== INTRO SECTION =====
+.intro-section {
+    background: $background-white;
+    border-radius: 20px;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px $shadow-color;
+    border: 1px solid $border-color;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, $accent-color, $secondary-color);
+    }
+
+    .intro-text {
+        font-size: clamp(1rem, 2.5vw, 1.15rem);
+        color: #5d4e37;
+        text-align: center;
+        position: relative;
+        padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 8vw, 5rem);
+        margin: 0;
+
+        &::before {
+            content: '"';
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: $accent-color;
+            position: absolute;
+            top: 0px;
+            left: clamp(5px, 2vw, 15px);
+            font-family: serif;
+            opacity: 0.8;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        &::after {
+            content: '"';
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            color: $accent-color;
+            position: absolute;
+            top: 0px;
+            right: clamp(5px, 2vw, 15px);
+            font-family: serif;
+            opacity: 0.8;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .copy {
+            position: relative;
+            top: -6px;
+            left: -2px;
+            font-size: medium;
+        }
+    }
+}
+
+// ===== STATISTIQUES =====
+.network-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+
+    .stat-item {
+        background: linear-gradient(135deg, $primary-color, $secondary-color);
+        color: white;
+        padding: 2.5rem 2rem;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(139, 69, 19, 0.3);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            transition: all 0.3s ease;
+            transform: scale(0);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+    }
+}
+
+// ===== CARTE ET BUREAUX =====
+.carte-bureaux-container {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 3rem;
+    margin: 3rem 0;
+    align-items: center;
+}
+
+.carte-container {
+    // flex: 0 0 45%;
+    position: relative;
+    height: auto;
+
+    .carte-france {
+        width: 480px;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(139, 69, 19, 0.15);
+        border: 2px solid $border-color;
+        transition: all 0.3s ease;
+        display: block;
+    }
+}
+
+// ===== POINTS SUR LA CARTE =====
+.map-point {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: $primary-color;
+    border-radius: 50%;
+    border: 2px solid $background-white;
+    box-shadow: 0 2px 6px rgba(139, 69, 19, 0.4);
+    cursor: pointer;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease;
+    z-index: 10;
+
+    &.headquarters-point {
+        background-color: $secondary-color;
+        width: 16px;
+        height: 16px;
+        border: 3px solid $accent-color;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 12px;
+        }
+    }
+}
+
+.point-tooltip {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: $text-dark;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 20;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 4px solid transparent;
+        border-top-color: $text-dark;
+    }
+}
+
+// ===== SECTION LOCATIONS =====
+.locations-section {
+    flex: 1;
+
+    .section-title {
+        color: $primary-color;
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        font-family: 'Georgia', serif;
+
+        .location-count {
+            background: linear-gradient(135deg, $accent-color, $light-accent);
+            color: $text-dark;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+    }
+
+    .locations-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        max-height: 480px;
+        overflow-y: auto;
+        padding: 0 1rem;
+
+        // Personnalisation de la scrollbar
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $light-accent;
+            border-radius: 4px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: $secondary-color;
+            border-radius: 4px;
+        }
+    }
+}
+
+// ===== CARTES DE LOCATION =====
+.location-card {
+    background: $background-white;
+    border-radius: 20px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px $shadow-color;
+    border: 1px solid $border-color;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, $accent-color, $secondary-color);
+    }
+
+    &.headquarters {
+        border-color: $success-color;
+        background: linear-gradient(135deg, rgba(40, 167, 69, 0.05) 0%, $background-white 100%);
+
+        &::before {
+            background: linear-gradient(90deg, $success-color, $info-color);
+        }
+
+        .headquarters-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, $success-color, $info-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+        }
+    }
+
+    // Déplacer cette définition en dehors de .headquarters
+    .secretariat-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: linear-gradient(135deg, $success-color, $info-color);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+    }
+
+    // Ajuster la position si les deux badges sont présents
+    .location-card.headquarters .secretariat-badge {
+        top: 4rem;
+    }
+
+    &.highlighted-card {
+        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.3);
+        transform: translateY(-5px);
+        background: linear-gradient(135deg, #f3e1c2 0%, #f7d7b5 100%) !important;
+        transition: all 0.3s ease;
+
+        .city-name {
+            font-weight: bold;
+        }
+
+        .location-header {
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .location-details {
+            border-radius: 6px;
+            padding: 8px;
+        }
+    }
+
+    .location-header {
+        margin-bottom: 1.5rem;
+
+        .city-name {
+            color: $primary-color;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.3;
+        }
+    }
+
+    .location-details {
+
+        .address-info,
+        .contact-info {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+
+            .address-icon,
+            .phone-icon {
+                font-size: 1.2rem;
+                margin-top: 0.2rem;
+                flex-shrink: 0;
+            }
+
+            .address-text {
+                color: $text-dark;
+                line-height: 1.5;
+                margin: 0;
+                flex: 1;
+            }
+
+            .phone-number {
+                color: $secondary-color;
+                text-decoration: none;
+                font-weight: 500;
+                transition: all 0.3s ease;
+                flex: 1;
+            }
+        }
+    }
+
+    .location-actions {
+        .contact-btn {
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, $accent-color, $light-accent);
+            color: $text-dark;
+            border: none;
+            border-radius: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                width: 0;
+                height: 0;
+                background: linear-gradient(135deg, $primary-color, $secondary-color);
+                border-radius: 50%;
+                transition: all 0.3s ease;
+                transform: translate(-50%, -50%);
+                z-index: 0;
+            }
+
+            span {
+                position: relative;
+                z-index: 1;
+            }
+        }
+    }
+}
+
+// ===== SECTION CONTACT =====
+.contact-section {
+    .contact-card {
+        background: linear-gradient(135deg, $primary-color, $secondary-color);
+        color: white;
+        padding: 3rem;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 15px 40px rgba(139, 69, 19, 0.3);
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: rotate 40s linear infinite;
+        }
+
+        h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-details {
+            position: relative;
+            z-index: 1;
+
+            .email-link {
+                display: inline-block;
+                background: rgba(255, 255, 255, 0.2);
+                color: white;
+                padding: 1rem 2rem;
+                border-radius: 15px;
+                text-decoration: none;
+                font-weight: 500;
+                font-size: 1.1rem;
+                transition: all 0.3s ease;
+                margin-bottom: 1rem;
+                backdrop-filter: blur(10px);
+            }
+
+            .response-time {
+                font-size: 0.9rem;
+                opacity: 0.8;
+                margin: 1rem 0 0 0;
+            }
+        }
+    }
+}
+
+// ===== RESPONSIVE DESIGN =====
+
+
+@media (max-width: 950px) {
+    .reseau-container {
+        padding: 0 1rem;
+    }
+
+    .reseau-header {
+        padding: 2rem 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .intro-section {
+        padding: 2rem;
+    }
+
+    .network-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+
+        .stat-item {
+            padding: 2rem 1.5rem;
+        }
+    }
+
+    .carte-bureaux-container {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .carte-container {
+        display: flex;
+        justify-content: center;
+
+        .carte-france {
+            width: 480px;
+        }
+    }
+
+    .locations-section {
+        .locations-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .location-card {
+        padding: 1.5rem;
+    }
+
+    .contact-section .contact-card {
+        padding: 2rem;
+    }
+
+    .map-point {
+        width: 10px;
+        height: 10px;
+
+        &.headquarters-point {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    .point-tooltip {
+        font-size: 0.7rem;
+        padding: 2px 6px;
+    }
+}
+
+@media (max-width: 500px) {
+    .reseau-header {
+        .reseau-title {
+            font-size: 2rem;
+        }
+
+        .reseau-subtitle {
+            font-size: 1rem;
+        }
+    }
+
+    .intro-section {
+        padding: 1.5rem;
+    }
+
+    .network-stats .stat-item {
+        padding: 1.5rem 1rem;
+
+        .stat-number {
+            font-size: 2.5rem;
+        }
+    }
+
+    .carte-container {
+        max-width: 100%;
+
+        .carte-france {
+            width: 320px;
+
+        }
+
+    }
+
+    .location-card {
+        padding: 1.2rem;
+
+        .headquarters-badge {
+            position: static;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+    }
+
+    .contact-section .contact-card {
+        padding: 1.5rem;
+
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        .email-link {
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+        }
+    }
+}

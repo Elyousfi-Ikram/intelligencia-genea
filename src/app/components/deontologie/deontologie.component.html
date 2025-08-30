@@ -1,0 +1,354 @@
+<!-- Version desktop (masquée sur tablette) -->
+<div class="book-container desktop-only" 
+     itemscope 
+     itemtype="https://schema.org/Article"
+     role="main"
+     aria-label="Charte déontologique INTELLIGENCIA-GENEA">
+    
+    <!-- Contenu caché pour SEO -->
+    <div class="sr-only">
+        <h1 itemprop="headline">Charte Déontologique INTELLIGENCIA-GENEA® - Code Éthique Généalogistes Professionnels</h1>
+        <p itemprop="description">Code déontologique complet des généalogistes INTELLIGENCIA-GENEA®. Principes éthiques, obligations envers la clientèle, méthodes de recherche généalogique, garanties et responsabilités professionnelles. Respect des normes déontologiques françaises.</p>
+        <span itemprop="keywords">charte déontologique, éthique généalogie, code professionnel généalogiste, obligations clientèle, méthodes recherche, garanties généalogie, responsabilités professionnelles</span>
+        <time itemprop="datePublished" [attr.datetime]="getCurrentDate()">{{ getCurrentDate() }}</time>
+        <div itemprop="author" itemscope itemtype="https://schema.org/Organization">
+            <span itemprop="name">INTELLIGENCIA-GENEA</span>
+        </div>
+    </div>
+
+    <div class="book-desktop" 
+         itemscope 
+         itemtype="https://schema.org/Book"
+         role="application"
+         aria-label="Livre interactif de la charte déontologique">
+        
+        <!-- Couverture du livre -->
+        <div class="book-cover" 
+             [class.open]="currentPage() > 0"
+             itemscope 
+             itemtype="https://schema.org/CreativeWork">
+            <div class="cover-front">
+                <div class="cover-decoration" aria-hidden="true"></div>
+                <h1 itemprop="name" 
+                    role="heading" 
+                    aria-level="1">Charte Déontologique</h1>
+                <h2 itemprop="author" 
+                    itemscope 
+                    itemtype="https://schema.org/Organization"
+                    role="heading" 
+                    aria-level="2">
+                    <span itemprop="name">INTELLIGENCIA-GENEA</span> 
+                    <span class="copy-cover fs-6">®</span>
+                </h2>
+                <p class="subtitle" 
+                   itemprop="description"
+                   role="text">Généalogistes Professionnels</p>
+                <button class="open-book-btn" 
+                        (click)="openBook()" 
+                        type="button"
+                        role="button"
+                        aria-label="Ouvrir le livre de la charte déontologique"
+                        title="Accéder au contenu de la charte déontologique">
+                    <span>Ouvrir le livre</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Pages du livre ouvert -->
+        <div class="book-pages" 
+             [class.visible]="currentPage() > 0"
+             role="document"
+             aria-label="Contenu de la charte déontologique">
+            <!-- Tranche du livre -->
+            <div class="book-spine" aria-hidden="true"></div>
+
+            <div class="pages-container">
+                <!-- Pages qui se tournent (animation) -->
+                <div class="turning-page" 
+                     [class.turning-right]="isPageTurning() && turnDirection() === 'next'"
+                     [class.turning-left]="isPageTurning() && turnDirection() === 'prev'"
+                     [class.visible]="isPageTurning()" 
+                     aria-hidden="true"
+                     role="presentation">
+
+                    <!-- Face avant de la page qui se tourne -->
+                    <div class="page-front">
+                        <!-- Contenu lors du tournage vers la page suivante -->
+                        <div class="page-content" 
+                             *ngIf="turnDirection() === 'next'"
+                             role="article"
+                             [attr.aria-label]="'Page ' + leftPageNumber()">
+                            <ng-container [ngTemplateOutlet]="getPageTemplate(getCurrentLeftPageContent())"
+                                [ngTemplateOutletContext]="{ $implicit: getCurrentLeftPageContent() }">
+                            </ng-container>
+                            <div class="page-number left" 
+                                 role="text" 
+                                 aria-label="Numéro de page">{{ leftPageNumber() }}</div>
+                        </div>
+
+                        <!-- Contenu lors du tournage vers la page précédente -->
+                        <div class="page-content" 
+                             *ngIf="turnDirection() === 'prev'"
+                             role="article"
+                             [attr.aria-label]="'Page ' + (leftPageNumber() + 2)">
+                            <ng-container [ngTemplateOutlet]="getPageTemplate(getNextLeftPageContent())"
+                                [ngTemplateOutletContext]="{ $implicit: getNextLeftPageContent() }">
+                            </ng-container>
+                            <div class="page-number left" 
+                                 role="text" 
+                                 aria-label="Numéro de page">{{ leftPageNumber() + 2 }}</div>
+                        </div>
+                    </div>
+
+                    <!-- Face arrière de la page qui se tourne -->
+                    <div class="page-back">
+                        <!-- Contenu lors du tournage vers la page suivante -->
+                        <div class="page-content" 
+                             *ngIf="turnDirection() === 'next'"
+                             role="article"
+                             [attr.aria-label]="'Page ' + rightPageNumber()">
+                            <ng-container [ngTemplateOutlet]="getPageTemplate(getCurrentRightPageContent())"
+                                [ngTemplateOutletContext]="{ $implicit: getCurrentRightPageContent() }">
+                            </ng-container>
+                            <div class="page-number right" 
+                                 role="text" 
+                                 aria-label="Numéro de page">{{ rightPageNumber() }}</div>
+                        </div>
+
+                        <!-- Contenu lors du tournage vers la page précédente -->
+                        <div class="page-content" 
+                             *ngIf="turnDirection() === 'prev'"
+                             role="article"
+                             [attr.aria-label]="'Page ' + (rightPageNumber() + 2)">
+                            <ng-container [ngTemplateOutlet]="getPageTemplate(getNextRightPageContent())"
+                                [ngTemplateOutletContext]="{ $implicit: getNextRightPageContent() }">
+                            </ng-container>
+                            <div class="page-number right" 
+                                 role="text" 
+                                 aria-label="Numéro de page">{{ rightPageNumber() + 2 }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pages statiques (contenu visible quand pas d'animation) -->
+                <div class="static-pages" *ngIf="!isPageTurning()">
+                    <!-- Page de gauche -->
+                    <div class="page page-left" 
+                         role="article"
+                         [attr.aria-label]="'Page ' + leftPageNumber()">
+                        <div class="page-content active">
+                            <ng-container [ngTemplateOutlet]="getPageTemplate(getCurrentLeftPageContent())"
+                                [ngTemplateOutletContext]="{ $implicit: getCurrentLeftPageContent() }">
+                            </ng-container>
+                        </div>
+                        <div class="page-number left" 
+                             role="text" 
+                             aria-label="Numéro de page">{{ leftPageNumber() }}</div>
+                    </div>
+
+                    <!-- Page de droite -->
+                    <div class="page page-right" 
+                         role="article"
+                         [attr.aria-label]="'Page ' + rightPageNumber()">
+                        <div class="page-content active">
+                            <ng-container [ngTemplateOutlet]="getPageTemplate(getCurrentRightPageContent())"
+                                [ngTemplateOutletContext]="{ $implicit: getCurrentRightPageContent() }">
+                            </ng-container>
+                        </div>
+
+                        <button class="close-btn" 
+                                (click)="closeBook()" 
+                                *ngIf="currentPage() === maxPages" 
+                                type="button"
+                                role="button"
+                                aria-label="Fermer le livre"
+                                title="Fermer la charte déontologique">
+                            <span class="close-icon" aria-hidden="true">✕</span>
+                            <span class="close-text">Fermer le livre</span>
+                        </button>
+                        <div class="page-number right" 
+                             role="text" 
+                             aria-label="Numéro de page">{{ rightPageNumber() }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="book-navigation" 
+             role="navigation" 
+             aria-label="Navigation du livre" 
+             *ngIf="currentPage() > 0">
+
+            <button class="nav-btn nav-btn-left" 
+                    (click)="previousPage()" 
+                    [disabled]="!canNavigatePrev()" 
+                    type="button"
+                    role="button"
+                    aria-label="Page précédente"
+                    title="Aller à la page précédente">
+                <span class="nav-icon" aria-hidden="true">‹</span>
+            </button>
+
+            <button class="nav-btn nav-btn-right" 
+                    (click)="nextPage()" 
+                    [disabled]="!canNavigateNext()" 
+                    type="button"
+                    role="button"
+                    aria-label="Page suivante"
+                    title="Aller à la page suivante">
+                <span class="nav-icon" aria-hidden="true">›</span>
+            </button>
+        </nav>
+    </div>
+    
+    <ng-template #sectionContentTemplate let-section>
+        <article class="article" 
+                 itemscope 
+                 itemtype="https://schema.org/Article"
+                 role="article">
+            <header>
+                <h3 itemprop="headline" 
+                    role="heading" 
+                    aria-level="3">{{ section.title }}</h3>
+            </header>
+            <div class="article-content" 
+                 itemprop="articleBody"
+                 role="main">
+                <div *ngFor="let article of section.article; let i = index" 
+                     class="article-item"
+                     itemscope 
+                     itemtype="https://schema.org/TextDigitalDocument">
+                    <h4 *ngIf="article.subtitle" 
+                        itemprop="name"
+                        role="heading" 
+                        aria-level="4">{{ article.subtitle }}</h4>
+                    <div *ngIf="isArray(article.content)" 
+                         itemprop="text">
+                        <p *ngFor="let paragraph of getContentAsArray(article.content); let j = index"
+                           role="text"
+                           [attr.aria-label]="'Paragraphe ' + (j + 1)">{{ paragraph }}</p>
+                    </div>
+                    <p *ngIf="!isArray(article.content)" 
+                       itemprop="text"
+                       role="text">{{ article.content }}</p>
+                    <ul *ngIf="article.list" 
+                        role="list"
+                        aria-label="Liste des éléments">
+                        <li *ngFor="let item of article.list; let k = index" 
+                            role="listitem"
+                            [attr.aria-label]="'Élément ' + (k + 1)">{{ item }}</li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+    </ng-template>
+</div>
+
+<!-- Version tablette (affichée dans le flux normal) -->
+<div class="tablet-version tablet-only" 
+     itemscope 
+     itemtype="https://schema.org/Article"
+     role="main"
+     aria-label="Charte déontologique version tablette">
+    
+    <!-- Contenu caché pour SEO tablette -->
+    <div class="sr-only">
+        <h1 itemprop="headline">Charte Déontologique INTELLIGENCIA-GENEA® Mobile - Éthique Généalogistes</h1>
+        <p itemprop="description">Version mobile de la charte déontologique INTELLIGENCIA-GENEA®. Code éthique complet des généalogistes professionnels accessible sur tablette et mobile.</p>
+    </div>
+    
+    <header class="tablet-header" 
+            itemscope 
+            itemtype="https://schema.org/CreativeWork">
+        <h1 itemprop="name" 
+            role="heading" 
+            aria-level="1">Charte Déontologique</h1>
+        <h2 itemprop="author" 
+            itemscope 
+            itemtype="https://schema.org/Organization"
+            role="heading" 
+            aria-level="2">
+            <span itemprop="name">INTELLIGENCIA-GENEA</span> 
+            <span class="copy-cover">®</span>
+        </h2>
+        <p class="subtitle" 
+           itemprop="description"
+           role="text">Généalogistes Professionnels</p>
+    </header>
+    
+    <div class="timeline-container" 
+         role="main"
+         aria-label="Contenu de la charte par sections">
+        <div class="timeline-item" 
+             [class.expanded]="expandedSections[i]" 
+             [class.sommaire-section]="section.title === 'SOMMAIRE'"
+             *ngFor="let section of getAllSections(); let i = index"
+             itemscope 
+             itemtype="https://schema.org/Article"
+             role="article"
+             [attr.aria-expanded]="expandedSections[i]"
+             [attr.aria-label]="'Section: ' + section.title">
+            <div class="timeline-marker" 
+                 role="presentation" 
+                 aria-hidden="true">
+                <div class="timeline-dot"></div>
+                <div class="timeline-line" 
+                     [class.last-item]="i === getAllSections().length - 1"></div>
+            </div>
+            
+            <div class="timeline-content">
+                <div class="timeline-header" 
+                     (click)="toggleSection(i)"
+                     role="button"
+                     tabindex="0"
+                     [attr.aria-expanded]="expandedSections[i]"
+                     [attr.aria-controls]="'section-content-' + i"
+                     aria-label="Cliquer pour développer ou réduire la section">
+                    <h3 itemprop="headline" 
+                        role="heading" 
+                        aria-level="3">{{ section.title }}</h3>
+                    <span class="collapse-icon" 
+                          [class.expanded]="expandedSections[i]"
+                          aria-hidden="true">▼</span>
+                </div>
+                
+                <div class="timeline-body" 
+                     [class.expanded]="expandedSections[i]"
+                     [attr.id]="'section-content-' + i"
+                     role="region"
+                     [attr.aria-labelledby]="'section-header-' + i">
+                    <div class="article-content" 
+                         itemprop="articleBody">
+                        <div *ngFor="let article of getArticleItems(section); let j = index" 
+                             class="article-item"
+                             itemscope 
+                             itemtype="https://schema.org/TextDigitalDocument"
+                             role="article">
+                            <h4 *ngIf="article.subtitle" 
+                                itemprop="name"
+                                role="heading" 
+                                aria-level="4">{{ article.subtitle }}</h4>
+                            <div *ngIf="isArray(article.content)" 
+                                 itemprop="text">
+                                <p *ngFor="let paragraph of getContentAsArray(article.content); let k = index"
+                                   role="text">{{ paragraph }}</p>
+                            </div>
+                            <p *ngIf="!isArray(article.content)" 
+                               itemprop="text"
+                               role="text">{{ article.content }}</p>
+                            <ul *ngIf="article.list" 
+                                role="list">
+                                <li *ngFor="let item of article.list" 
+                                    role="listitem">{{ item }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Section Contact -->
+<app-contact></app-contact>
