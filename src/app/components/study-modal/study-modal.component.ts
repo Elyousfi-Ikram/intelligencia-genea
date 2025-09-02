@@ -1,6 +1,8 @@
-import { Component, Input, Output, EventEmitter, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { StudyModalService } from '../../services/study-modal.service';
+import { Subscription } from 'rxjs';
 import emailjs from '@emailjs/browser';
 
 @Component({
@@ -11,8 +13,8 @@ import emailjs from '@emailjs/browser';
   styleUrls: ['./study-modal.component.scss']
 })
 export class StudyModalComponent implements OnInit, OnDestroy {
-  @Input() isOpen: boolean = false;
-  @Output() closeModal = new EventEmitter<void>();
+  isOpen = false;
+  private subscription!: Subscription;
 
   studyForm!: FormGroup;
   isSubmitting = false;
@@ -54,14 +56,22 @@ export class StudyModalComponent implements OnInit, OnDestroy {
     PUBLIC_KEY: 'VwyATdIIMBEaFJbkc'
   };
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private studyModalService: StudyModalService
+  ) {}
 
   ngOnInit() {
     this.initForm();
+    this.subscription = this.studyModalService.isOpen$.subscribe(
+      isOpen => this.isOpen = isOpen
+    );
   }
 
   ngOnDestroy() {
-    // Cleanup si nécessaire
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   private initForm() {
@@ -75,18 +85,16 @@ export class StudyModalComponent implements OnInit, OnDestroy {
   }
 
   onClose() {
-    this.closeModal.emit();
+    this.studyModalService.closeModal();
     this.studyForm.reset();
     this.submitStatus = null;
   }
 
   onOverlayClick(event: Event) {
-    // Fermer la modal si on clique sur l'overlay (pas sur le contenu)
     this.onClose();
   }
 
   onFieldChange(fieldName: string) {
-    // Réinitialiser le statut d'erreur quand l'utilisateur modifie un champ
     if (this.submitStatus === 'error') {
       this.submitStatus = null;
     }
@@ -105,7 +113,6 @@ export class StudyModalComponent implements OnInit, OnDestroy {
     try {
       const formValue = this.studyForm.value;
       
-      // Préparer les données pour EmailJS
       const templateParams = {
         from_name: formValue.name,
         from_email: formValue.email,
@@ -116,7 +123,6 @@ export class StudyModalComponent implements OnInit, OnDestroy {
         reply_to: formValue.email
       };
 
-      // Envoyer l'email via EmailJS
       const response = await emailjs.send(
         this.EMAILJS_CONFIG.SERVICE_ID,
         this.EMAILJS_CONFIG.TEMPLATE_ID,
@@ -127,7 +133,6 @@ export class StudyModalComponent implements OnInit, OnDestroy {
       console.log('Email envoyé avec succès:', response);
       this.submitStatus = 'success';
 
-      // Reset form après succès
       setTimeout(() => {
         this.studyForm.reset();
         this.submitStatus = null;
@@ -142,7 +147,6 @@ export class StudyModalComponent implements OnInit, OnDestroy {
     }
   }
 
-  // Getters pour faciliter l'accès aux contrôles du formulaire
   get name() { return this.studyForm.get('name'); }
   get email() { return this.studyForm.get('email'); }
   get phone() { return this.studyForm.get('phone'); }

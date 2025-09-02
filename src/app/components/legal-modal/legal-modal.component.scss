@@ -19,7 +19,7 @@ $shadow-color: rgba(93, 78, 55, 0.15);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 10000 !important; // Force le z-index au maximum
   padding: 1rem;
 }
 

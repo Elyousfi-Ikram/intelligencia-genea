@@ -87,24 +87,9 @@
 
 // === OPTIMISATIONS IMAGES WEBP ===
 .book-container {
-  background-image: 
-    url('/assets/deontologie/charte-background.webp'),
-    linear-gradient(135deg, #f3e1c2 0%, #f8f9fa 100%);
-  background-image: 
-    url('/assets/deontologie/charte-background.jpg'),
-    linear-gradient(135deg, #f3e1c2 0%, #f8f9fa 100%);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.book-cover {
-  background-image: 
-    url('/assets/deontologie/book-texture.webp'),
-    linear-gradient(135deg, #8B4513 0%, #F5DEB3 100%);
-  background-image: 
-    url('/assets/deontologie/book-texture.jpg'),
-    linear-gradient(135deg, #8B4513 0%, #F5DEB3 100%);
 }
 
 // === CONTENEUR PRINCIPAL OPTIMISÉ ===
@@ -1014,28 +999,6 @@
   .open-book-btn:hover,
   .close-btn:hover {
     transform: none;
-  }
-}
-
-// Mode sombre
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: #8b7355;
-    --text-dark: #e8e8e8;
-    --text-light: #b0b0b0;
-    --bg-light: #1a1a1a;
-    --background-article: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
-  }
-  
-  .book-container {
-    background: linear-gradient(135deg, #2c2416 0%, #1a1a1a 100%);
-  }
-  
-  .book-pages,
-  .page-left,
-  .page-right {
-    background: linear-gradient(135deg, #2a2a2a 0%, #1f1f1f 100%);
-    color: #e8e8e8;
   }
 }
 

@@ -123,25 +123,34 @@
           <span class="sr-only">Cabinet généalogie professionnel agréé Ministère Culture</span>
         </p>
         <div class="footer-legal">
-          <a (click)="onLegalClick('mentions')" style="cursor: pointer;" title="Mentions Légales INTELLIGENCIA-GENEA"
-            aria-label="Mentions Légales cabinet généalogie">Mentions Légales</a>
+          <button 
+            type="button"
+            class="legal-btn"
+            (click)="onLegalClick('mentions')" 
+            title="Mentions Légales INTELLIGENCIA-GENEA"
+            aria-label="Mentions Légales cabinet généalogie">
+            Mentions Légales
+          </button>
           <span class="separator" aria-hidden="true">|</span>
-          <a (click)="onLegalClick('confidentialite')" style="cursor: pointer;"
+          <button 
+            type="button"
+            class="legal-btn"
+            (click)="onLegalClick('confidentialite')" 
             title="Politique de Confidentialité INTELLIGENCIA-GENEA"
-            aria-label="Politique de Confidentialité généalogiste">Politique de Confidentialité</a>
+            aria-label="Politique de Confidentialité généalogiste">
+            Politique de Confidentialité
+          </button>
           <span class="separator" aria-hidden="true">|</span>
-          <a (click)="onLegalClick('cookies')" style="cursor: pointer;" title="Politique de Cookies INTELLIGENCIA-GENEA"
-            aria-label="Politique de Cookies cabinet généalogie">Politique de Cookies</a>
+          <button 
+            type="button"
+            class="legal-btn"
+            (click)="onLegalClick('cookies')" 
+            title="Politique de Cookies INTELLIGENCIA-GENEA"
+            aria-label="Politique de Cookies cabinet généalogie">
+            Politique de Cookies
+          </button>
         </div>
       </div>
     </div>
   </div>
-
-  <!-- Modale de contact -->
-  <app-study-modal [isOpen]="showModal" (closeModal)="onCloseModal()">
-  </app-study-modal>
-
-  <!-- Modale légale -->
-  <app-legal-modal [isOpen]="showLegalModal" [legalContent]="currentLegalContent" (closeModal)="onCloseLegalModal()">
-  </app-legal-modal>
 </footer>

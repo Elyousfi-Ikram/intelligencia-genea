@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   showStudyModal = false;
   
   // Images paths
-  enqueteurImage = 'assets/homePage/Enquêteur.webp';
-  arbreImage = 'assets/homePage/Arbre-généalogique.webp';
+  enqueteurImage = 'assets/homePage/enqueteur.webp'; // Correction: minuscule
+  arbreImage = 'assets/homePage/Arbre-genealogique.webp';
   archivesImage = 'assets/homePage/Archives.webp';
   expertiseImage = 'assets/homePage/Expertise.webp';
   investigationImage = 'assets/homePage/Investigation.webp';

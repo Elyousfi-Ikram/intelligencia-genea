@@ -378,19 +378,6 @@ export class DeontologieComponent implements OnInit, OnDestroy {
     
     private preloadCriticalResources(): void {
         // Préchargement des ressources critiques
-        const criticalResources = [
-            '/assets/deontologie/charte-background.webp',
-            '/assets/deontologie/book-texture.webp'
-        ];
-        
-        criticalResources.forEach(resource => {
-            const link = document.createElement('link');
-            link.rel = 'preload';
-            link.href = resource;
-            link.as = 'image';
-            link.type = 'image/webp';
-            document.head.appendChild(link);
-        });
     }
     
     private trackSEOMetrics(): void {

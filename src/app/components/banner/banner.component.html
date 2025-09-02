@@ -5,21 +5,22 @@
       <div 
         *ngFor="let contact of contactInfo; let i = index" 
         class="contact-item"
+        role="listitem"
       >
         <span class="contact-icon" aria-hidden="true">{{ contact.icon }}</span>
-        <a 
-          *ngIf="contact.type === 'phone'; else emailTemplate"
-          [href]="getPhoneHref(contact.text)"
-          class="contact-text"
-          [attr.aria-label]="contact.ariaLabel"
-          itemprop="telephone"
-          title="Appelez INTELLIGENCIA-GENEA pour vos recherches généalogiques"
-        >
-          {{ contact.text }}
-        </a>
-        <ng-template #emailTemplate>
+        <ng-container [ngSwitch]="contact.type">
           <a 
-            *ngIf="contact.type === 'email'; else textTemplate"
+            *ngSwitchCase="'phone'"
+            [href]="getPhoneHref(contact.text)"
+            class="contact-text"
+            [attr.aria-label]="contact.ariaLabel"
+            itemprop="telephone"
+            title="Appelez INTELLIGENCIA-GENEA pour vos recherches généalogiques"
+          >
+            {{ contact.text }}
+          </a>
+          <a 
+            *ngSwitchCase="'email'"
             [href]="getEmailHref(contact.text)"
             class="contact-text"
             [attr.aria-label]="contact.ariaLabel"
@@ -28,10 +29,14 @@
           >
             {{ contact.text }}
           </a>
-        </ng-template>
-        <ng-template #textTemplate>
-          <span class="contact-text" itemprop="address">{{ contact.text }}</span>
-        </ng-template>
+          <span 
+            *ngSwitchDefault
+            class="contact-text" 
+            itemprop="address"
+          >
+            {{ contact.text }}
+          </span>
+        </ng-container>
       </div>
     </div>
   </div>
@@ -203,9 +208,11 @@
               >
                 <span 
                   *ngIf="subItem.iconClass" 
-                  [class]="'dropdown-icon ' + subItem.iconClass" 
+                  class="dropdown-icon" 
                   aria-hidden="true"
-                ></span>
+                >
+                  <i [class]="getIconClass(subItem.iconClass)"></i>
+                </span>
                 {{ subItem.title }}
               </button>
             </li>

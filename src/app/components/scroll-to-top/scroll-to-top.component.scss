@@ -1,6 +1,5 @@
 @use 'sass:color';
 
-
 .scroll-to-top {
   position: fixed;
   bottom: 20px;
@@ -20,21 +19,28 @@
   transition: all 0.3s ease;
   z-index: 1000;
 
+  // Chevron CSS pur
+  &::before {
+    content: '';
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid white;
+    border-right: 2px solid white;
+    transform: rotate(-45deg);
+    transition: transform 0.3s ease;
+  }
+
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(93, 78, 55, 0.4);
+    
+    &::before {
+      transform: rotate(-45deg) translateY(-1px);
+    }
   }
 
   &:active {
     transform: translateY(0);
-  }
-
-  i {
-    transition: transform 0.3s ease;
-  }
-
-  &:hover i {
-    transform: translateY(-1px);
   }
 }
 
@@ -62,5 +68,10 @@
     width: 45px;
     height: 45px;
     font-size: 1rem;
+    
+    &::before {
+      width: 10px;
+      height: 10px;
+    }
   }
 }

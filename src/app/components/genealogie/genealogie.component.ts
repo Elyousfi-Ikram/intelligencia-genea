@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit, OnDestroy, AfterViewInit, Inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ContactComponent } from '../contact/contact.component';
 import { Meta, Title } from '@angular/platform-browser';
@@ -17,7 +17,7 @@ declare global {
   templateUrl: './genealogie.component.html',
   styleUrls: ['./genealogie.component.scss']
 })
-export class GenealogiePage implements OnInit, OnDestroy {
+export class GenealogiePage implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('trackRef', { static: false }) trackRef!: ElementRef;
 
   currentSlide = 0;
@@ -236,17 +236,42 @@ export class GenealogiePage implements OnInit, OnDestroy {
     this.initializeSEO();
     this.addStructuredData();
     this.preloadCriticalResources();
-    // Suppression de l'appel à updateCSSVariables()
     this.trackPageView();
   }
 
+  ngAfterViewInit() {
+    this.setupPassiveEventListeners();
+  }
+
+  private setupPassiveEventListeners(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      // Configuration des événements passifs pour améliorer les performances
+      const trackElement = this.trackRef?.nativeElement;
+      if (trackElement) {
+        trackElement.addEventListener('touchstart', this.handleTouchStart.bind(this), { passive: true });
+        trackElement.addEventListener('touchmove', this.handleTouchMove.bind(this), { passive: true });
+        trackElement.addEventListener('touchend', this.handleTouchEnd.bind(this), { passive: true });
+      }
+    }
+  }
   ngOnDestroy() {
     if (this.autoSlideInterval) {
       clearInterval(this.autoSlideInterval);
     }
     this.removeStructuredData();
+    this.removePassiveEventListeners();
   }
-
+  
+  private removePassiveEventListeners(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      const trackElement = this.trackRef?.nativeElement;
+      if (trackElement) {
+        trackElement.removeEventListener('touchstart', this.handleTouchStart.bind(this));
+        trackElement.removeEventListener('touchmove', this.handleTouchMove.bind(this));
+        trackElement.removeEventListener('touchend', this.handleTouchEnd.bind(this));
+      }
+    }
+  }
   private initializeSEO(): void {
     if (isPlatformBrowser(this.platformId)) {
       // Titre optimisé avec mots-clés principaux
@@ -279,7 +304,7 @@ export class GenealogiePage implements OnInit, OnDestroy {
       this.meta.updateTag({ property: 'og:description', content: this.seoData.description });
       this.meta.updateTag({ property: 'og:type', content: 'article' });
       this.meta.updateTag({ property: 'og:url', content: 'http://intelligencia-genea.com/genealogie' });
-      this.meta.updateTag({ property: 'og:image', content: 'http://intelligencia-genea.com/assets/genealogiePage/genealogiePage-header.png' });
+      this.meta.updateTag({ property: 'og:image', content: 'http://intelligencia-genea.com/assets/genealogiePage/genealogiePage-header.webp' });
       this.meta.updateTag({ property: 'og:image:width', content: '1200' });
       this.meta.updateTag({ property: 'og:image:height', content: '630' });
       this.meta.updateTag({ property: 'og:image:alt', content: 'Généalogie successorale et familiale INTELLIGENCIA-GENEA' });
@@ -290,7 +315,7 @@ export class GenealogiePage implements OnInit, OnDestroy {
       this.meta.updateTag({ name: 'twitter:card', content: 'summary_large_image' });
       this.meta.updateTag({ name: 'twitter:title', content: this.seoData.title });
       this.meta.updateTag({ name: 'twitter:description', content: this.seoData.description });
-      this.meta.updateTag({ name: 'twitter:image', content: 'http://intelligencia-genea.com/assets/genealogiePage/genealogiePage-header.png' });
+      this.meta.updateTag({ name: 'twitter:image', content: 'http://intelligencia-genea.com/assets/genealogiePage/genealogiePage-header.webp' });
       this.meta.updateTag({ name: 'twitter:image:alt', content: 'Généalogie successorale et familiale INTELLIGENCIA-GENEA' });
       
       // Canonical URL
@@ -426,9 +451,9 @@ export class GenealogiePage implements OnInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       // Préchargement des ressources critiques pour améliorer les Core Web Vitals
       const criticalResources = [
-        { href: '/assets/genealogiePage/genealogiePage-header.png', as: 'image' },
-        { href: '/assets/genealogiePage/successoral-icon.jpeg', as: 'image' },
-        { href: '/assets/genealogiePage/genealogiste-table.jpeg', as: 'image' },
+        { href: '/assets/genealogiePage/genealogiePage-header.webp', as: 'image' },
+        { href: '/assets/genealogiePage/successoral-icon.webp', as: 'image' },
+        { href: '/assets/genealogiePage/genealogiste-table.webp', as: 'image' },
         { href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap', as: 'style' }
       ];
       
@@ -521,23 +546,23 @@ export class GenealogiePage implements OnInit, OnDestroy {
   handleTouchMove(event: TouchEvent) {
     if (!this.isDragging) return;
     this.currentX = event.touches[0].clientX;
+    const deltaX = this.currentX - this.startX;
+    
+    // Seuil de déclenchement pour éviter les déclenchements accidentels
+    if (Math.abs(deltaX) > 50) {
+      if (deltaX > 0) {
+        this.prevSlide();
+      } else {
+        this.nextSlide();
+      }
+      this.isDragging = false;
+    }
   }
 
   handleTouchEnd() {
-    if (!this.isDragging) return;
-
-    const diffX = this.startX - this.currentX;
-    const threshold = 50;
-
-    if (Math.abs(diffX) > threshold) {
-      if (diffX > 0 && this.currentSlide < this.slides.length - 1) {
-        this.nextSlide();
-      } else if (diffX < 0 && this.currentSlide > 0) {
-        this.prevSlide();
-      }
-    }
-
     this.isDragging = false;
+    this.startX = 0;
+    this.currentX = 0;
   }
 
   getTransformStyle() {

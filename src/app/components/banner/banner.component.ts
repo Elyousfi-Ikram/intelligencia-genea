@@ -241,6 +241,17 @@ export class BannerComponent implements OnInit, OnDestroy {
   getEmailHref(email: string): string {
     return `mailto:${email}`;
   }
+
+  getIconClass(iconClass: string): string {
+    const iconMap: { [key: string]: string } = {
+      'icon-tree': 'fas fa-tree',
+      'icon-entreprise': 'fas fa-building',
+      'icon-services': 'fas fa-briefcase',
+      'icon-shield': 'fas fa-shield-alt',
+      'icon-euro': 'fas fa-euro-sign'
+    };
+    return iconMap[iconClass] || '';
+  }
 }
 
 // Interface enrichie

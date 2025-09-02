@@ -159,23 +159,31 @@ export class GarantiesComponent implements OnInit {
 
   private preloadCriticalResources(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Préchargement des images critiques
       const criticalImages = [
-        '/assets/institutions-organismes2.png',
-        '/assets/situations-particulieres.jpg',
-        '/assets/delais.jpg',
-        '/assets/ethique.jpg',
-        '/assets/contrat2.png',
-        '/assets/valeurs.jpg',
-        '/assets/confidentialité2.jpg'
+        '/assets/garantiesPage/institutions-organismes.webp',
+        '/assets/garantiesPage/situations-particulieres.webp',
+        '/assets/garantiesPage/delais.webp',
+        '/assets/garantiesPage/ethique.webp',
+        '/assets/garantiesPage/contrat.webp',
+        '/assets/garantiesPage/valeurs.webp',
+        '/assets/garantiesPage/confidentialite.webp'
       ];
 
       criticalImages.forEach(src => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.as = 'image';
-        link.href = src;
-        document.head.appendChild(link);
+        // Vérifier si l'image existe avant de la précharger
+        const img = new Image();
+        img.onload = () => {
+          const link = document.createElement('link');
+          link.rel = 'preload';
+          link.as = 'image';
+          link.href = src;
+          link.type = 'image/webp';
+          document.head.appendChild(link);
+        };
+        img.onerror = () => {
+          console.warn(`Image non trouvée: ${src}`);
+        };
+        img.src = src;
       });
     }
   }

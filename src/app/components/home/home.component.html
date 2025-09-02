@@ -10,8 +10,13 @@
       </p>
     </div>
     <div class="hero-visual" aria-hidden="true">
-      <img [src]="enqueteurImage" alt="Généalogiste professionnel travaillant sur des recherches d'archives"
-        loading="eager" width="600" height="400" />
+      <img [src]="enqueteurImage" 
+           alt="Généalogiste professionnel travaillant sur des recherches d'archives"
+           fetchpriority="high"
+           loading="eager" 
+           width="600" 
+           height="400" 
+           decoding="sync" />
     </div>
   </header>
 
@@ -20,28 +25,28 @@
     <div class="welcome-container">
       <h2 id="expertise-title" class="section-title">Notre Expertise au Service de Vos Recherches Généalogiques</h2>
       <div class="welcome-grid" role="list">
-        <article class="welcome-card" role="listitem">
+        <div class="welcome-card" role="listitem">
           <div class="welcome-icon" aria-hidden="true">🎯</div>
           <h3 class="pb-4">Mission principale</h3>
           <p>Recherche d'héritiers dans le cadre de successions complexes et vacantes pour notaires</p>
-        </article>
-        <article class="welcome-card" role="listitem">
+        </div>
+        <div class="welcome-card" role="listitem">
           <div class="welcome-icon" aria-hidden="true">🔍</div>
           <h3>Spécialisation généalogique</h3>
           <p>Généalogie successorale et familiale avec approche méthodologique rigoureuse certifiée</p>
-        </article>
-        <article class="welcome-card" role="listitem">
+        </div>
+        <div class="welcome-card" role="listitem">
           <div class="welcome-icon" aria-hidden="true">⚖️</div>
           <h3>Expertise juridique</h3>
           <p>Enquêtes généalogiques professionnelles certifiées et reconnues juridiquement par les tribunaux</p>
-        </article>
-        <article class="welcome-card" role="listitem">
+        </div>
+        <div class="welcome-card" role="listitem">
           <div class="welcome-icon" aria-hidden="true">
-            <img src="assets/homePage/drapeau-france.png" alt="Drapeau français" width="32" height="24">
+            <img src="assets/homePage/drapeau-france.webp" alt="Drapeau français" width="32" height="24">
           </div>
           <h3>Couverture nationale</h3>
           <p>Interventions sur l'ensemble du territoire français avec réseau de correspondants locaux</p>
-        </article>
+        </div>
       </div>
     </div>
   </section>
@@ -54,7 +59,7 @@
       avec rigueur, confidentialité et expertise reconnue par les professionnels du droit.
     </p>
     <div class="services-grid" role="list">
-      <article class="service-card" role="listitem">
+      <div class="service-card" role="listitem">
         <div class="service-image">
           <img [src]="investigationImage" alt="Investigation successorale - Recherche d'héritiers pour notaires"
             loading="lazy" width="300" height="200" />
@@ -64,8 +69,8 @@
           <p>Identification des héritiers dans les successions complexes ou vacantes, pour le compte des notaires et
             ayants droit.</p>
         </div>
-      </article>
-      <article class="service-card" role="listitem">
+      </div>
+      <div class="service-card" role="listitem">
         <div class="service-image">
           <img [src]="arbreImage" alt="Reconstitution d'arbre généalogique professionnel" loading="lazy" width="300"
             height="200" />
@@ -75,8 +80,8 @@
           <p>Établissement complet de l'arbre généalogique avec sources vérifiées et dossiers archivistiques
             authentifiés.</p>
         </div>
-      </article>
-      <article class="service-card" role="listitem">
+      </div>
+      <div class="service-card" role="listitem">
         <div class="service-image">
           <img [src]="expertiseImage" alt="Expertise judiciaire en généalogie" loading="lazy" width="300"
             height="200" />
@@ -85,8 +90,8 @@
           <h3 class="pt-3">Expertise judiciaire</h3>
           <p>Interventions auprès des juridictions civiles, conseils de familles et successions en déshérence.</p>
         </div>
-      </article>
-      <article class="service-card" role="listitem">
+      </div>
+      <div class="service-card" role="listitem">
         <div class="service-image">
           <img [src]="archivesImage" alt="Recherches dans les archives historiques françaises" loading="lazy"
             width="300" height="200" />
@@ -96,7 +101,7 @@
           <p>Analyses archivistiques approfondies pour retrouver la mémoire des lieux, familles ou patrimoines anciens.
           </p>
         </div>
-      </article>
+      </div>
     </div>
   </section>
 
@@ -109,23 +114,23 @@
       engagée à vos côtés depuis plus de 10 ans.
     </p>
     <div class="trust-grid" role="list">
-      <article class="trust-card" role="listitem">
+      <div class="trust-card" role="listitem">
         <div class="trust-icon" aria-hidden="true">🛡️</div>
         <h3>Discrétion absolue</h3>
         <p>Engagement de confidentialité totale dans toutes nos démarches et livrables, conforme RGPD.</p>
-      </article>
-      <article class="trust-card" role="listitem">
+      </div>
+      <div class="trust-card" role="listitem">
         <div class="trust-icon" aria-hidden="true">⭐</div>
         <h3>Partenaires reconnus</h3>
         <p>Collaboration régulière avec des notaires, des institutions publiques et des organismes juridiques
           français.</p>
-      </article>
-      <article class="trust-card" role="listitem">
+      </div>
+      <div class="trust-card" role="listitem">
         <div class="trust-icon" aria-hidden="true">📋</div>
         <h3>Méthodes certifiées</h3>
         <p>Approche professionnelle rigoureuse, conforme aux exigences légales et standards archivistiques
           internationaux.</p>
-      </article>
+      </div>
     </div>
   </section>
 </main>

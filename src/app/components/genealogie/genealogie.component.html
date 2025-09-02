@@ -149,9 +149,6 @@
 
             <div class="carousel-content" role="tabpanel" [attr.aria-label]="'Contenu slide ' + (currentSlide + 1)">
               <div class="carousel-track" #trackRef 
-                   (touchstart)="handleTouchStart($event)"
-                   (touchmove)="handleTouchMove($event)" 
-                   (touchend)="handleTouchEnd()" 
                    [ngStyle]="getTransformStyle()"
                    role="presentation">
                 <article *ngFor="let slide of slides; let i = index" 

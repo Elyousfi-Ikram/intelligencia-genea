@@ -1,12 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { StudyModalComponent } from '../study-modal/study-modal.component';
+import { StudyModalService } from '../../services/study-modal.service';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, StudyModalComponent],
+  imports: [CommonModule],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
 })
@@ -21,19 +21,16 @@ export class ContactComponent {
   
   @Output() contactClick = new EventEmitter<void>();
 
-  showModal = false;
-
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private studyModalService: StudyModalService
+  ) {}
 
   onContactClick() {
     if (!this.disabled) {
-      this.showModal = true;
+      this.studyModalService.openModal();
       this.contactClick.emit();
     }
-  }
-
-  onCloseModal() {
-    this.showModal = false;
   }
 
   handleNavigateToHonoraires() {

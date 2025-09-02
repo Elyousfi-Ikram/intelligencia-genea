@@ -59,24 +59,8 @@ $shadow-color: rgba(93, 78, 55, 0.1);
   content-visibility: auto;
   contain-intrinsic-size: 0 400px;
 
-  &:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.05;
-    z-index: 0;
-
-    // Optimisation image de fond avec WebP
-    background-image:
-      url('/assets/footer/footer-pattern.webp'),
-      url('/assets/footer/footer-pattern.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
+  // Supprimer complètement le pseudo-élément &:before qui référence l'image manquante
+  // Plus de référence à footer-pattern.webp
 
   .footer-content {
     position: relative;
@@ -296,6 +280,32 @@ $shadow-color: rgba(93, 78, 55, 0.1);
       .separator {
         color: rgba(255, 255, 255, 0.4);
       }
+    }
+  }
+
+  .legal-btn {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--secondary-color, #f3e1c2);
+      text-decoration: underline;
+    }
+
+    &:focus {
+      outline: 2px solid var(--secondary-color, #f3e1c2);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    &:active {
+      transform: translateY(1px);
     }
   }
 }
@@ -547,19 +557,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
 .social-link {
   transform: translateZ(0);
   backface-visibility: hidden;
-}
-
-// Optimisation images WebP avec fallback
-@supports (background-image: url('image.webp')) {
-  .footer:before {
-    background-image: url('/assets/footer/footer-pattern.webp');
-  }
-}
-
-@supports not (background-image: url('image.webp')) {
-  .footer:before {
-    background-image: url('/assets/footer/footer-pattern.jpg');
-  }
 }
 
 .address-line {

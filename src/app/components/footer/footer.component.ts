@@ -1,10 +1,13 @@
-import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { StudyModalComponent } from '../study-modal/study-modal.component';
-import { LegalModalComponent, LegalContent } from '../legal-modal/legal-modal.component';
+import { LegalModalComponent } from '../legal-modal/legal-modal.component';
+import { LegalModalService, LegalContent } from '../../services/legal-modal.service';
+import { Subscription } from 'rxjs';
+import { StudyModalService } from '../../services/study-modal.service';
 
 // Déclaration TypeScript pour Google Analytics
 declare let gtag: Function;
@@ -12,15 +15,17 @@ declare let gtag: Function;
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [CommonModule, StudyModalComponent, LegalModalComponent],
+  imports: [CommonModule, LegalModalComponent], // Retirer StudyModalComponent
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent implements OnInit, OnDestroy {
   currentYear = new Date().getFullYear();
   showModal = false;
   showLegalModal = false;
   currentLegalContent: LegalContent | null = null;
+  
+  private subscriptions = new Subscription();
 
   // Données SEO enrichies
   readonly seoData = {
@@ -54,6 +59,8 @@ export class FooterComponent implements OnInit {
     private viewportScroller: ViewportScroller,
     private meta: Meta,
     private title: Title,
+    private legalModalService: LegalModalService,
+    private studyModalService: StudyModalService, // Ajouter le service
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -61,6 +68,23 @@ export class FooterComponent implements OnInit {
     this.initializeFooterSEO();
     this.addStructuredData();
     this.preloadCriticalResources();
+    
+    // S'abonner aux changements du service
+    this.subscriptions.add(
+      this.legalModalService.isOpen$.subscribe(isOpen => {
+        this.showLegalModal = isOpen;
+      })
+    );
+    
+    this.subscriptions.add(
+      this.legalModalService.content$.subscribe(content => {
+        this.currentLegalContent = content;
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   private initializeFooterSEO(): void {
@@ -180,22 +204,6 @@ export class FooterComponent implements OnInit {
 
   private preloadCriticalResources(): void {
     if (isPlatformBrowser(this.platformId)) {
-      // Préchargement des ressources footer
-      const criticalResources = [
-        '/assets/icons/phone-icon.webp',
-        '/assets/icons/email-icon.webp',
-        '/assets/icons/location-icon.webp',
-        '/assets/icons/linkedin-icon.webp'
-      ];
-      
-      criticalResources.forEach(resource => {
-        const link = document.createElement('link');
-        link.rel = 'preload';
-        link.href = resource;
-        link.as = 'image';
-        link.type = 'image/webp';
-        document.head.appendChild(link);
-      });
     }
   }
 
@@ -227,35 +235,20 @@ export class FooterComponent implements OnInit {
   }
 
   onCloseLegalModal() {
-    this.showLegalModal = false;
-    this.currentLegalContent = null;
+    this.legalModalService.closeModal();
   }
 
   onLegalClick(section: string) {
     switch (section) {
       case 'mentions':
-        this.currentLegalContent = {
-          title: 'Mentions Légales',
-          section: 'mentions'
-        };
+        this.legalModalService.openMentionsLegales();
         break;
       case 'confidentialite':
-        this.currentLegalContent = {
-          title: 'Politique de Confidentialité',
-          section: 'confidentialite'
-        };
+        this.legalModalService.openPolitiqueConfidentialite();
         break;
       case 'cookies':
-        this.currentLegalContent = {
-          title: 'Politique de Cookies',
-          section: 'cookies'
-        };
+        this.legalModalService.openPolitiqueCookies();
         break;
-      default:
-        this.currentLegalContent = {
-          title: 'Information légale',
-          section: ''
-        };
     }
     this.showLegalModal = true;
   }
@@ -309,5 +302,9 @@ export class FooterComponent implements OnInit {
 
   getBusinessKeywords(): string {
     return this.seoData.keywords;
+  }
+
+  openStudyModal(): void {
+    this.studyModalService.openModal();
   }
 }
