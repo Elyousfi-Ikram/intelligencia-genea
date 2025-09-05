@@ -8,6 +8,8 @@ import { LegalModalComponent } from '../legal-modal/legal-modal.component';
 import { LegalModalService, LegalContent } from '../../services/legal-modal.service';
 import { Subscription } from 'rxjs';
 import { StudyModalService } from '../../services/study-modal.service';
+// Ajoutez l'import
+import { ReviewsModalService } from '../../services/reviews-modal.service';
 
 // Déclaration TypeScript pour Google Analytics
 declare let gtag: Function;
@@ -60,7 +62,8 @@ export class FooterComponent implements OnInit, OnDestroy {
     private meta: Meta,
     private title: Title,
     private legalModalService: LegalModalService,
-    private studyModalService: StudyModalService, // Ajouter le service
+    private studyModalService: StudyModalService,
+    private reviewsModalService: ReviewsModalService, // Ajouter cette ligne
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
@@ -306,5 +309,11 @@ export class FooterComponent implements OnInit, OnDestroy {
 
   openStudyModal(): void {
     this.studyModalService.openModal();
+  }
+
+  // Ajoutez la méthode
+  openReviewsModal(): void {
+    this.reviewsModalService.openModal();
+    this.trackEvent('reviews_modal', 'engagement', 'footer_reviews_click');
   }
 }

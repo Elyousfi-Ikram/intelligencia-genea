@@ -1,6 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
-@import 'bootstrap/dist/css/bootstrap.min.css';
-
+/* CSS critique inline dans index.html */
 body {
   margin: 0;
+  font-family: system-ui, -apple-system, sans-serif;
 }
+
+/* Styles non-critiques chargés de manière asynchrone */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');

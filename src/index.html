@@ -7,9 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Titre et métadonnées SEO principales -->
-  <title>INTELLIGENCIA-GENEA® | Généalogiste Expert France | Aix-en-Provence, Nice, Marseille, Paris | Recherche Héritiers</title>
-  <meta name="description" content="INTELLIGENCIA-GENEA®, généalogiste expert en France. Bureaux à Aix-en-Provence, Nice, Marseille, Cannes, Saint-Tropez, Bordeaux, Nantes, Tours, Rennes, Le Havre, Ajaccio, Bastia. Spécialiste généalogie successorale et recherche d'héritiers.">
-  <meta name="keywords" content="généalogiste France, généalogie successorale, recherche héritiers, Aix-en-Provence, Nice, Marseille, Cannes, Saint-Tropez, Bordeaux, Nantes, Tours, Rennes, Le Havre, Ajaccio, Bastia, Biarritz, Pierrevert, Roquebrune-Cap-Martin, Le Vésinet, PACA, Nouvelle-Aquitaine, Bretagne, Centre-Val de Loire, Normandie, Corse, Île-de-France">
+  <title>INTELLIGENCIA-GENEA® | Généalogiste Expert France | Aix-en-Provence, Nice, Marseille, Paris | Recherche
+    Héritiers</title>
+  <meta name="description"
+    content="INTELLIGENCIA-GENEA®, généalogiste expert en France. Bureaux à Aix-en-Provence, Nice, Marseille, Cannes, Saint-Tropez, Bordeaux, Nantes, Tours, Rennes, Le Havre, Ajaccio, Bastia. Spécialiste généalogie successorale et recherche d'héritiers.">
+  <meta name="keywords"
+    content="généalogiste France, généalogie successorale, recherche héritiers, Aix-en-Provence, Nice, Marseille, Cannes, Saint-Tropez, Bordeaux, Nantes, Tours, Rennes, Le Havre, Ajaccio, Bastia, Biarritz, Pierrevert, Roquebrune-Cap-Martin, Le Vésinet, PACA, Nouvelle-Aquitaine, Bretagne, Centre-Val de Loire, Normandie, Corse, Île-de-France">
   <meta name="author" content="INTELLIGENCIA-GENEA">
   <meta name="language" content="French">
   <meta name="revisit-after" content="7 days">
@@ -59,7 +62,8 @@
 
   <!-- Open Graph pour réseaux sociaux -->
   <meta property="og:title" content="INTELLIGENCIA-GENEA® | Généalogiste Expert France | Réseau National">
-  <meta property="og:description" content="Agence de généalogie avec 18 bureaux en France. Spécialisée en généalogie successorale, recherche d'héritiers et arbres généalogiques. Expertise juridique reconnue.">
+  <meta property="og:description"
+    content="Agence de généalogie avec 18 bureaux en France. Spécialisée en généalogie successorale, recherche d'héritiers et arbres généalogiques. Expertise juridique reconnue.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="http://intelligencia-genea.com">
   <meta property="og:image" content="http://intelligencia-genea.com/logo.webp">
@@ -71,34 +75,86 @@
   <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="INTELLIGENCIA-GENEA® | Généalogiste Expert France">
-  <meta name="twitter:description" content="Réseau national de généalogistes. 18 bureaux en France pour vos recherches généalogiques et successorales.">
+  <meta name="twitter:description"
+    content="Réseau national de généalogistes. 18 bureaux en France pour vos recherches généalogiques et successorales.">
   <meta name="twitter:image" content="http://intelligencia-genea.com/logo.webp">
 
   <!-- Métadonnées de sécurité -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com https://fonts.googleapis.com data:; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' https: data:; connect-src 'self' https: wss:;">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com https://fonts.googleapis.com data:; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; img-src 'self' https: data:; connect-src 'self' https: wss:;">
   <meta http-equiv="X-Content-Type-Options" content="nosniff">
   <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
 
-  <!-- Préconnexions pour performances -->
+  <!-- Optimisation des préconnexions -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+  <!-- Chargement optimisé des polices avec fallback -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap">
+  </noscript>
+
+  <!-- Font Awesome avec chargement différé -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </noscript>
+
+  <!-- Fallback fonts CSS inline pour éviter FOIT -->
+  <style>
+    /* Fallback pour Cinzel pendant le chargement */
+    .banner-title,
+    .banner-subtitle {
+      font-family: 'Times New Roman', serif;
+    }
+
+    /* Fallback pour Font Awesome */
+    .fa,
+    .fas,
+    .far,
+    .fab {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+  <!-- Resource hints supplémentaires -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
 
   <!-- Préchargement des ressources critiques -->
-  <link rel="preload" href="/assets/homePage/enqueteur.webp" as="image" type="image/webp" fetchpriority="high">
-  <link rel="preload" href="/assets/banner/logo.webp" as="image" type="image/webp">
+  <!-- Préchargement responsif du logo -->
+  <link rel="preload" href="/assets/banner/logo-small.webp" as="image" type="image/webp" media="(max-width: 480px)"
+    fetchpriority="high">
+  <link rel="preload" href="/assets/banner/logo-medium.webp" as="image" type="image/webp"
+    media="(min-width: 481px) and (max-width: 768px)" fetchpriority="high">
+  <link rel="preload" href="/assets/banner/logo-large.webp" as="image" type="image/webp" media="(min-width: 769px)"
+    fetchpriority="high">
+  <link rel="preload" href="/assets/homePage/enqueteur.webp" as="image" type="image/webp">
+
+  <!-- Service Worker pour mise en cache -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .catch(err => console.log('SW registration failed'));
+      });
+    }
+  </script>
 
   <!-- Chargement optimisé des polices -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap">
   </noscript>
 
   <!-- Chargement différé de Font Awesome -->
-  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </noscript>
@@ -537,3 +593,10 @@
 </body>
 
 </html>
+
+<!-- Chargement asynchrone des styles non-critiques -->
+<link rel="preload" href="/styles.css" as="style"
+  onload="this.onload=null;this.rel='stylesheet';document.body.classList.remove('loading')">
+<noscript>
+  <link rel="stylesheet" href="/styles.css">
+</noscript>

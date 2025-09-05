@@ -8,7 +8,9 @@
     "build:prod": "ng build --configuration production --output-path=dist",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:intelligencia-genea-Angular": "node dist/intelligencia-genea-Angular/server/server.mjs"
+    "build:critical": "ng build --configuration production && critical src/index.html --base dist/ --inline --minify",
+    "serve:ssr:intelligencia-genea-Angular": "node dist/intelligencia-genea-Angular/server/server.mjs",
+    "lh": "npx lighthouse http://localhost:4200/ --view"
   },
   "prettier": {
     "overrides": [
@@ -40,12 +42,14 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^20.2.2",
     "@angular/build": "^20.1.2",
     "@angular/cli": "^20.1.2",
     "@angular/compiler-cli": "^20.1.0",
     "@types/express": "^5.0.1",
     "@types/jasmine": "~5.1.0",
     "@types/node": "^20.17.19",
+    "critical": "^7.2.1",
     "jasmine-core": "~5.8.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -53,6 +57,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "lighthouse": "^12.8.2",
+    "sharp": "^0.34.3",
     "typescript": "~5.8.2"
   }
 }

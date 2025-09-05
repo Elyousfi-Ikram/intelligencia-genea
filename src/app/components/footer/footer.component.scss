@@ -151,6 +151,34 @@ $shadow-color: rgba(93, 78, 55, 0.1);
           outline-offset: 2px;
         }
       }
+
+      // Styles spécifiques pour le bouton avis clients
+      .btn-reviews {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        text-align: left;
+        padding: 0;
+        margin: 0;
+        
+        // Hérite des styles de .contact-text
+        font-size: 0.85rem;
+        line-height: 1.4;
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        transition: all 0.3s ease;
+
+        &:focus {
+          color: $accent-color;
+          outline: 2px solid $accent-color;
+          outline-offset: 2px;
+        }
+
+        &:active {
+          transform: translateX(1px);
+        }
+      }
     }
   }
 

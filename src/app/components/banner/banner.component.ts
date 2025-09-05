@@ -172,6 +172,53 @@ export class BannerComponent implements OnInit, OnDestroy {
     const scrollTop = window.pageYOffset || this.document.documentElement.scrollTop;
     const scrollThreshold = 50;
     this.isScrolled = scrollTop > scrollThreshold;
+    
+    // Fermer les dropdowns lors du défilement
+    if (this.activeDropdown) {
+      this.activeDropdown = null;
+    }
+  }
+
+  // Ajouter un nouvel écouteur pour les clics en dehors
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: Event) {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+  
+    const target = event.target as HTMLElement;
+    const bannerElement = this.document.querySelector('.banner');
+  
+    // Vérifier si le clic est en dehors du banner
+    if (bannerElement && !bannerElement.contains(target)) {
+      // Fermer les dropdowns
+      if (this.activeDropdown) {
+        this.activeDropdown = null;
+      }
+      
+      // Fermer le menu mobile
+      if (this.isMobileMenuOpen) {
+        this.isMobileMenuOpen = false;
+      }
+    }
+  }
+
+  // Ajouter un écouteur pour la touche Escape
+  @HostListener('document:keydown.escape')
+  onEscapeKey() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+    
+    // Fermer les dropdowns avec la touche Escape
+    if (this.activeDropdown) {
+      this.activeDropdown = null;
+    }
+    
+    // Fermer le menu mobile avec la touche Escape
+    if (this.isMobileMenuOpen) {
+      this.isMobileMenuOpen = false;
+    }
   }
 
   toggleDropdown(section: string) {
@@ -188,6 +235,9 @@ export class BannerComponent implements OnInit, OnDestroy {
       // Fermer tous les dropdowns
       this.activeDropdown = null;
       
+      // Fermer le menu mobile si on est sur mobile
+      this.isMobileMenuOpen = false;
+      
       // Navigation vers les pages
       if (item.redirectUrl && item.redirectUrl !== '') {
         window.location.href = item.redirectUrl;
@@ -202,7 +252,7 @@ export class BannerComponent implements OnInit, OnDestroy {
 
   handleSubItemClick(parentId: string, subItem: SubItem) {
     console.log(`Navigation vers: ${parentId} > ${subItem.title}`);
-
+  
     const navigationMap: { [key: string]: string } = {
       'comprendre-genealogie': 'genealogie',
       'notre-agence': 'agence',
@@ -211,7 +261,7 @@ export class BannerComponent implements OnInit, OnDestroy {
       'nos-garanties': 'nos-garanties',
       'nos-honoraires': 'nos-honoraires',
     };
-
+  
     const targetPage = navigationMap[subItem.id];
     if (targetPage) {
       this.navigate.emit(targetPage);
@@ -219,8 +269,10 @@ export class BannerComponent implements OnInit, OnDestroy {
         this.onNavigate(targetPage);
       }
     }
-
+  
+    // Fermer tous les dropdowns et le menu mobile
     this.activeDropdown = null;
+    this.isMobileMenuOpen = false;
   }
 
   handleLogoClick() {

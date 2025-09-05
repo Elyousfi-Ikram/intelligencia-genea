@@ -1,0 +1,125 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="onOverlayClick($event)">
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <!-- En-tête dynamique -->
+    <div class="modal-header">
+      <div class="header-left">
+        <button *ngIf="showAddReviewForm" class="back-btn" (click)="onBackToReviews()" title="Retour aux avis">
+          <i class="fas fa-arrow-left" aria-hidden="true"></i>
+          Retour
+        </button>
+        <h3>{{ showAddReviewForm ? 'Ajouter un avis' : 'Avis Clients' }}</h3>
+        <button *ngIf="!showAddReviewForm" class="add-review-btn" (click)="onAddReview()" title="Ajouter un avis">
+          <i class="fas fa-plus" aria-hidden="true"></i>
+          Ajouter un avis
+        </button>
+      </div>
+      <button class="modal-close" (click)="onClose()" aria-label="Fermer">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <!-- Vue des avis existants -->
+      <div *ngIf="!showAddReviewForm">
+        <div class="reviews-summary">
+          <div class="rating-overview">
+            <div class="average-rating">
+              <span class="rating-number">{{ averageRating }}/5</span>
+              <div class="stars">
+                <span *ngFor="let star of [0,1,2,3,4]; let i = index" class="star partial-star"
+                  [ngStyle]="getStarStyle(i, averageRating)" aria-hidden="true">★</span>
+              </div>
+            </div>
+            <p class="total-reviews">Basé sur {{ totalReviews }} avis vérifiés</p>
+          </div>
+        </div>
+
+        <!-- Dans la section reviews-list, modifier chaque review-item -->
+        <div class="reviews-list">
+          <div class="review-item" *ngFor="let review of reviews" [class.new-review]="!review.verified">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <h4 class="reviewer-name">{{ review.name }}</h4>
+                <span class="service-type">{{ review.service }}</span>
+                <span class="verified-badge" *ngIf="review.verified" title="Avis vérifié">
+                  <i class="fas fa-check-circle" aria-hidden="true"></i>
+                  Vérifié
+                </span>
+                <span class="new-badge" *ngIf="!review.verified" title="Nouvel avis">
+                  <i class="fas fa-star" aria-hidden="true"></i>
+                  Nouveau
+                </span>
+              </div>
+              <div class="review-meta">
+                <div class="rating">
+                  <span 
+                    *ngFor="let star of [0,1,2,3,4]; let i = index" 
+                    class="star partial-star"
+                    [ngStyle]="getStarStyle(i, review.rating)"
+                    aria-hidden="true">★</span>
+                </div>
+                <!-- Bouton de suppression supprimé -->
+              </div>
+            </div>
+            <div class="review-content">
+              <p class="review-comment">{{ review.comment }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reviews-footer">
+          <p class="footer-note">
+            <i class="fas fa-shield-alt" aria-hidden="true"></i>
+            Tous nos avis sont vérifiés et authentiques
+          </p>
+        </div>
+      </div>
+
+      <!-- Formulaire d'ajout d'avis -->
+      <div *ngIf="showAddReviewForm" class="add-review-form">
+        <form (ngSubmit)="onSubmitReview()" #reviewForm="ngForm">
+          <div class="form-group">
+            <label for="reviewerName">Nom *</label>
+            <input type="text" id="reviewerName" name="name" [(ngModel)]="newReview.name" required
+              placeholder="Votre nom" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label for="serviceType">Service utilisé *</label>
+            <select id="serviceType" name="service" [(ngModel)]="newReview.service" required class="form-control">
+              <option value="">Sélectionnez un service</option>
+              <option value="Recherches d'Héritiers (Successorale)">Recherches d'Héritiers (Successorale)</option>
+              <option value="Généalogie Familiale">Généalogie Familiale</option>
+              <option value="Investigations Privées">Investigations Privées</option>
+              <option value="Expertise Juridique">Expertise Juridique</option>
+              <option value="Autre">Autre</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Note *</label>
+            <div class="rating-input">
+              <span *ngFor="let star of [1,2,3,4,5]; let i = index" class="star-input"
+                [class.active]="i < newReview.rating" (click)="setRating(i + 1)" title="{{ i + 1 }} étoile(s)">★</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reviewComment">Commentaire *</label>
+            <textarea id="reviewComment" name="comment" [(ngModel)]="newReview.comment" required
+              placeholder="Partagez votre expérience..." rows="4" class="form-control"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" (click)="onBackToReviews()">
+              Annuler
+            </button>
+            <button type="submit" class="btn btn-primary" [disabled]="!reviewForm.form.valid">
+              Publier l'avis
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Section admin-actions supprimée -->

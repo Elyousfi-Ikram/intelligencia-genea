@@ -9,11 +9,21 @@ import { LegalModalService } from './services/legal-modal.service';
 import { CommonModule } from '@angular/common';
 import { StudyModalComponent } from './components/study-modal/study-modal.component';
 import { StudyModalService } from './services/study-modal.service';
+// Ajoutez les imports
+import { ReviewsModalComponent } from './components/reviews-modal/reviews-modal.component';
+import { ReviewsModalService } from './services/reviews-modal.service';
+
+// Supprimez cette section problématique :
+// if (typeof window !== 'undefined') {
+//   import('../styles/components.scss');
+// }
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [BannerComponent, RouterOutlet, ScrollToTopComponent, FooterComponent, LegalModalComponent, CommonModule, StudyModalComponent],
+  // Dans les imports
+  imports: [BannerComponent, RouterOutlet, ScrollToTopComponent, FooterComponent, LegalModalComponent, CommonModule, StudyModalComponent, ReviewsModalComponent],
+  // Dans le template
   template: `
     <app-banner (navigate)="onNavigate($event)"></app-banner>
     <router-outlet></router-outlet>
@@ -29,15 +39,20 @@ import { StudyModalService } from './services/study-modal.service';
     
     <!-- Modale d'étude globale -->
     <app-study-modal></app-study-modal>
+    
+    <!-- Modale d'avis clients -->
+    <app-reviews-modal></app-reviews-modal>
   `
 })
 export class AppComponent {
   title = 'intelligencia-genea-Angular';
 
+  // Dans le constructeur
   constructor(
     private router: Router,
     public legalModalService: LegalModalService,
-    public studyModalService: StudyModalService
+    public studyModalService: StudyModalService,
+    public reviewsModalService: ReviewsModalService
   ) {}
 
   onNavigate(route: string) {

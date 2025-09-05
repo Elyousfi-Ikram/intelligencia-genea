@@ -150,7 +150,16 @@
         }
 
         .hero-visual {
-            display: none;
+            display: block; // Remplacer display: none
+            max-width: 600px;
+            
+            img {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow-medium);
+            }
         }
     }
 
