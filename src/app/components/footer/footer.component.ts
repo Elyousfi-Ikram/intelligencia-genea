@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { StudyModalComponent } from '../study-modal/study-modal.component';
-import { LegalModalComponent } from '../legal-modal/legal-modal.component';
+// Supprimez cette ligne :
+// import { LegalModalComponent } from '../legal-modal/legal-modal.component';
 import { LegalModalService, LegalContent } from '../../services/legal-modal.service';
 import { Subscription } from 'rxjs';
 import { StudyModalService } from '../../services/study-modal.service';
-// Ajoutez l'import
 import { ReviewsModalService } from '../../services/reviews-modal.service';
 
 // Déclaration TypeScript pour Google Analytics
@@ -16,8 +16,8 @@ declare let gtag: Function;
 
 @Component({
   selector: 'app-footer',
-  standalone: true,
-  imports: [CommonModule, LegalModalComponent], // Retirer StudyModalComponent
+  standalone: true, 
+  imports: [CommonModule],
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
@@ -26,7 +26,7 @@ export class FooterComponent implements OnInit, OnDestroy {
   showModal = false;
   showLegalModal = false;
   currentLegalContent: LegalContent | null = null;
-  
+
   private subscriptions = new Subscription();
 
   // Données SEO enrichies
@@ -63,22 +63,22 @@ export class FooterComponent implements OnInit, OnDestroy {
     private title: Title,
     private legalModalService: LegalModalService,
     private studyModalService: StudyModalService,
-    private reviewsModalService: ReviewsModalService, // Ajouter cette ligne
+    private reviewsModalService: ReviewsModalService,
     @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initializeFooterSEO();
     this.addStructuredData();
     this.preloadCriticalResources();
-    
+
     // S'abonner aux changements du service
     this.subscriptions.add(
       this.legalModalService.isOpen$.subscribe(isOpen => {
         this.showLegalModal = isOpen;
       })
     );
-    
+
     this.subscriptions.add(
       this.legalModalService.content$.subscribe(content => {
         this.currentLegalContent = content;
@@ -96,7 +96,7 @@ export class FooterComponent implements OnInit, OnDestroy {
     this.meta.updateTag({ name: 'footer.services', content: this.seoData.services.join(', ') });
     this.meta.updateTag({ name: 'footer.location', content: 'Aix-en-Provence, Bouches-du-Rhône, PACA' });
     this.meta.updateTag({ name: 'footer.contact', content: `${this.seoData.phone} | ${this.seoData.email}` });
-    
+
     // Métadonnées business enrichies
     this.meta.updateTag({ name: 'business.type', content: 'Cabinet généalogie professionnel' });
     this.meta.updateTag({ name: 'business.certification', content: 'Agréé Ministère Culture' });
@@ -197,7 +197,7 @@ export class FooterComponent implements OnInit, OnDestroy {
     if (existingScript) {
       existingScript.remove();
     }
-    
+
     const script = document.createElement('script');
     script.id = id;
     script.type = 'application/ld+json';
@@ -260,12 +260,12 @@ export class FooterComponent implements OnInit, OnDestroy {
   onServiceClick(service: string) {
     // Tracking pour SEO
     this.trackEvent('service_navigation', 'navigation', `footer_service_${service}`);
-    
+
     this.router.navigate(['/services']).then(() => {
       setTimeout(() => {
         let sectionId = '';
-        
-        switch(service) {
+
+        switch (service) {
           case 'recherches':
           case 'genealogie-familiale':
             sectionId = 'recherches';
@@ -279,7 +279,7 @@ export class FooterComponent implements OnInit, OnDestroy {
           default:
             sectionId = 'recherches';
         }
-        
+
         const element = document.getElementById(sectionId);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });

@@ -106,7 +106,8 @@ $success-color: #28a745;
   .success-message {
     background-color: color.adjust($success-color, $lightness: 45%);
     color: color.adjust($success-color, $lightness: -10%);
-    border: 1px solid lighten($success-color, 20%);
+    @use 'sass:color';
+    border: 1px solid color.adjust($success-color, $lightness: 20%);
   }
 
   .error-message {
