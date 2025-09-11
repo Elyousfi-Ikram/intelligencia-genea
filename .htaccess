@@ -1,0 +1,12 @@
+# Activer le moteur de réécriture d'URL
+RewriteEngine On
+
+# Vérifier si la connexion n'est PAS en HTTPS
+RewriteCond %{HTTPS} !=on
+
+# Rediriger tout le trafic HTTP vers HTTPS
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Facultatif : forcer www (décommente si tu veux que ton site s'ouvre toujours avec www)
+# RewriteCond %{HTTP_HOST} !^www\. [NC]
+# RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [L,R=301]
