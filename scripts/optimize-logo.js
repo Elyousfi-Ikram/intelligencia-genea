@@ -13,13 +13,13 @@ const sizes = [
   { name: 'large', width: 255, height: 225 }
 ];
 
-const inputPath = 'src/assets/banner/logo.webp';
+const inputPath = 'src/assets/header/logo.webp';
 
 console.log('🚀 Début de l\'optimisation des images...');
 
 Promise.all(
   sizes.map(size => {
-    const outputPath = `src/assets/banner/logo-${size.name}.webp`;
+    const outputPath = `src/assets/header/logo-${size.name}.webp`;
     
     return sharp(inputPath)
       .resize(size.width, size.height, {
@@ -43,7 +43,7 @@ Promise.all(
   })
 ).then(results => {
   console.log('\n🎉 Optimisation terminée avec succès!');
-  console.log(`📁 ${results.length} fichiers créés dans src/assets/banner/`);
+  console.log(`📁 ${results.length} fichiers créés dans src/assets/header/`);
   
   // Afficher les tailles des fichiers
   results.forEach(filePath => {

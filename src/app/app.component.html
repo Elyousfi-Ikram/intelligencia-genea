@@ -1,8 +1,9 @@
-<app-banner (navigate)="onNavigate($event)"></app-banner>
-<router-outlet></router-outlet>
+<app-header (navigate)="onNavigate($event)"></app-header>
 
-<!-- Modales globales -->
-<app-legal-modal></app-legal-modal>
-<app-study-modal></app-study-modal>
+<router-outlet></router-outlet>
 <app-scroll-to-top></app-scroll-to-top>
+
+<app-contact></app-contact>
 <app-footer></app-footer>
+
+<app-modal></app-modal>

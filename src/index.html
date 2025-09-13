@@ -22,8 +22,8 @@
   <meta name="googlebot" content="index, follow">
 
   <!-- Liens canoniques -->
-  <link rel="canonical" href="http://intelligencia-genea.com">
-  <link rel="alternate" hreflang="fr" href="http://intelligencia-genea.com">
+  <!-- <link rel="canonical" href="http://intelligencia-genea.com">
+  <link rel="alternate" hreflang="fr" href="http://intelligencia-genea.com"> -->
 
   <!-- Favicon -->
   <link rel="icon" type="image/webp" href="/logo.webp">
@@ -107,8 +107,8 @@
   <!-- Fallback fonts CSS inline pour éviter FOIT -->
   <style>
     /* Fallback pour Cinzel pendant le chargement */
-    .banner-title,
-    .banner-subtitle {
+    .header-title,
+    .header-subtitle {
       font-family: 'Times New Roman', serif;
     }
 
@@ -127,11 +127,11 @@
 
   <!-- Préchargement des ressources critiques -->
   <!-- Préchargement responsif du logo -->
-  <link rel="preload" href="/assets/banner/logo-small.webp" as="image" type="image/webp" media="(max-width: 480px)"
+  <link rel="preload" href="/assets/header/logo-small.webp" as="image" type="image/webp" media="(max-width: 480px)"
     fetchpriority="high">
-  <link rel="preload" href="/assets/banner/logo-medium.webp" as="image" type="image/webp"
+  <link rel="preload" href="/assets/header/logo-medium.webp" as="image" type="image/webp"
     media="(min-width: 481px) and (max-width: 768px)" fetchpriority="high">
-  <link rel="preload" href="/assets/banner/logo-large.webp" as="image" type="image/webp" media="(min-width: 769px)"
+  <link rel="preload" href="/assets/header/logo-large.webp" as="image" type="image/webp" media="(min-width: 769px)"
     fetchpriority="high">
   <link rel="preload" href="/assets/homePage/enqueteur.webp" as="image" type="image/webp">
 
@@ -144,13 +144,6 @@
       });
     }
   </script>
-
-  <!-- Chargement optimisé des polices -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" as="style"
-    onload="this.onload=null;this.rel='stylesheet'">
-  <noscript>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap">
-  </noscript>
 
   <!-- Chargement différé de Font Awesome -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
@@ -547,7 +540,7 @@
     },
     "speakable": {
       "@type": "SpeakableSpecification",
-      "cssSelector": [".banner-title", ".banner-subtitle"]
+      "cssSelector": [".header-title", ".header-subtitle"]
     }
   }
   </script>

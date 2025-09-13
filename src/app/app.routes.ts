@@ -9,16 +9,13 @@ import { DeontologieComponent } from './components/deontologie/deontologie.compo
 import { ReseauComponent } from './components/reseau/reseau.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' }, // ✅ Page d'accueil directe
-  {
-    path: 'genealogie',
-    loadComponent: () => import('./components/genealogie/genealogie.component').then(m => m.GenealogiePage)
-  },
+  { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'genealogie', component: GenealogiePage },
   { path: 'agence', component: AgenceComponent },
   { path: 'services', component: ServicesComponent },
-  { path: 'nos-honoraires', component: HonorairesComponent },
-  { path: 'nos-garanties', component: GarantiesComponent },
+  { path: 'honoraires', component: HonorairesComponent },
+  { path: 'garanties', component: GarantiesComponent },
   { path: 'charte-de-deontologie', component: DeontologieComponent },
   { path: 'reseau', component: ReseauComponent },
-  { path: '**', redirectTo: '', pathMatch: 'full' } // Redirection vers la racine
+  { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
