@@ -1,0 +1,134 @@
+@if (isOpen) {
+<div class="ig-modal-overlay" (click)="onOverlayClick($event)">
+  <div class="ig-modal-container" (click)="$event.stopPropagation()">
+    <div class="d-flex justify-content-between align-items-center p-4 border-bottom ig-modal-header">
+      <h3 class="mb-0">Demander une étude généalogique</h3>
+      <button class="ig-modal-close-btn" (click)="onClose()">&times;</button>
+    </div>
+
+    <div class="p-5">
+      <div class="ig-study-modal-content">
+        <div class="text-center mb-5">
+          <p>Décrivez-nous votre projet généalogique et nous vous proposerons une solution personnalisée.</p>
+        </div>
+
+        @if (submitStatus === 'success') {
+        <div class="ig-success-message mb-4">
+          ✅ Votre demande a été envoyée avec succès ! Nous vous répondrons rapidement.
+        </div>
+        }
+
+        @if (submitStatus === 'error') {
+        <div class="ig-error-message mb-4">
+          ❌ Une erreur s'est produite lors de l'envoi. Veuillez réessayer.
+        </div>
+        }
+
+        <form class="ig-study-form" [formGroup]="studyForm" (ngSubmit)="onSubmit()">
+          <div class="mb-4 ig-form-group" [class.ig-error]="email?.invalid && email?.touched">
+            <label for="email">Email *</label>
+            <input type="email" id="email" formControlName="email" placeholder="votre.email@exemple.com"
+              (input)="onFieldChange('email')" />
+            @if (email?.invalid && email?.touched) {
+            <span class="ig-error-message">
+              L'email est requis et doit être valide
+            </span>
+            }
+          </div>
+
+          <div class="row g-4 mb-4">
+            <div class="col-md-6">
+              <div class="ig-form-group" [class.ig-error]="name?.invalid && name?.touched">
+                <label for="name">Nom complet *</label>
+                <input type="text" id="name" formControlName="name" placeholder="Votre nom et prénom"
+                  (input)="onFieldChange('name')" />
+                @if (name?.invalid && name?.touched) {
+                <span class="ig-error-message">
+                  Le nom est requis
+                </span>
+                }
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="ig-form-group">
+                <label for="phone">Téléphone</label>
+                <input type="tel" id="phone" formControlName="phone" placeholder="06 12 34 56 78"
+                  (input)="onFieldChange('phone')" />
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-4 ig-form-group">
+            <label for="studyType">Type d'étude</label>
+            <select id="studyType" formControlName="studyType" (change)="onFieldChange('studyType')">
+              <option value="">Sélectionnez le type d'étude</option>
+              <optgroup label="Recherches généalogiques">
+                <option value="ascendance-complete">Ascendance complète</option>
+                <option value="ascendance-patronymique">Ascendance patronymique</option>
+                <option value="descendance">Descendance</option>
+                <option value="recherche-ciblée">Recherche ciblée</option>
+              </optgroup>
+              <optgroup label="Études spécialisées">
+                <option value="histoire-familiale">Histoire familiale</option>
+                <option value="biographie-ancetre">Biographie d'ancêtre</option>
+                <option value="reconstitution-parcours">Reconstitution de parcours</option>
+              </optgroup>
+              <optgroup label="Services complémentaires">
+                <option value="arbre-illustré">Arbre généalogique illustré</option>
+                <option value="livre-famille">Livre de famille</option>
+                <option value="consultation">Consultation généalogique</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="mb-4 ig-form-group" [class.ig-error]="message?.invalid && message?.touched">
+            <label for="message">Détails de votre demande *</label>
+            <textarea id="message" formControlName="message" rows="4"
+              placeholder="Décrivez votre projet généalogique : objectifs, informations déjà connues, période recherchée, région géographique..."
+              (input)="onFieldChange('message')"></textarea>
+            @if (message?.invalid && message?.touched) {
+            <span class="ig-error-message">
+              Minimum 10 caractères
+            </span>
+            }
+          </div>
+
+          <div class="d-flex justify-content-around my-5 p-4 ig-form-info">
+            <div class="text-center ig-info-item">
+              <span>Confidentialité garantie</span>
+            </div>
+            <div class="text-center ig-info-item">
+              <span>Réponse rapide</span>
+            </div>
+            <div class="text-center ig-info-item">
+              <span>Devis gratuit</span>
+            </div>
+          </div>
+
+          <div class="d-flex gap-3 justify-content-end mt-5 pt-3 border-top">
+            <button type="button" class="ig-btn-secondary" (click)="onClose()" [disabled]="isSubmitting">
+              Annuler
+            </button>
+            <button type="submit" class="ig-btn-primary" [class.ig-loading]="isSubmitting"
+              [disabled]="isSubmitting || submitStatus === 'success'">
+              @if (isSubmitting) {
+              <span class="ig-loading-spinner"></span>
+              }
+              @if (isSubmitting) {
+              <ng-container>Envoi en cours...</ng-container>
+              }
+              @if (!isSubmitting && submitStatus === 'success') {
+              <ng-container>Envoyé ✅</ng-container>
+              }
+              @if (!isSubmitting && submitStatus !== 'success') {
+              <ng-container>Envoyer la demande</ng-container>
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+}

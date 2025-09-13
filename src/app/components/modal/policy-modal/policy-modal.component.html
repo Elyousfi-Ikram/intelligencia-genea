@@ -1,0 +1,111 @@
+@if (isOpen) {
+<div class="ig-modal-overlay" (click)="onOverlayClick($event)">
+    <div class="ig-modal-container">
+        <div class="d-flex justify-content-between align-items-center p-4 border-bottom ig-modal-header">
+            <h3 class="mb-0">Politique de Confidentialité</h3>
+            <button class="ig-modal-close-btn" (click)="onClose()" aria-label="Fermer">
+                ×
+            </button>
+        </div>
+        <div class="p-5">
+            <div class="ig-modal-content">
+                <h2>Politique de protection de la vie privée</h2>
+                <p><em>Site internet de Sud Intelligence</em></p>
+
+                <h3>Politique de protection de la vie privée</h3>
+                <p>Cette politique de protection de la vie privée expose comment et pourquoi nous collectons et
+                    utilisons vos données personnelles lorsque vous visitez notre site web ou que vous utilisez nos
+                    services. Elle vous informe également sur vos droits en matière de protection des données et sur
+                    la façon dont la loi vous protège.</p>
+
+                <h3>Identité du responsable du traitement</h3>
+                <p>Le responsable du traitement des données est :</p>
+                <p><strong>INTELLIGENCIA-GENEA<span class="copyright-text">®</span></strong><br>
+                    Adresse : 67 Cours Mirabeau, 13100 Aix-en-Provence<br>
+                    Téléphone : 06 45 82 06 97<br>
+                    Email : intelligencia.lagarde@gmail.com</p>
+
+                <h3>Les traitements relatifs à vos données personnelles</h3>
+
+                <h4>Identité, coordonnées :</h4>
+                <table class="ig-data-table">
+                    <thead>
+                        <tr>
+                            <th>Finalité du traitement</th>
+                            <th>Base légale</th>
+                            <th>Catégories de données</th>
+                            <th>Durée de conservation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gestion de la relation client et des demandes de contact</td>
+                            <td>Intérêt légitime</td>
+                            <td>Nom, prénom, adresse email, téléphone, message</td>
+                            <td>3 ans à compter du dernier contact</td>
+                        </tr>
+                        <tr>
+                            <td>Prestations de généalogie et recherche</td>
+                            <td>Exécution d'un contrat</td>
+                            <td>Données d'identité, informations familiales, documents fournis</td>
+                            <td>Durée nécessaire à l'exécution de la prestation + 5 ans</td>
+                        </tr>
+                        <tr>
+                            <td>Amélioration de nos services et analyse statistique</td>
+                            <td>Consentement</td>
+                            <td>Données de navigation, cookies analytiques</td>
+                            <td>13 mois maximum</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>Destinataires des données :</strong> Les données collectées sont destinées aux services
+                    internes d'<strong>INTELLIGENCIA-GENEA<span class="copyright-text">®</span></strong>. Elles ne sont
+                    jamais transmises à des tiers sans votre
+                    consentement explicite, sauf obligation légale.</p>
+
+                <p><strong>Transferts hors UE :</strong> Aucun transfert de données personnelles n'est effectué en
+                    dehors de l'Union Européenne.</p>
+
+                <p><strong>Sécurité des données :</strong> Nous mettons en place des mesures techniques et
+                    organisationnelles appropriées pour protéger vos données contre la destruction accidentelle ou
+                    illicite, la perte accidentelle, l'altération, la diffusion ou l'accès non autorisés.</p>
+
+                <h3>Quels sont vos droits ?</h3>
+                <p>Conformément au Règlement Général sur la Protection des Données (RGPD), vous disposez des droits
+                    suivants concernant vos données personnelles :</p>
+
+                <ul>
+                    <li><strong>Droit d'accès :</strong> Vous pouvez demander l'accès aux données personnelles que
+                        nous détenons à votre sujet</li>
+                    <li><strong>Droit de rectification :</strong> Vous pouvez demander la correction de données
+                        inexactes ou incomplètes</li>
+                    <li><strong>Droit à l'effacement :</strong> Vous pouvez demander la suppression de vos données
+                        dans certaines circonstances</li>
+                    <li><strong>Droit à la limitation :</strong> Vous pouvez demander la limitation du traitement de
+                        vos données</li>
+                    <li><strong>Droit à la portabilité :</strong> Vous pouvez demander à recevoir vos données dans
+                        un format structuré</li>
+                    <li><strong>Droit d'opposition :</strong> Vous pouvez vous opposer au traitement de vos données
+                        pour des raisons tenant à votre situation particulière</li>
+                    <li><strong>Droit de retrait du consentement :</strong> Lorsque le traitement est basé sur votre
+                        consentement, vous pouvez le retirer à tout moment</li>
+                </ul>
+
+                <p>Pour exercer ces droits, vous pouvez nous contacter à l'adresse :
+                    <strong>intelligencia.lagarde@gmail.com</strong>
+                </p>
+
+                <p>Vous disposez également du droit d'introduire une réclamation auprès de la Commission Nationale
+                    de l'Informatique et des Libertés (CNIL) si vous estimez que le traitement de vos données
+                    personnelles constitue une violation du RGPD.</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end pt-3 px-5 pb-5 border-top">
+            <button class="ig-btn-secondary" (click)="onClose()">
+                Fermer
+            </button>
+        </div>
+    </div>
+</div>
+}

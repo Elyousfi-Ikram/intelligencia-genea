@@ -1,0 +1,50 @@
+@if (isOpen) {
+<div class="ig-modal-overlay" (click)="onOverlayClick($event)">
+    <div class="ig-modal-container">
+        <div class="d-flex justify-content-between align-items-center p-4 border-bottom ig-modal-header">
+            <h3 class="mb-0">Politique de Cookies</h3>
+            <button class="ig-modal-close-btn" (click)="onClose()" aria-label="Fermer">
+                ×
+            </button>
+        </div>
+        <div class="p-5">
+            <div class="ig-modal-content">
+                <h2>Politique de gestion des cookies de Sud Intelligence</h2>
+
+                <h3 class="red-title">À quoi servent les cookies ?</h3>
+
+                <p><strong>SUD INTELLIGENCE</strong>, éditeur de ce site, utilise différentes technologies (cookie
+                    et assimilables) pour recueillir des informations sur votre navigation (pouvant ou non contenir
+                    des données personnelles) ou pour assurer le bon fonctionnement du site. Nos partenaires sont
+                    listés sur notre CMP (consent management plateform) que vous pouvez retrouver sur Gérer les
+                    cookies.</p>
+
+                <p>Certains cookies sont <strong>essentiels</strong> au fonctionnement de nos services et ne sont
+                    pas soumis à votre consentement. Ils permettent l'utilisation des principales fonctionnalités du
+                    site, comme le contenu de votre chariot ou la mémorisation des préférences d'affichage de votre
+                    terminal (langue, paramètres d'affichage) et d'en tenir compte lors de vos visites, selon la
+                    charte graphique et les logiciels de visualisation ou de lecture de votre terminal.</p>
+
+                <p>Les cookies utilisés pour la mesure d'audience sont soumis à votre consentement. Ils permettent
+                    d'établir des statistiques, comptages de fréquentation et d'utilisation du contenu (mesure du
+                    nombre de visites, de pages vues ou encore de l'activité des visiteurs sur le site et de leur
+                    fréquence de retour).</p>
+
+                <p>Les derniers cookies, présents sur notre site, concernent la publicité et sont donc soumis à
+                    votre consentement.</p>
+
+                <p>Pour terminer ce tour d'horizon des cookies et assimilés utilisés sur notre site, nous vous
+                    informons qu'il existe des paramétrages sur vos navigateurs pour limiter votre suivi en ligne.
+                    La CNIL met à votre disposition, <a
+                        href="https://www.cnil.fr/fr/cookies-et-autres-traceurs/comment-se-proteger/maitriser-votre-navigateur"
+                        target="_blank" class="ig-external-link">sur son site</a>, des informations sur ces sujets.</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end pt-3 px-5 pb-5 border-top">
+            <button class="ig-btn-secondary" (click)="onClose()">
+                Fermer
+            </button>
+        </div>
+    </div>
+</div>
+}

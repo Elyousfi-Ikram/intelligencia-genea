@@ -1,0 +1,14 @@
+<app-legal-modal [isOpen]="(legalService.isOpen$ | async) ?? false" (closeModal)="legalService.closeModal()">
+</app-legal-modal>
+
+<app-policy-modal [isOpen]="(policyService.isOpen$ | async) ?? false" (closeModal)="policyService.closeModal()">
+</app-policy-modal>
+
+<app-cookies-modal [isOpen]="(cookiesService.isOpen$ | async) ?? false" (closeModal)="cookiesService.closeModal()">
+</app-cookies-modal>
+
+<app-reviews-modal [isOpen]="(reviewsService.isOpen$ | async) ?? false" (closeModal)="reviewsService.closeModal()">
+</app-reviews-modal>
+
+<app-study-modal [isOpen]="(studyService.isOpen$ | async) ?? false" (closeModal)="studyService.closeModal()">
+</app-study-modal>

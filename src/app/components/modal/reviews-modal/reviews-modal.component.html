@@ -1,0 +1,128 @@
+@if (isOpen) {
+  <div class="ig-modal-overlay" (click)="onOverlayClick($event)">
+    <div class="ig-modal-container" (click)="$event.stopPropagation()">
+      <!-- En-tête dynamique -->
+      <div class="d-flex justify-content-between align-items-center p-4 border-bottom ig-modal-header">
+        <div class="d-flex align-items-center gap-3 flex-fill">
+          @if (showAddReviewForm) {
+            <button class="ig-back-btn" (click)="onBackToReviews()" title="Retour aux avis">
+              <i class="fas fa-arrow-left" aria-hidden="true"></i>
+              Retour
+            </button>
+          }
+          @if (!showAddReviewForm) {
+            <button class="ig-add-review-btn" (click)="onAddReview()" title="Ajouter un avis">
+              <i class="fas fa-plus" aria-hidden="true"></i>
+              Ajouter un avis
+            </button>
+          }
+          <h3 class="mb-0">{{ showAddReviewForm ? 'Ajouter un avis' : 'Avis Clients' }}</h3>
+        </div>
+        <button class="ig-modal-close-btn" (click)="onClose()" aria-label="Fermer">&times;</button>
+      </div>
+
+      <div class="p-5">
+        <!-- Vue des avis existants -->
+        @if (!showAddReviewForm) {
+          <div>
+            <div class="p-4 mb-5 text-center ig-reviews-summary">
+              <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+                <div class="d-flex flex-row align-items-center gap-2">
+                  <div class="ig-rating-number">{{ getFormattedRating() }}/5</div>
+                </div>
+                <div class="ig-stars-container">
+                  <div class="d-flex gap-1">
+                    <span *ngFor="let star of [0,1,2,3,4]; let i = index" 
+                          class="ig-star ig-star-enhanced"
+                          [ngStyle]="getStarStyle(i, averageRating)">★</span>
+                  </div>
+                  <div class="ig-rating-precision">
+                    <small>Basé sur {{ reviews.length }} avis</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Liste des avis -->
+            <div class="d-flex flex-column gap-4 mb-5">
+              <div class="ig-review-item" *ngFor="let review of reviews">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                  <div class="d-flex flex-column gap-2">
+                    <h4 class="ig-reviewer-name">{{ review.name }}</h4>
+                    <span class="ig-service-type">{{ review.service }}</span>
+                  </div>
+                  <div class="d-flex flex-column align-items-end gap-2">
+                    <div class="d-flex gap-1">
+                      <span *ngFor="let star of [0,1,2,3,4]; let i = index" 
+                            class="ig-star ig-star-enhanced"
+                            [ngStyle]="getStarStyle(i, review.rating)">★</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="ig-review-content">
+                  <p class="ig-review-comment">{{ review.comment }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center p-3 ig-reviews-footer">
+              <p class="d-flex align-items-center justify-content-center gap-2 mb-0 ig-footer-note">
+                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                Tous nos avis sont vérifiés et authentiques
+              </p>
+            </div>
+          </div>
+        }
+
+        <!-- Formulaire d'ajout d'avis -->
+        @if (showAddReviewForm) {
+          <div class="ig-add-review-form">
+            <form (ngSubmit)="onSubmitReview()" #reviewForm="ngForm">
+              <div class="mb-4">
+                <label for="reviewerName">Nom *</label>
+                <input type="text" id="reviewerName" name="name" [(ngModel)]="newReview.name" required
+                  placeholder="Votre nom" class="ig-form-control">
+              </div>
+
+              <div class="mb-4">
+                <label for="serviceType">Service utilisé *</label>
+                <select id="serviceType" name="service" [(ngModel)]="newReview.service" required class="ig-form-control">
+                  <option value="">Sélectionnez un service</option>
+                  <option value="Recherches d'Héritiers (Successorale)">Recherches d'Héritiers (Successorale)</option>
+                  <option value="Généalogie Familiale">Généalogie Familiale</option>
+                  <option value="Investigations Privées">Investigations Privées</option>
+                  <option value="Expertise Juridique">Expertise Juridique</option>
+                  <option value="Autre">Autre</option>
+                </select>
+              </div>
+
+              <div class="mb-4">
+                <label>Note *</label>
+                <div class="ig-rating-input">
+                  <span *ngFor="let star of [1,2,3,4,5]; let i = index" class="ig-star-input"
+                    [class.active]="i < newReview.rating" (click)="setRating(i + 1)"
+                    [title]="(i + 1) + ' étoile(s)'">★</span>
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <label for="reviewComment">Commentaire *</label>
+                <textarea id="reviewComment" name="comment" [(ngModel)]="newReview.comment" required
+                  placeholder="Partagez votre expérience..." rows="4" class="ig-form-control"></textarea>
+              </div>
+
+              <div class="d-flex gap-3 justify-content-end mt-5 pt-3 border-top">
+                <button type="button" class="ig-btn ig-btn-secondary" (click)="onBackToReviews()">
+                  Annuler
+                </button>
+                <button type="submit" class="ig-btn ig-btn-primary" [disabled]="!reviewForm.form.valid">
+                  Publier l'avis
+                </button>
+              </div>
+            </form>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,41 @@
+@if (isOpen) {
+<div class="ig-modal-overlay" (click)="onOverlayClick($event)">
+    <div class="ig-modal-container">
+        <div class="d-flex justify-content-between align-items-center p-4 border-bottom ig-modal-header">
+            <h3 class="mb-0">Mentions Légales</h3>
+            <button class="ig-modal-close-btn" (click)="onClose()" aria-label="Fermer">
+                ×
+            </button>
+        </div>
+        <div class="p-5">
+            <div class="ig-modal-content">
+                <h3>Éditeur du site</h3>
+                <p><strong>INTELLIGENCIA-GENEA<span class="copyright-text">®</span></strong><br>
+                    11 Rue du Ricm<br>
+                    13100 Aix-en-Provence<br>
+                    Téléphone : 06 45 82 06 97<br>
+                    Email : intelligencia.lagarde@gmail.com<br>
+                    SIRET : 85335161700016<br>
+                </p>
+
+                <h3>Hébergement</h3>
+                <p>
+                    Hébergeur : IONOS SARL<br>
+                    Adresse : 7 place de la Gare, BP 70109, 57200 Sarreguemines Cedex, France<br>
+                    Téléphone : 0970 808 911 (appel non surtaxé)<br>
+                    Email : info@ionos.fr
+                </p>
+
+                <h3>Propriété intellectuelle</h3>
+                <p>L'ensemble de ce site relève de la législation française et internationale sur le droit d'auteur
+                    et la propriété intellectuelle.</p>
+            </div>
+        </div>
+        <div class="d-flex justify-content-end pt-3 px-5 pb-5 border-top">
+            <button class="ig-btn-secondary" (click)="onClose()">
+                Fermer
+            </button>
+        </div>
+    </div>
+</div>
+}
