@@ -1,0 +1,645 @@
+// ===== IMPORTS =====
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+// ===== ANIMATIONS =====
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes subtitleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes dropdownSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-15px) scale(0.95);
+    filter: blur(2px);
+  }
+
+  60% {
+    transform: translateX(-50%) translateY(2px) scale(1.02);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+// ===== 1. BANNER PRINCIPAL =====
+.header {
+  background-color: #f3e1c2;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInDown 0.6s ease-out;
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  contain: layout style;
+  will-change: transform;
+  box-sizing: border-box;
+  max-width: 100vw;
+  overflow: visible;
+}
+
+// ===== 2. SECTION CONTACT TOP =====
+.header-contact-top {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: clamp(8px, 2vw, 12px) 0;
+
+  .contact-info {
+    margin: 0 auto;
+    padding: 0 clamp(20px, 5vw, 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: clamp(15px, 3vw, 30px);
+    font-size: 0;
+    max-width: 100%;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: clamp(12px, 2vw, 14px);
+    flex-shrink: 0;
+
+    .contact-icon {
+      font-size: clamp(14px, 2.5vw, 16px);
+      flex-shrink: 0;
+    }
+
+    .contact-text {
+      color: #5d4e37;
+      text-decoration: none;
+      font-size: inherit;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      white-space: nowrap;
+
+      &[href^="tel:"],
+      &[href^="mailto:"] {
+        text-decoration-skip-ink: auto;
+      }
+    }
+  }
+}
+
+// ===== 3. SÉPARATEUR =====
+.header-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #8b6914, transparent);
+  opacity: 0.3;
+  width: 100%;
+}
+
+// ===== 4. CONTENEUR PRINCIPAL =====
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  overflow: visible;
+}
+
+// ===== 5. BOUTON MENU MOBILE =====
+.mobile-menu-toggle {
+  order: 3;
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
+  position: relative;
+}
+
+.hamburger-line {
+  width: 25px;
+  height: 3px;
+  background-color: #5d4e37;
+  margin: 3px 0;
+  transition: 0.3s;
+  transform-origin: center;
+
+  &.active {
+    &:nth-child(1) {
+      transform: rotate(45deg) translate(6px, 6px);
+    }
+
+    &:nth-child(2) {
+      opacity: 0;
+    }
+
+    &:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+  }
+}
+
+// ===== 6. CONTENU BANNER =====
+.header-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10px, 2vw, 0px);
+}
+
+// ===== 7. LOGO =====
+.header-logo {
+  flex-shrink: 0;
+  flex-basis: auto;
+  order: 1;
+
+  .logo-image {
+    height: clamp(60px, 8vw, 80px);
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    max-width: 100%;
+  }
+}
+
+// ===== 8. SECTION TEXTE =====
+.header-text {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  order: 2;
+  min-width: 0;
+  padding: 0;
+}
+
+.header-title {
+  font-size: clamp(16px, 2.5vw, 24px);
+  font-weight: 700;
+  color: #5d4e37;
+  letter-spacing: clamp(1px, 0.3vw, 2px);
+  margin: 0;
+  background: linear-gradient(135deg, #5d4e37 0%, #8b6914 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Cinzel', serif;
+  line-height: 1.2;
+  text-rendering: optimizeLegibility;
+  word-break: break-word;
+}
+
+.header-subtitle {
+  flex-shrink: 0;
+  flex-basis: auto;
+  order: 3;
+  color: #5d4e37;
+  transition: color 0.3s ease;
+  font-size: clamp(11px, 2vw, 13px);
+  font-weight: 400;
+  margin: 0;
+  font-style: italic;
+  position: relative;
+  animation: subtitleFadeIn 0.8s ease-out 0.4s both;
+  font-family: 'Cinzel', serif;
+  line-height: 1.4;
+  text-rendering: optimizeLegibility;
+  word-break: break-word;
+  text-align: center;
+
+  &::after {
+    display: block;
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(40px, 8vw, 60px);
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #8b6914, transparent);
+    opacity: 0.6;
+  }
+}
+
+// Classes utilitaires pour le SEO
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.copyright-title {
+  font-size: 2rem;
+}
+
+// ===== 9. NAVIGATION PRINCIPALE =====
+.header-navigation {
+  flex-shrink: 0;
+  flex-basis: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+  z-index: 100;
+  order: 3;
+  padding: 1rem;
+  gap: 0;
+}
+
+// ===== 10. ÉLÉMENTS DE NAVIGATION =====
+.nav-item-wrapper {
+  position: relative;
+  display: inline-block;
+  z-index: 9999;
+  overflow: visible;
+}
+
+.nav-link-horizontal {
+  background: none;
+  border: none;
+  padding: clamp(8px, 1.5vw, 14px) clamp(12px, 2.5vw, 20px);
+  font-size: clamp(14px, 1.8vw, 16px);
+  font-weight: bold;
+  color: #5d4e37;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: clamp(0.3px, 0.1vw, 0.5px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 4px;
+  white-space: nowrap;
+  gap: 0.5rem;
+  font-family: 'Cinzel', sans-serif;
+
+  &:focus {
+    color: #8b6914;
+    outline: 2px solid #8b6914;
+    outline-offset: 2px;
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.dropdown-arrow {
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+}
+
+.dropdown-icon {
+  margin-left: 0.3rem;
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+
+  .fa-chevron-down.rotated {
+    transform: rotate(180deg);
+  }
+}
+
+// ===== 11. MENUS DROPDOWN =====
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 999999 !important;
+  display: block;
+  box-sizing: border-box;
+  min-width: 300px;
+  animation: dropdownSlideIn 0.3s ease-out forwards;
+  opacity: 0;
+  visibility: hidden;
+  contain: layout style;
+  will-change: transform, opacity;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .dropdown-list {
+    padding-left: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+.dropdown-item {
+  list-style: none;
+}
+
+.dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: #333333;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 400;
+  transition: background-color 0.2s ease;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+
+  &:focus {
+    background-color: #f8f9fa;
+    color: #8b6914;
+    outline: none;
+    box-shadow: inset 2px 0 0 #8b6914;
+  }
+
+  .icon-collapse {
+    margin-right: 0.5rem;
+    width: 16px;
+    font-size: 14px;
+  }
+}
+
+// ===== 12. SÉPARATEURS DE NAVIGATION =====
+.nav-separator {
+  color: #8b6914;
+  font-weight: normal;
+  margin: 0 clamp(6px, 1.5vw, 12px);
+  font-size: clamp(12px, 2vw, 16px);
+}
+
+// ===== 13. LIENS DIRECTS =====
+.nav-link-direct {
+  background: none;
+  border: none;
+  padding: clamp(8px, 1.5vw, 14px) clamp(12px, 2.5vw, 20px);
+  font-size: clamp(14px, 1.8vw, 16px);
+  font-weight: bold;
+  color: #5d4e37;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: clamp(0.3px, 0.1vw, 0.5px);
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 4px;
+  white-space: nowrap;
+  gap: 0.5rem;
+  font-family: 'Cinzel', sans-serif;
+
+  &:focus {
+    color: #8b6914;
+    outline: 2px solid #8b6914;
+    outline-offset: 2px;
+  }
+}
+
+// ===== 14. MENU MOBILE =====
+.mobile-navigation {
+  position: fixed;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #ffffff;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  padding: 50px 20px;
+  overflow-y: auto;
+  transition: top 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(0);
+
+  &:not(.show) {
+    transform: translateY(100%);
+    visibility: hidden;
+  }
+
+  &.show {
+    visibility: visible;
+  }
+}
+
+.mobile-nav-item-wrapper {
+  position: relative;
+  margin-bottom: 0;
+  width: 90%;
+}
+
+.mobile-nav-link {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 15px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #5d4e37;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Cinzel', sans-serif;
+  border-bottom: 1px solid #e0e0e0;
+  transition: color 0.3s ease;
+
+  &:hover,
+  &:focus {
+    color: #8b6914;
+    outline: none;
+  }
+
+  &.active {
+    color: #8b6914;
+  }
+}
+
+.mobile-nav-link-direct {
+  width: 90%;
+  background: none;
+  border: none;
+  padding: 15px 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #5d4e37;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Cinzel', sans-serif;
+  border-bottom: 1px solid #e0e0e0;
+  transition: color 0.3s ease;
+  display: block;
+
+  &:hover,
+  &:focus {
+    color: #8b6914;
+    outline: none;
+  }
+}
+
+.mobile-dropdown-arrow,
+.mobile-dropdown-icon {
+  transition: transform 0.3s ease;
+  font-size: 0.8em;
+
+  .fa-chevron-down.rotated {
+    transform: rotate(180deg);
+  }
+}
+
+.mobile-dropdown-menu {
+  max-height: 0;
+  overflow: hidden;
+  background-color: #f8f9fa;
+  transition: max-height 0.3s ease;
+
+  &.show {
+    max-height: 300px;
+  }
+
+  .mobile-dropdown-list {
+    padding: 0;
+    padding-left: 15px;
+    margin: 0;
+    list-style: none;
+  }
+}
+
+.mobile-dropdown-item {
+  list-style: none;
+}
+
+.mobile-dropdown-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  color: #333333;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  transition: color 0.2s ease;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    color: #8b6914;
+    outline: none;
+  }
+
+  .icon-collapse {
+    width: 16px;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+}
+
+.mobile-nav-separator {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+  margin: 0;
+  opacity: 0.5;
+}
+
+// ===== MEDIA QUERIES =====
+@media (max-width: 768px) {
+  .header {
+    contain-intrinsic-size: 150px;
+  }
+
+  .header-container {
+    flex-direction: row;
+  }
+
+  .header-navigation {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-navigation {
+    display: none !important;
+  }
+
+  .mobile-menu-toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+
+  .nav-link-horizontal,
+  .nav-link-direct {
+    font-size: clamp(10px, 1.5vw, 12px);
+    padding: 6px 8px;
+  }
+
+  .nav-separator {
+    margin: 0 4px;
+  }
+
+  .dropdown-menu {
+    min-width: 200px;
+    max-width: 200px;
+  }
+}

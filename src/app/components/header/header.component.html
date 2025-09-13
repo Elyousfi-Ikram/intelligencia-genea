@@ -1,0 +1,224 @@
+<header class="header" [class.scrolled]="isScrolled" role="header" itemscope itemtype="https://schema.org/Organization">
+  <!-- Contenu caché pour SEO -->
+  <div class="sr-only">
+    <h1 itemprop="name">INTELLIGENCIA-GENEA® - Navigation Principale</h1>
+    <p itemprop="description">Navigation du site INTELLIGENCIA-GENEA®, généalogistes professionnels. Accès aux services de généalogie, informations sur l'agence, contact et déontologie.</p>
+  </div>
+
+  <!-- Section Contact en haut avec microdata enrichie -->
+  <div class="header-contact-top" itemprop="contactPoint" itemscope itemtype="https://schema.org/ContactPoint">
+    <meta itemprop="contactType" content="customer service">
+    <meta itemprop="areaServed" content="France">
+    <meta itemprop="availableLanguage" content="French">
+    <div class="contact-info" role="list" aria-label="Informations de contact INTELLIGENCIA-GENEA">
+      <div class="contact-item" role="listitem">
+        <a [href]="getPhoneHref('06 45 82 06 97')" class="contact-text">
+          <span class="contact-icon" aria-hidden="true">📞</span> 06 45 82 06 97
+        </a>
+        <a [href]="getEmailHref('intelligencia.lagarde@gmail.com')" class="contact-text">
+          <span class="contact-icon" aria-hidden="true">📧</span> intelligencia.lagarde@gmail.com
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ligne de séparation -->
+  <div class="header-separator" role="presentation"></div>
+
+  <!-- Section Navigation en bas -->
+  <div class="header-container" itemprop="mainEntity" itemscope itemtype="https://schema.org/Organization">
+    <!-- Bouton hamburger pour mobile -->
+    <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" aria-label="Ouvrir le menu de navigation"
+      [attr.aria-expanded]="isMobileMenuOpen" aria-controls="mobile-navigation">
+      <span class="hamburger-line" [class.active]="isMobileMenuOpen"></span>
+      <span class="hamburger-line" [class.active]="isMobileMenuOpen"></span>
+      <span class="hamburger-line" [class.active]="isMobileMenuOpen"></span>
+    </button>
+
+    <!-- Menu mobile -->
+    <nav class="mobile-navigation" id="mobile-navigation" [class.show]="isMobileMenuOpen" role="navigation" aria-label="Navigation mobile INTELLIGENCIA-GENEA">
+      <!-- Section Qui sommes-nous -->
+      <div class="mobile-nav-item-wrapper">
+        <button class="mobile-nav-link" [attr.aria-expanded]="activeDropdown === 'qui-sommes-nous'"
+          aria-haspopup="true" (click)="toggleDropdown('qui-sommes-nous')"
+          [class.active]="activeDropdown === 'qui-sommes-nous'">
+          QUI SOMMES-NOUS
+          <span class="mobile-dropdown-arrow">
+            <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+          </span>
+        </button>
+        <div class="mobile-dropdown-menu" [class.show]="activeDropdown === 'qui-sommes-nous'">
+          <ul class="mobile-dropdown-list" role="menu">
+            <li class="mobile-dropdown-item" role="none">
+              <a class="mobile-dropdown-link" role="menuitem" (click)="handleNavigation('genealogie')" tabindex="0">
+                <i class="fas fa-tree icon-collapse" aria-hidden="true"></i>
+                Comprendre la généalogie
+              </a>
+            </li>
+            <li class="mobile-dropdown-item" role="none">
+              <a class="mobile-dropdown-link" (click)="handleNavigation('agence')">
+                <i class="fas fa-building icon-collapse" aria-hidden="true"></i>
+                Notre agence
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mobile-nav-separator"></div>
+
+      <div class="mobile-nav-item-wrapper">
+        <button class="mobile-nav-link" [attr.aria-expanded]="activeDropdown === 'prestations'" aria-haspopup="true"
+          (click)="toggleDropdown('prestations')" [class.active]="activeDropdown === 'prestations'">
+          NOS PRESTATIONS
+          <span class="mobile-dropdown-icon">
+            <i class="fa-solid fa-chevron-down" [class.rotated]="activeDropdown === 'prestations'" aria-hidden="true"></i>
+          </span>
+        </button>
+        <div class="mobile-dropdown-menu" [class.show]="activeDropdown === 'prestations'">
+          <ul class="mobile-dropdown-list" role="menu">
+            <li class="mobile-dropdown-item" role="none">
+              <a class="mobile-dropdown-link" role="menuitem" (click)="handleNavigation('services')" tabindex="0">
+                <i class="fas fa-briefcase icon-collapse" aria-hidden="true"></i> Nos services
+              </a>
+            </li>
+            <li class="mobile-dropdown-item" role="none">
+              <a class="mobile-dropdown-link" role="menuitem" (click)="handleNavigation('garanties')" tabindex="0">
+                <i class="fas fa-shield-alt icon-collapse" aria-hidden="true"></i> Nos garanties et engagements
+              </a>
+            </li>
+            <li class="mobile-dropdown-item" role="none">
+              <a class="mobile-dropdown-link" role="menuitem" (click)="handleNavigation('honoraires')" tabindex="0">
+                <i class="fas fa-euro-sign icon-collapse" aria-hidden="true"></i> Nos honoraires
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mobile-nav-separator"></div>
+
+      <!-- Liens directs -->
+      <a class="mobile-nav-link-direct" (click)="handleNavigation('charte-de-deontologie')" role="button">
+        CHARTE DE DÉONTOLOGIE
+      </a>
+
+      <div class="mobile-nav-separator"></div>
+
+      <a class="mobile-nav-link-direct" (click)="handleNavigation('reseau')" role="button">
+        NOTRE RÉSEAU
+      </a>
+    </nav>
+
+    <div class="header-content">
+      <!-- Logo à droite avec microdata enrichie -->
+      <div class="header-logo" itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+        <img src="assets/header/logo-medium.webp" srcset="assets/header/logo-small.webp 480w,
+                  assets/header/logo-medium.webp 768w,
+                  assets/header/logo-large.webp 1200w" sizes="(max-width: 480px) 60px,
+                 (max-width: 768px) 85px,
+                 110px"
+          alt="INTELLIGENCIA-GENEA - Généalogistes professionnels experts en recherches généalogiques successorales et familiales - Réseau national 18 bureaux France"
+          class="logo-image" loading="eager" (click)="goToHome()" style="cursor: pointer" itemprop="url" width="110"
+          height="110" title="INTELLIGENCIA-GENEA - Retour à l'accueil" />
+      </div>
+
+      <!-- Section texte centrale avec microdata enrichie -->
+      <div class="header-text" itemprop="mainEntity" itemscope itemtype="https://schema.org/Organization">
+        <h1 class="header-title" itemprop="name">
+          <strong>INTELLIGENCIA-GENEA<span class="copyright-title">®</span></strong>
+          <span class="sr-only">Généalogistes professionnels France</span>
+        </h1>
+
+        <p class="header-subtitle" itemprop="description">
+          Commencez votre enquête familiale aujourd'hui - Généalogistes professionnels
+          <span class="sr-only">spécialisés en généalogie successorale et recherche d'héritiers dans toute la
+            France</span>
+        </p>
+
+        <!-- Ajout d'informations SEO cachées -->
+        <div class="sr-only" itemprop="areaServed">
+          Aix-en-Provence, Nice, Marseille, Cannes, Saint-Tropez, Bordeaux, Nantes, Tours, Rennes, Le Havre, Ajaccio,
+          Bastia
+        </div>
+        <div class="sr-only" itemprop="serviceType">
+          Généalogie successorale, recherche d'héritiers, généalogie familiale, expertise juridique généalogique
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="header-navigation" role="navigation" aria-label="Navigation principale INTELLIGENCIA-GENEA">
+    <!-- Section Qui sommes-nous -->
+    <div class="nav-item-wrapper">
+      <button class="nav-link-horizontal" [attr.aria-expanded]="activeDropdown === 'qui-sommes-nous'"
+        aria-haspopup="true" (click)="toggleDropdown('qui-sommes-nous')"
+        [class.active]="activeDropdown === 'qui-sommes-nous'">
+        QUI SOMMES-NOUS
+        <span class="dropdown-arrow">
+          <i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+        </span>
+      </button>
+      <div class="dropdown-menu" [class.show]="activeDropdown === 'qui-sommes-nous'">
+        <ul class="dropdown-list" role="menu">
+          <li class="dropdown-item" role="none">
+            <a class="dropdown-link" role="menuitem" (click)="handleNavigation('genealogie')" tabindex="0">
+              <i class="fas fa-tree icon-collapse" aria-hidden="true"></i>
+              Comprendre la généalogie
+            </a>
+          </li>
+          <li class="dropdown-item" role="none">
+            <a class="dropdown-link" (click)="handleNavigation('agence')">
+              <i class="fas fa-building icon-collapse" aria-hidden="true"></i>
+              Notre agence
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <span class="nav-separator" aria-hidden="true">|</span>
+
+    <div class="nav-item-wrapper">
+      <button class="nav-link-horizontal" [attr.aria-expanded]="activeDropdown === 'prestations'" aria-haspopup="true"
+        (click)="toggleDropdown('prestations')" [class.active]="activeDropdown === 'prestations'">
+        NOS PRESTATIONS
+        <span class="dropdown-icon">
+          <i class="fa-solid fa-chevron-down" [class.rotated]="activeDropdown === 'prestations'" aria-hidden="true"></i>
+        </span>
+      </button>
+      <div class="dropdown-menu" [class.show]="activeDropdown === 'prestations'">
+        <ul class="dropdown-list" role="menu">
+          <li class="dropdown-item" role="none">
+            <a class="dropdown-link" role="menuitem" (click)="handleNavigation('services')" tabindex="0">
+              <i class="fas fa-briefcase icon-collapse" aria-hidden="true"></i> Nos services
+            </a>
+          </li>
+          <li class="dropdown-item" role="none">
+            <a class="dropdown-link" role="menuitem" (click)="handleNavigation('garanties')" tabindex="0">
+              <i class="fas fa-shield-alt icon-collapse" aria-hidden="true"></i> Nos garanties et engagements
+            </a>
+          </li>
+          <li class="dropdown-item" role="none">
+            <a class="dropdown-link" role="menuitem" (click)="handleNavigation('honoraires')" tabindex="0">
+              <i class="fas fa-euro-sign icon-collapse" aria-hidden="true"></i> Nos honoraires
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <span class="nav-separator" aria-hidden="true">|</span>
+
+    <!-- Liens directs -->
+    <a class="nav-link-direct" (click)="handleNavigation('charte-de-deontologie')" role="button">
+      CHARTE DE DÉONTOLOGIE
+    </a>
+
+    <span class="nav-separator" aria-hidden="true">|</span>
+
+    <a class="nav-link-direct" (click)="handleNavigation('reseau')" role="button">
+      NOTRE RÉSEAU
+    </a>
+  </nav>
+</header>
