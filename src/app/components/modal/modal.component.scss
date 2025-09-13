@@ -129,7 +129,7 @@ $star-gold-light: rgba(93, 78, 55, 0.3);
 }
 
 .ig-modal-header {
-  background: linear-gradient(135deg, $accent-color, color.adjust($accent-color, $lightness: 5%));
+  background: linear-gradient(135deg, $accent-color, lighten($accent-color, 5%));
 
   h3 {
     color: $primary-color;
@@ -218,15 +218,15 @@ $star-gold-light: rgba(93, 78, 55, 0.3);
 }
 
 .ig-success-message {
-  background-color: color.adjust($success-color, $lightness: 45%);
-  color: color.adjust($success-color, $lightness: -10%);
-  border: 1px solid color.adjust($success-color, $lightness: 20%);
+  background-color: lighten($success-color, 45%);
+  color: darken($success-color, 10%);
+  border: 1px solid lighten($success-color, 20%);
 }
 
 .ig-error-message {
-  background-color: color.adjust($error-color, $lightness: 45%);
-  color: color.adjust($error-color, $lightness: -10%);
-  border: 1px solid color.adjust($error-color, $lightness: 20%);
+  background-color: lighten($error-color, 45%);
+  color: darken($error-color, 10%);
+  border: 1px solid lighten($error-color, 20%);
 }
 
 // ===== TABLEAUX =====
@@ -241,7 +241,7 @@ $star-gold-light: rgba(93, 78, 55, 0.3);
 
   thead {
     tr {
-      background: linear-gradient(135deg, $accent-color, color.adjust($accent-color, $lightness: 3%));
+      background: linear-gradient(135deg, $accent-color, lighten($accent-color, 3%));
     }
 
     th {
@@ -261,7 +261,7 @@ $star-gold-light: rgba(93, 78, 55, 0.3);
       }
 
       &:hover {
-        background-color: color.adjust($accent-color, $lightness: 8%);
+        background-color: lighten($accent-color, 8%);
       }
     }
 
@@ -394,7 +394,7 @@ $star-gold-light: rgba(93, 78, 55, 0.3);
     select,
     textarea {
       border-color: $error-color;
-      background-color: color.adjust($error-color, $lightness: 50%);
+      background-color: lighten($error-color, 50%);
       animation: shake 0.3s ease-in-out;
     }
   }
@@ -435,7 +435,7 @@ $star-gold-light: rgba(93, 78, 55, 0.3);
 }
 
 .ig-add-review-btn {
-  background: linear-gradient(135deg, $secondary-color, color.adjust($secondary-color, $lightness: -10%));
+  background: linear-gradient(135deg, $secondary-color, darken($secondary-color, 10%));
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -459,7 +459,7 @@ $star-gold-light: rgba(93, 78, 55, 0.3);
 }
 
 .ig-reviews-summary {
-  background: linear-gradient(135deg, $accent-color, color.adjust($accent-color, $lightness: 3%));
+  background: linear-gradient(135deg, $accent-color, lighten($accent-color, 3%));
   border-radius: 12px;
 }
 
@@ -491,7 +491,7 @@ $star-gold-light: rgba(93, 78, 55, 0.3);
 }
 
 .ig-service-type {
-  background: linear-gradient(135deg, $accent-color, color.adjust($accent-color, $lightness: 5%));
+  background: linear-gradient(135deg, $accent-color, lighten($accent-color, 5%));
   color: $primary-color;
   padding: 0.25rem 0.75rem;
   border-radius: 20px;
@@ -510,7 +510,7 @@ $star-gold-light: rgba(93, 78, 55, 0.3);
 }
 
 .ig-reviews-footer {
-  background: linear-gradient(135deg, $accent-color, color.adjust($accent-color, $lightness: 3%));
+  background: linear-gradient(135deg, $accent-color, lighten($accent-color, 3%));
   border-radius: 8px;
 
   .ig-footer-note {
@@ -539,9 +539,9 @@ $star-gold-light: rgba(93, 78, 55, 0.3);
   }
 
   .ig-form-info {
-    background: linear-gradient(135deg, color.adjust($accent-color, $lightness: 10%), color.adjust($accent-color, $lightness: 15%));
+    background: linear-gradient(135deg, lighten($accent-color, 10%), lighten($accent-color, 15%));
     border-radius: 15px;
-    border: 1px solid color.adjust($border-color, $lightness: 20%);
+    border: 1px solid lighten($border-color, 20%);
 
     .ig-info-item {
       color: $primary-color;

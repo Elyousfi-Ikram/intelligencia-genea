@@ -1,5 +1,3 @@
-@use 'sass:color';
-
 // === VARIABLES ===
 $primary-color: #5d4e37;
 $secondary-color: #8b7355;
@@ -310,7 +308,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
     line-height: 1.7;
     text-align: justify;
     font-weight: 500;
-    color: color.adjust($text-dark, $lightness: -5%);
+    color: darken($text-dark, 5%);
 }
 
 // === RESPONSIVE DESIGN ===
