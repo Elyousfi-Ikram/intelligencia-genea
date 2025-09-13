@@ -4,12 +4,12 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class StudyModalService {
+export class CookiesModalService {
   private isOpenSubject = new BehaviorSubject<boolean>(false);
   public isOpen$ = this.isOpenSubject.asObservable();
 
   openModal(): void {
-    this.isOpenSubject.next(true); // Met à jour l'état à true
+    this.isOpenSubject.next(true);
   }
 
   closeModal(): void {
