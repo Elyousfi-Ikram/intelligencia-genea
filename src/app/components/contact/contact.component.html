@@ -1,18 +1,48 @@
-<section class="home-cta" aria-labelledby="cta-title">
-  <div class="cta-content">
-    <h2 id="cta-title">Vous souhaitez enquêter sur vos origines familiales ?</h2>
-    <p>Contactez nos généalogistes experts pour une étude personnalisée, gratuite et confidentielle.</p>
-    <div class="cta-buttons">
-      <button [disabled]="disabled" (click)="onContactClick()" type="button" class="btn-primary"
+<!-- Métadonnées SEO -->
+<head>
+  <title>Contact INTELLIGENCIA-GENEA® | Demande Étude Généalogique Gratuite | Généalogiste Professionnel</title>
+  <meta name="description" content="Contactez INTELLIGENCIA-GENEA® pour une étude généalogique gratuite et confidentielle. Généalogistes experts, recherche d'origines familiales, consultation personnalisée.">
+  <meta name="keywords" content="contact généalogiste, étude généalogique gratuite, consultation généalogie, recherche origines familiales, généalogiste professionnel, INTELLIGENCIA-GENEA">
+  
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "name": "Contact INTELLIGENCIA-GENEA",
+    "description": "Demandez une étude généalogique gratuite et confidentielle",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "INTELLIGENCIA-GENEA",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": "French"
+      }
+    }
+  }
+  </script>
+</head>
+
+<!-- Contenu caché pour SEO -->
+<div class="sr-only">
+  <h1>Contact INTELLIGENCIA-GENEA® - Demande Étude Généalogique Gratuite</h1>
+  <p>Contactez nos généalogistes experts pour une étude personnalisée, gratuite et confidentielle. Recherche d'origines familiales, consultation professionnelle en généalogie.</p>
+</div>
+
+<section class="home-cta" aria-labelledby="cta-title" itemscope itemtype="https://schema.org/ContactPoint">
+  <div class="cta-content p-5 mx-auto">
+    <h2 id="cta-title" class="mb-5">Vous souhaitez enquêter sur vos origines familiales ?</h2>
+    <p class="mb-4">Contactez nos généalogistes experts pour une étude personnalisée, gratuite et confidentielle.</p>
+    <div class="cta-buttons d-flex justify-content-center flex-wrap">
+      <button [disabled]="disabled" (click)="onContactClick()" type="button" class="btn-primary me-2 mb-2"
         aria-label="Demander une étude généalogique gratuite">
         Demander une étude gratuite
       </button>
-      <button class="btn-secondary" (click)="handleNavigateToHonoraires()"
+      <button class="btn-secondary mb-2" (click)="navigateToHonoraires()"
         aria-label="Consulter nos tarifs de généalogie">
         Voir nos honoraires
       </button>
     </div>
   </div>
 </section>
-
-<!-- La modale est maintenant gérée globalement par app.component.html -->

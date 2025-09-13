@@ -5,14 +5,7 @@ $secondary-color: #f3e1c2;
 $background-light: #f8f9fa;
 $background-white: #ffffff;
 $text-dark: #5d4e37;
-$border-color: rgba(93, 78, 55, 0.2);
 $shadow-color: rgba(93, 78, 55, 0.1);
-
-$legal-color: #5d4e37;
-$contract-color: #e6d4a7;
-$methodology-color: #6c757d;
-$insurance-color: #5d4e37;
-$values-color: #f3e1c2;
 
 .garanties-page {
     min-height: 100vh;
@@ -100,6 +93,7 @@ $values-color: #f3e1c2;
             font-size: 1rem;
             line-height: 1.8;
             text-align: justify;
+            padding-left: 20px;
         }
     }
 
@@ -113,7 +107,7 @@ $values-color: #f3e1c2;
         overflow: hidden;
 
         &.garantie-description--legal {
-            border-left: 5px solid $legal-color;
+            border-left: 5px solid $primary-color;
         }
     }
 
@@ -133,7 +127,6 @@ $values-color: #f3e1c2;
 .garantie-layout {
     display: flex;
     align-items: center;
-
 }
 
 .garantie-visual {
@@ -232,6 +225,7 @@ $values-color: #f3e1c2;
     }
 }
 
+// Layouts spécifiques
 .garantie-item--ethics,
 .garantie-item--methodology {
     .garantie-layout {
@@ -314,17 +308,15 @@ $values-color: #f3e1c2;
     }
 }
 
-.copy-text {
+.copyright-title {
     position: relative;
-    top: -7px;
-    left: -4px;
+    top: 10px;
+    font-size: 3rem;
 }
 
-.copy-title {
-    font-size: 2rem;
+.copyright-text {
     position: relative;
-    top: 3px;
-    left: -5px;
+    top: -10px;
 }
 
 
@@ -453,87 +445,84 @@ $values-color: #f3e1c2;
 
 // Classe pour contenu caché SEO (à ajouter à la fin du fichier)
 .sr-only {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
 
 // Optimisations pour Core Web Vitals
 .garantie-image {
-  width: 100%;
-  height: auto;
-  transition: transform 0.3s ease;
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  content-visibility: auto;
-  contain-intrinsic-size: 400px 300px;
-  
-  // Optimisation LCP (Largest Contentful Paint)
-  content-visibility: auto;
-  contain-intrinsic-size: 400px 300px;
-  
-  // Optimisation CLS (Cumulative Layout Shift)
-  aspect-ratio: 4/3;
-  object-fit: cover;
-  
-  // Support WebP avec fallback
-  &[src$=".jpg"], &[src$=".png"] {
-    background-image: 
-      url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNlMWMyIi8+PC9zdmc+);
-    background-size: cover;
-    background-position: center;
-  }
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    content-visibility: auto;
+    contain-intrinsic-size: 400px 300px;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+
+    // Support WebP avec fallback
+    &[src$=".jpg"],
+    &[src$=".png"] {
+        background-image:
+            url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNlMWMyIi8+PC9zdmc+);
+        background-size: cover;
+        background-position: center;
+    }
 }
 
 // Amélioration accessibilité focus
 .garantie-highlight,
 .garantie-item {
-  &:focus-within {
-    outline: 2px solid #5d4e37;
-    outline-offset: 2px;
-  }
+    &:focus-within {
+        outline: 2px solid #5d4e37;
+        outline-offset: 2px;
+    }
 }
 
 // Optimisation pour les préférences utilisateur
 @media (prefers-reduced-motion: reduce) {
-  .garantie-image,
-  .garantie-item {
-    transition: none !important;
-    animation: none !important;
-  }
+
+    .garantie-image,
+    .garantie-item {
+        transition: none !important;
+        animation: none !important;
+    }
 }
 
 @media (prefers-contrast: high) {
-  .garantie-highlight-text,
-  .garantie-conclusion {
-    color: #000000 !important;
-    background-color: #ffffff !important;
-  }
+
+    .garantie-highlight-text,
+    .garantie-conclusion {
+        color: #000000 !important;
+        background-color: #ffffff !important;
+    }
 }
 
 // Optimisation print
 @media print {
-  .garanties-page {
-    background: white !important;
-    color: black !important;
-  }
-  
-  .garantie-image {
-    max-width: 200px !important;
-    height: auto !important;
-  }
-  
-  .sr-only {
-    position: static !important;
-    width: auto !important;
-    height: auto !important;
-    clip: auto !important;
-    overflow: visible !important;
-    white-space: normal !important;
-  }
+    .garanties-page {
+        background: white !important;
+        color: black !important;
+    }
+
+    .garantie-image {
+        max-width: 200px !important;
+        height: auto !important;
+    }
+
+    .sr-only {
+        position: static !important;
+        width: auto !important;
+        height: auto !important;
+        clip: auto !important;
+        overflow: visible !important;
+        white-space: normal !important;
+    }
 }

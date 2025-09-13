@@ -12,7 +12,6 @@
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --font-primary: 'Cinzel', serif;
     --border-radius: 20px;
-
     --hero-height: 100vh;
     --section-padding: 4rem 2rem;
     --grid-gap: 2rem;
@@ -22,13 +21,11 @@
 .home {
     background: linear-gradient(135deg, var(--bg-light) 0%, #ffffff 50%, var(--bg-light) 100%);
     color: var(--primary-color);
-
     contain: layout style;
 
     img {
         max-width: 100%;
         height: auto;
-        // Éviter les décalages de mise en page
         aspect-ratio: attr(width) / attr(height);
     }
 
@@ -57,8 +54,7 @@
             left: 0;
             width: 100%;
             height: 100vh;
-            background: url('/assets/homePage/enqueteur.webp') center/cover no-repeat; // Remove accent
-
+            background: url('/assets/homePage/enqueteur.webp') center/cover no-repeat;
             background-attachment: fixed;
             z-index: -2;
         }
@@ -123,43 +119,26 @@
                     box-shadow: 0 2px 8px rgba(243, 225, 194, 0.3);
                 }
             }
-
-            .hero-cta {
-                margin-top: 2rem;
-
-                .btn-primary {
-                    color: var(--text-dark);
-                    border: none;
-                    padding: 1.2rem 2.5rem;
-                    border-radius: 25px;
-                    font-size: 1.1rem;
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: var(--transition-smooth);
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    font-family: var(--font-primary);
-
-                    &:hover,
-                    &:focus {
-                        transform: translateY(-2px);
-                        box-shadow: 0 8px 25px rgba(243, 225, 194, 0.4);
-                    }
-                }
-            }
         }
+    }
 
-        .hero-visual {
-            display: block; // Remplacer display: none
-            max-width: 600px;
-            
-            img {
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-                border-radius: var(--border-radius);
-                box-shadow: var(--shadow-medium);
-            }
+    h2,
+    .section-title {
+        font-size: clamp(1.6rem, 3.45vw, 2.4rem);
+        font-weight: 600;
+        color: #5d4e37;
+        text-align: center;
+        margin-bottom: 3rem;
+        font-family: 'Cinzel', serif;
+        padding-top: 2rem;
+
+        &::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            margin: 1rem auto 0;
+            border-radius: 2px;
         }
     }
 
@@ -167,27 +146,26 @@
         font-size: clamp(1rem, 2.2vw, 1.6rem);
         font-weight: 700;
         color: #5d4e37;
-        margin-bottom: 1rem;
+        margin: 1rem 0;
         font-family: 'Cinzel', serif;
         transition: color 0.3s ease;
         line-height: 1.3;
         text-align: center;
     }
 
+    section {
+        position: relative;
+        z-index: 1;
+        padding: 0;
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+    }
+
     .home-welcome {
         display: grid;
         position: relative;
         overflow: hidden;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-        }
 
         .welcome-container {
             max-width: 1400px;
@@ -200,7 +178,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
-            margin-top: 3rem;
+            margin-bottom: 3rem;
 
             .welcome-card {
                 padding: 1.5rem 2rem;
@@ -211,16 +189,6 @@
                 transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
                 position: relative;
                 overflow: hidden;
-
-                &::before {
-                    content: '';
-                    position: absolute;
-                    top: 0;
-                    left: -100%;
-                    width: 100%;
-                    height: 100%;
-                    transition: left 0.6s ease;
-                }
 
                 .welcome-icon {
                     width: 80px;
@@ -235,19 +203,6 @@
                     box-shadow: 0 6px 20px rgba(139, 115, 85, 0.3);
                     transition: all 0.4s ease;
                     position: relative;
-
-                    &::after {
-                        content: '';
-                        position: absolute;
-                        top: -2px;
-                        left: -2px;
-                        right: -2px;
-                        bottom: -2px;
-                        border-radius: 50%;
-                        z-index: -1;
-                        opacity: 0;
-                        transition: opacity 0.3s ease;
-                    }
                 }
 
                 p {
@@ -262,64 +217,6 @@
         }
     }
 
-    h2,
-    .section-title {
-        font-size: clamp(1.6rem, 3.45vw, 2.4rem);
-        font-weight: 600;
-        color: #5d4e37;
-        text-align: center;
-        margin-bottom: 3rem;
-        font-family: 'Cinzel', serif;
-        padding-top: 2rem;
-
-        &::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
-    }
-
-    section {
-        position: relative;
-        z-index: 1;
-        padding: 0 0 4rem 0rem;
-        width: 100%;
-        margin: 0;
-        border-radius: 0;
-    }
-
-    h2,
-    .section-title {
-        font-size: clamp(1.6rem, 3.45vw, 2.4rem);
-        font-weight: 600;
-        color: #5d4e37;
-        text-align: center;
-        margin-bottom: 3rem;
-        font-family: 'Cinzel', serif;
-        padding-top: 2rem;
-
-        &::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 3px;
-            margin: 1rem auto 0;
-            border-radius: 2px;
-        }
-    }
-
-    section {
-        position: relative;
-        z-index: 1;
-        padding: 0 0 4rem 0rem;
-        width: 100%;
-        margin: 0;
-        border-radius: 0;
-    }
-
     .home-services {
         border-radius: 0;
         margin: 0;
@@ -328,7 +225,6 @@
 
         p {
             text-align: center;
-            margin-bottom: 3rem;
         }
 
         .services-grid {
@@ -336,7 +232,7 @@
             grid-template-columns: repeat(4, 1fr);
             gap: 1rem;
             max-width: 1400px;
-            margin: 0 auto;
+            margin: 0 auto 3rem;
 
             .service-card {
                 border-radius: 20px;
@@ -362,29 +258,17 @@
                         transition: transform 0.4s ease;
                         filter: brightness(1.1) contrast(1.1);
                     }
-
-                    &::after {
-                        content: '';
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        bottom: 0;
-                        pointer-events: none;
-                    }
                 }
 
                 .service-content {
-                    padding: 2rem;
+                    padding: 0 2rem 1rem;
                     text-align: center;
                     flex-grow: 1;
                     display: flex;
                     flex-direction: column;
-                    justify-content: center;
+                    justify-content: start;
 
                     h3 {
-                        padding: 10px 0;
-
                         &::after {
                             content: '';
                             display: block;
@@ -415,36 +299,18 @@
         }
     }
 
-    @keyframes pulse {
-        0% {
-            opacity: 0;
-            transform: scale(1);
-        }
-
-        50% {
-            opacity: 0.3;
-            transform: scale(1.1);
-        }
-
-        100% {
-            opacity: 0;
-            transform: scale(1.2);
-        }
-    }
-
     .home-trust {
         color: var(--primary-color);
-        min-height: 100vh;
+        min-height: 85vh;
 
         p {
             text-align: center;
-            margin-bottom: 3rem;
+            font-size: 1.2rem;
         }
 
         .trust-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-
             gap: 2.5rem;
             max-width: 1400px;
             margin: 0 auto;
@@ -485,255 +351,42 @@
             }
         }
     }
-
-    .home-cta {
-        background: linear-gradient(135deg, rgba(44, 62, 80, 1), rgba(52, 73, 94, 0.6)),
-            url('/assets/homePage/Archives.webp') center/cover;
-        background-attachment: fixed;
-        color: white;
-        text-align: center;
-        border-radius: 0;
-        margin: 0;
-        position: relative;
-        overflow: hidden;
-        width: 100vw !important;
-        margin-left: calc(-50vw + 50%) !important;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: 1;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-            padding: 4rem 2rem;
-            max-width: 1400px;
-            margin: 0 auto;
-
-            h2 {
-                color: #c9c7c4;
-            }
-
-            h3 {
-                font-size: clamp(1.6rem, 3vw, 2.2rem);
-                font-weight: 600;
-                margin-bottom: 1rem;
-                font-family: 'Cinzel', serif;
-            }
-
-            p {
-                font-size: clamp(1rem, 2vw, 1.2rem);
-                margin-bottom: 2rem;
-                color: rgba(255, 255, 255, 0.9);
-                font-family: 'Cinzel', serif;
-            }
-
-            .cta-buttons {
-                display: flex;
-                gap: 1rem;
-                justify-content: center;
-                flex-wrap: wrap;
-
-                .btn-primary,
-                .btn-secondary {
-                    padding: clamp(0.8rem, 2vw, 1.2rem) clamp(1.5rem, 3vw, 2.5rem);
-                    border: none;
-                    border-radius: 25px;
-                    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
-                    font-weight: 600;
-                    cursor: pointer;
-                    transition: all 0.3s ease;
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                    font-family: 'Cinzel', serif;
-                }
-
-                .btn-primary {
-                    background: linear-gradient(135deg, #f3e1c2, #e6d4a7);
-                    color: #2c3e50;
-                }
-
-                .btn-secondary {
-                    background: transparent;
-                    color: #f3e1c2;
-                    border: 2px solid #f3e1c2;
-                }
-            }
-        }
-    }
 }
 
-.copy {
+.copyright-title {
+    position: relative;
+    top: -10px;
+}
+
+.copyright-text {
     position: relative;
     top: -7px;
-    left: -7px;
+    font-size: small;
 }
 
-@media (min-width: 1600px) {
-    :root {
-        --section-padding: 6rem 3rem;
-        --grid-gap: 3rem;
-        --card-padding: 3rem;
-    }
-
-    .home {
-        .home-hero {
-            .hero-content {
-                // max-width: 1200px;
-
-                .hero-title {
-                    font-size: 5.5rem;
-                    margin-bottom: 3.5rem;
-                }
-
-                .hero-description {
-                    font-size: 2rem;
-                }
-            }
-        }
-
-        .welcome-grid,
-        .services-grid {
-            gap: 3.5rem;
-        }
-
-        .trust-grid {
-            gap: 4rem;
-        }
-
-        section,
-        .home-welcome,
-        .home-services,
-        .home-trust {
-            margin: 0 4rem !important;
-            width: calc(100% - 8rem) !important;
-            box-sizing: border-box !important;
-        }
-    }
-}
-
-@media (min-width: 1200px) and (max-width: 1599px) {
-    :root {
-        --section-padding: 5rem 2.5rem;
-        --grid-gap: 2.5rem;
-        --card-padding: 2.5rem;
-    }
-
-    .home {
-        .home-hero {
-            .hero-content {
-                .hero-title {
-                    font-size: 4.5rem;
-                }
-
-                .hero-description {
-                    font-size: 1.6rem;
-                }
-            }
-        }
-
-        section,
-        .home-welcome,
-        .home-services,
-        .home-trust {
-            margin: 0 3rem !important;
-            width: calc(100% - 6rem) !important;
-            box-sizing: border-box !important;
-        }
-    }
-}
-
+// Media queries optimisées
 @media (min-width: 992px) and (max-width: 1199px) {
-    :root {
-        --section-padding: 4rem 2rem;
-        --grid-gap: 2rem;
-        --card-padding: 2rem;
-        --hero-height: 80vh;
-    }
-
     .home {
-        .home-hero {
-            .hero-content {
-                // max-width: 800px;
-                padding: 0 2rem;
-
-                .hero-title {
-                    font-size: 3.8rem;
-                    margin-bottom: 2rem;
-                }
-
-                .hero-description {
-                    font-size: 1.4rem;
-                }
-            }
-        }
-
         .welcome-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
         }
 
         .services-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: repeat(2, 1fr);
             gap: 2rem;
 
-            .service-card {
-                .service-image {
-                    height: 220px;
-                }
+            .service-card .service-image {
+                height: 220px;
             }
-        }
-
-        .trust-grid {
-            grid-template-columns: repeat(3, 1fr) !important;
-            gap: 2rem;
-        }
-
-        section,
-        .home-welcome,
-        .home-services,
-        .home-trust {
-            margin: 0 2rem !important;
-            width: calc(100% - 4rem) !important;
-            box-sizing: border-box !important;
         }
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
-    :root {
-        --section-padding: 3rem 1.5rem;
-        --grid-gap: 1.5rem;
-        --card-padding: 1.8rem;
-        --hero-height: 70vh;
-    }
-
     .home {
-        .home-hero {
-            .hero-content {
-                // max-width: 700px;
-                padding: 0 1.5rem;
-
-                .hero-title {
-                    font-size: 3.2rem;
-                    margin-bottom: 1.8rem;
-                }
-
-                .hero-description {
-                    font-size: 1.3rem;
-                    line-height: 1.6;
-                }
-            }
-        }
-
         .welcome-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
 
             .welcome-card {
@@ -748,7 +401,7 @@
         }
 
         .services-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: repeat(2, 1fr);
             gap: 1.5rem;
 
             .service-card {
@@ -773,186 +426,54 @@
                 }
             }
         }
-
-        .home-cta {
-            .cta-content {
-                .cta-buttons {
-                    flex-direction: column;
-                    align-items: center;
-                    gap: 1rem;
-
-                    .btn-primary,
-                    .btn-secondary {
-                        width: 100%;
-                        max-width: 300px;
-                    }
-                }
-            }
-        }
-
-        section,
-        .home-welcome,
-        .home-services,
-        .home-trust {
-            margin: 0 1.5rem !important;
-            width: calc(100% - 3rem) !important;
-            box-sizing: border-box !important;
-        }
     }
 }
 
-@media (min-width: 576px) and (max-width: 767px) {
-    :root {
-        --section-padding: 2rem 1rem;
-        --grid-gap: 1rem;
-        --card-padding: 1.5rem;
-        --hero-height: 60vh;
-    }
-
+@media (max-width: 767px) {
     .home {
-        .home-hero {
-            .hero-content {
-                max-width: 90%;
-                padding: 0 1rem;
-
-                .hero-title {
-                    font-size: 2.5rem;
-                    margin-bottom: 1.5rem;
-                }
-
-                .hero-description {
-                    font-size: 1.1rem;
-                    line-height: 1.5;
-                }
-            }
-        }
-
-        .welcome-grid,
-        .services-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1.5rem;
-        }
-
-        .trust-grid {
-            grid-template-columns: 1fr !important;
-            gap: 1.5rem;
-        }
-
-        .home-cta {
-            .cta-content {
-                padding: 3rem 1rem;
-
-                .cta-buttons {
-                    flex-direction: column;
-                    gap: 1rem;
-
-                    .btn-primary,
-                    .btn-secondary {
-                        width: 100%;
-                        max-width: 280px;
-                    }
-                }
-            }
-        }
-
-        section,
-        .home-welcome,
-        .home-services,
-        .home-trust {
-            margin: 0 1rem !important;
-            width: calc(100% - 2rem) !important;
-            box-sizing: border-box !important;
-        }
-    }
-}
-
-@media (max-width: 575px) {
-    :root {
-        --section-padding: 1.5rem 0.8rem;
-        --grid-gap: 0.8rem;
-        --card-padding: 1.2rem;
-        --hero-height: 50vh;
-    }
-
-    .home {
-        .home-hero {
-            .hero-content {
-                max-width: 95%;
-                padding: 0 0.8rem;
-
-                .hero-title {
-                    font-size: 2rem;
-                    margin-bottom: 1rem;
-
-                    &::after {
-                        width: 80px;
-                        height: 3px;
-                        margin: 1.5rem auto 0;
-                    }
-                }
-
-                .hero-description {
-                    font-size: 1rem;
-                    line-height: 1.4;
-                }
-            }
-        }
-
-        .welcome-grid,
-        .services-grid,
-        .trust-grid {
-            grid-template-columns: 1fr !important;
+        .welcome-grid {
+            grid-template-columns: 1fr;
             gap: 1rem;
-        }
 
-        .welcome-card,
-        .service-card .service-content,
-        .trust-card {
-            padding: 1.2rem;
-        }
+            .welcome-card {
+                padding: 1.5rem;
 
-        .service-card .service-image {
-            height: 180px;
-        }
-
-        h2,
-        .section-title {
-            font-size: 1.5rem;
-            margin-bottom: 2rem;
-
-            &::after {
-                width: 60px;
-                height: 2px;
-            }
-        }
-
-        .home-cta {
-            .cta-content {
-                padding: 2.5rem 0.8rem;
-
-                .cta-buttons {
-                    flex-direction: column;
-                    align-items: center;
-                    gap: 0.8rem;
-
-                    .btn-primary,
-                    .btn-secondary {
-                        width: 100%;
-                        max-width: 250px;
-                        padding: 0.9rem 1.8rem;
-                        font-size: 0.9rem;
-                    }
+                .welcome-icon {
+                    width: 60px;
+                    height: 60px;
+                    font-size: 1.5rem;
                 }
             }
         }
 
-        section,
-        .home-welcome,
-        .home-services,
-        .home-trust {
-            margin: 0 0.75rem !important;
-            width: calc(100% - 1.5rem) !important;
-            box-sizing: border-box !important;
+        .services-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+
+            .service-card {
+                .service-image {
+                    height: 200px;
+                }
+
+                .service-content {
+                    padding: 1.5rem;
+                }
+            }
+        }
+
+        .trust-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+
+            .trust-card {
+                padding: 1.5rem;
+
+                .trust-icon {
+                    width: 50px;
+                    height: 50px;
+                    font-size: 1.4rem;
+                }
+            }
         }
     }
 }

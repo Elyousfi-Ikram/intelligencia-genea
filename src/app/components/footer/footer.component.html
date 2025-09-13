@@ -1,3 +1,81 @@
+<!-- Métadonnées SEO Footer déplacées du TypeScript -->
+<head>
+  <!-- Meta tags Footer SEO -->
+  <meta name="footer.company" content="INTELLIGENCIA-GENEA®">
+  <meta name="footer.services" content="Recherches d'Héritiers Successorale, Généalogie Familiale, Investigations Privées, Expertise Juridique">
+  <meta name="footer.location" content="Aix-en-Provence, Bouches-du-Rhône, PACA">
+  <meta name="footer.contact" content="06 45 82 06 97 | intelligencia.lagarde@gmail.com">
+  <meta name="business.type" content="Cabinet généalogie professionnel">
+  <meta name="business.certification" content="Agréé Ministère Culture">
+  <meta name="business.specialization" content="Généalogie successorale recherche héritiers">
+  <meta name="business.target" content="Notaires banquiers assureurs particuliers">
+  
+  <!-- Données structurées Footer -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INTELLIGENCIA-GENEA®",
+    "description": "Cabinet de généalogie professionnel agréé par le Ministère de la Culture. Recherches d'héritiers, généalogie successorale, investigations privées.",
+    "telephone": "06 45 82 06 97",
+    "email": "intelligencia.lagarde@gmail.com",
+    "sameAs": "https://www.linkedin.com/in/olivier-lagarde-détective-8a7024239/",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "67 Cours Mirabeau",
+      "postalCode": "13100",
+      "addressLocality": "Aix-en-Provence",
+      "addressRegion": "Bouches-du-Rhône",
+      "addressCountry": "FR"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Services de généalogie",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Recherches d'Héritiers Successorale"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Généalogie Familiale"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Investigations Privées"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Expertise Juridique"
+          }
+        }
+      ]
+    },
+    "audience": [
+      "Particuliers",
+      "Notaires",
+      "Banquiers",
+      "Assureurs",
+      "Syndics et copropriétaires",
+      "Administrateurs judiciaires",
+      "Avocats",
+      "Situations Particulières"
+    ]
+  }
+  </script>
+</head>
+
 <footer class="footer" role="contentinfo" itemscope itemtype="https://schema.org/Organization">
   <!-- Contenu caché pour SEO -->
   <div class="sr-only">
@@ -94,10 +172,11 @@
           </div>
           <div class="contact-item" itemprop="email">
             <i class="fas fa-envelope contact-icon" aria-hidden="true"></i>
-            <a (click)="onEmailClick()" class="contact-text" aria-label="Email cabinet généalogie INTELLIGENCIA-GENEA"
-              role="button" tabindex="0" title="Contacter INTELLIGENCIA-GENEA par email">
+            <button (click)="onEmailClick()" class="contact-text btn-reviews"
+              aria-label="Email cabinet généalogie INTELLIGENCIA-GENEA" role="button" tabindex="0"
+              title="Contacter INTELLIGENCIA-GENEA par email">
               intelligencia.lagarde@gmail.com
-            </a>
+            </button>
             <span class="sr-only">Email généalogiste professionnel contact</span>
           </div>
           <div class="contact-item" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
@@ -150,3 +229,9 @@
     </div>
   </div>
 </footer>
+
+<!-- Ajouter le nouveau composant modal qui gère les trois modales -->
+<app-modal></app-modal>
+
+<!-- Conserver la modale study-modal -->
+<!-- <app-study-modal></app-study-modal> -->

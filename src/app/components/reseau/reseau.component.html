@@ -1,4 +1,39 @@
-<div class="reseau-page">
+<!-- Métadonnées SEO -->
+
+<head>
+  <title>Réseau INTELLIGENCIA-GENEA® | Bureaux France | Généalogistes Locaux | Couverture Nationale</title>
+  <meta name="description"
+    content="Découvrez le réseau national INTELLIGENCIA-GENEA®. Bureaux et correspondants dans toute la France. Service de proximité, expertise locale en généalogie.">
+  <meta name="keywords"
+    content="réseau généalogistes, bureaux France, correspondants locaux, couverture nationale, service proximité, INTELLIGENCIA-GENEA, implantations">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "INTELLIGENCIA-GENEA",
+    "description": "Réseau national de généalogistes professionnels",
+    "areaServed": "France",
+    "hasMap": "https://intelligencia-genea.fr/reseau",
+    "numberOfEmployees": "10-50",
+    "serviceArea": {
+      "@type": "Country",
+      "name": "France"
+    }
+  }
+  </script>
+</head>
+
+<!-- Contenu caché pour SEO -->
+<div class="sr-only">
+  <h1>Réseau National INTELLIGENCIA-GENEA® - Bureaux et Correspondants France</h1>
+  <p>Réseau étendu de généalogistes professionnels sur tout le territoire français. Service de proximité, expertise
+    locale, maillage territorial complet pour vos recherches généalogiques.</p>
+  <span>réseau généalogistes, bureaux France, correspondants locaux, couverture nationale, service proximité</span>
+</div>
+
+<div class="reseau-page" itemscope itemtype="https://schema.org/Organization">
   <div class="reseau-container">
     <!-- En-tête -->
     <header class="reseau-header">
@@ -13,7 +48,8 @@
       <!-- Introduction -->
       <div class="intro-section">
         <p class="intro-text">
-          INTELLIGENCIA-GENEA<span class="copy">®</span> dispose d'un réseau étendu sur l'ensemble du territoire
+          <strong>INTELLIGENCIA-GENEA<span class="copyright-text">®</span></strong> dispose d'un réseau étendu sur
+          l'ensemble du territoire
           français,
           vous garantissant un service de proximité et une connaissance approfondie des spécificités locales.
           Nos bureaux et correspondants sont stratégiquement implantés pour répondre efficacement à vos besoins.
@@ -27,14 +63,13 @@
           <span class="stat-label">Bureaux</span>
         </div>
         <div class="stat-item">
-          <span class="stat-number">{{ regionKeys.length }}</span>
+          <span class="stat-number">6</span>
           <span class="stat-label">Régions</span>
         </div>
       </div>
 
-      <h2 class="section-title">
-        {{ selectedRegion === 'all' ? 'Tous nos bureaux' : 'Bureaux en ' + regions[selectedRegion] }}
-        <span class="location-count"> ({{ filteredLocations.length }})</span>
+      <h2 class="section-title ps-5">
+        Tous nos bureaux <em>({{ locations.length }})</em>:
       </h2>
 
       <!-- Section carte et bureaux côte à côte -->
@@ -42,7 +77,7 @@
         <div class="carte-container">
           <img src="assets/reseauPage/carte.webp" alt="Carte de France" class="carte-france" />
           <!-- Points sur la carte -->
-          <div *ngFor="let location of filteredLocations; trackBy: trackByLocationId" class="map-point"
+          <div *ngFor="let location of locations; trackBy: trackByLocationId" class="map-point"
             [class.headquarters-point]="location.isHeadquarters"
             [class.selected-point]="selectedLocation?.id === location.id" [style.left.%]="location.mapPosition.x"
             [style.top.%]="location.mapPosition.y" [title]="location.city" (click)="handlePointClick(location)">
@@ -52,19 +87,25 @@
 
         <div class="locations-section">
           <div class="locations-grid">
-            <div *ngFor="let location of filteredLocations; trackBy: trackByLocationId" [id]="'location-' + location.id"
+            <div *ngFor="let location of locations; trackBy: trackByLocationId" [id]="'location-' + location.id"
               class="location-card" [class.headquarters]="location.isHeadquarters"
               [class.highlighted-card]="selectedLocation?.id === location.id">
-              <div *ngIf="location.isHeadquarters" class="headquarters-badge">
+
+              @if (location.isHeadquarters) {
+              <div class="headquarters-badge">
                 <span>Siège Social</span>
               </div>
+              }
 
-              <div *ngIf="location.hasSecretariat" class="secretariat-badge">
+              @if (location.hasSecretariat) {
+              <div class="secretariat-badge">
                 <span>Secrétariat & envoi de vos courriers postaux</span>
               </div>
+              }
+
               <div class="location-header">
                 <h4 class="city-name">
-                  {{ getRegionIcon(location.region) }} {{ location.city }}
+                  {{ location.city }}
                 </h4>
               </div>
 
@@ -89,5 +130,3 @@
     </section>
   </div>
 </div>
-
-<app-contact></app-contact>

@@ -23,7 +23,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
   white-space: nowrap !important;
   border: 0 !important;
 
-  // Contenu SEO enrichi
   &:focus {
     position: static !important;
     width: auto !important;
@@ -59,8 +58,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
   content-visibility: auto;
   contain-intrinsic-size: 0 400px;
 
-  // Supprimer complètement le pseudo-élément &:before qui référence l'image manquante
-  // Plus de référence à footer-pattern.webp
 
   .footer-content {
     position: relative;
@@ -90,7 +87,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
       position: relative;
       padding-bottom: 0.5rem;
 
-      // Amélioration accessibilité
       &:focus {
         outline: 2px solid $accent-color;
         outline-offset: 2px;
@@ -121,7 +117,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
       transition: all 0.3s ease;
       padding: 0.5rem 0;
 
-      // Amélioration accessibilité
       &:focus-within {
         transform: translateX(5px);
         color: $accent-color;
@@ -144,7 +139,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         text-decoration: none;
         transition: color 0.3s ease;
 
-        // Amélioration accessibilité
         &:focus {
           color: $accent-color;
           outline: 2px solid $accent-color;
@@ -161,7 +155,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         text-align: left;
         padding: 0;
         margin: 0;
-        
+
         // Hérite des styles de .contact-text
         font-size: 0.85rem;
         line-height: 1.4;
@@ -200,7 +194,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         display: inline-block;
         position: relative;
 
-        // Amélioration accessibilité
         &:focus {
           color: $accent-color;
           transform: translateX(5px);
@@ -253,7 +246,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
 
-      // Amélioration accessibilité
       &:focus {
         background: $accent-color;
         color: $primary-color;
@@ -291,19 +283,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
       align-items: center;
       gap: 1rem;
       font-size: 0.9rem;
-
-      a {
-        color: rgba(255, 255, 255, 0.8);
-        text-decoration: none;
-        transition: color 0.3s ease;
-
-        // Amélioration accessibilité
-        &:focus {
-          color: $accent-color;
-          outline: 2px solid $accent-color;
-          outline-offset: 2px;
-        }
-      }
 
       .separator {
         color: rgba(255, 255, 255, 0.4);
@@ -349,7 +328,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
   text-decoration: none;
   transition: color 0.3s ease;
 
-  // Amélioration accessibilité
   &:focus {
     outline: 2px solid $accent-color;
     outline-offset: 2px;
@@ -360,8 +338,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
 .services-section {
   .footer-links {
     li {
-      margin-bottom: 12px;
-
       .footer-link-button {
         display: block;
         font-weight: 600;
@@ -528,7 +504,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         display: inline-flex;
         align-items: center;
         margin: 0;
-        margin-bottom: 0; // Override existing margin-bottom
+        margin-bottom: 0;
 
         .separator {
           margin: 0 0.5rem;
@@ -563,7 +539,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
   }
 }
 
-// Ajouter cette règle pour masquer le séparateur sur les écrans > 768px
 @media (min-width: 769px) {
 
   .clients-section,
@@ -576,15 +551,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
       }
     }
   }
-}
-
-// ===== OPTIMISATIONS PERFORMANCE =====
-// Optimisation GPU
-.footer-section,
-.contact-item,
-.social-link {
-  transform: translateZ(0);
-  backface-visibility: hidden;
 }
 
 .address-line {

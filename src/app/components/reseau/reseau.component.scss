@@ -1,45 +1,17 @@
 @use 'sass:color';
 
 // ===== VARIABLES =====
-$primary-color: #5d4e37; // Couleur principale du banner
-$secondary-color: #8b6914; // Couleur de survol du banner
-$accent-color: #f3e1c2; // Couleur de fond du banner
-$light-accent: #f8f6f0; // Couleur claire similaire au banner
-$text-dark: #5d4e37; // Couleur de texte du banner
-$text-light: #8b6914; // Couleur de survol pour le texte secondaire
+$primary-color: #5d4e37;
+$secondary-color: #8b6914;
+$accent-color: #f3e1c2;
+$light-accent: #f8f6f0;
+$text-dark: #5d4e37;
+$text-light: #8b6914;
 $background-white: #FFFFFF;
-$border-color: #d4af37; // Couleur dorée du banner
+$border-color: #d4af37;
 $shadow-color: rgba(93, 78, 55, 0.15);
-$success-color: #8b6914; // Couleur de survol du banner
-$info-color: #d4af37; // Couleur dorée du banner
-
-// ===== ANIMATIONS =====
-@keyframes rotate {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.2);
-        opacity: 0.7;
-    }
-
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
+$success-color: #8b6914;
+$info-color: #d4af37;
 
 // ===== LAYOUT PRINCIPAL =====
 .reseau-page {
@@ -73,9 +45,7 @@ $info-color: #d4af37; // Couleur dorée du banner
 // ===== HEADER SECTION =====
 .reseau-header {
     text-align: center;
-    // margin-bottom: 4rem;
     padding: 3rem 0;
-    // background: linear-gradient(135deg, rgba(139, 69, 19, 0.05) 0%, transparent 100%);
     border-radius: 20px;
     position: relative;
     overflow: hidden;
@@ -84,7 +54,7 @@ $info-color: #d4af37; // Couleur dorée du banner
         font-size: clamp(2.5rem, 5vw, 4rem);
         font-weight: 700;
         color: $primary-color;
-        margin-bottom: 1rem;
+        margin-bottom: 3rem;
         position: relative;
         z-index: 1;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
@@ -111,7 +81,6 @@ $info-color: #d4af37; // Couleur dorée du banner
     .reseau-subtitle {
         font-size: clamp(1.1rem, 2.5vw, 1.4rem);
         color: $text-light;
-        max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
         position: relative;
@@ -171,11 +140,10 @@ $info-color: #d4af37; // Couleur dorée du banner
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .copy {
+        .copyright-text {
             position: relative;
-            top: -6px;
-            left: -2px;
-            font-size: medium;
+            top: -10px;
+            font-size: small;
         }
     }
 }
@@ -197,18 +165,6 @@ $info-color: #d4af37; // Couleur dorée du banner
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            transition: all 0.3s ease;
-            transform: scale(0);
-        }
 
         .stat-number {
             display: block;
@@ -239,7 +195,6 @@ $info-color: #d4af37; // Couleur dorée du banner
 }
 
 .carte-container {
-    // flex: 0 0 45%;
     position: relative;
     height: auto;
 
@@ -273,14 +228,20 @@ $info-color: #d4af37; // Couleur dorée du banner
         width: 16px;
         height: 16px;
         border: 3px solid $accent-color;
+    }
 
-        &::after {
-            content: '';
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 12px;
+    &.selected-point {
+        background-color: #ff6b35;
+        border-color: #ff6b35;
+        transform: translate(-50%, -50%) scale(1.3);
+    }
+
+    &:hover {
+        transform: translate(-50%, -50%) scale(1.2);
+
+        .point-tooltip {
+            opacity: 1;
+            visibility: visible;
         }
     }
 }
@@ -326,15 +287,6 @@ $info-color: #d4af37; // Couleur dorée du banner
         justify-content: center;
         gap: 1rem;
         font-family: 'Georgia', serif;
-
-        .location-count {
-            background: linear-gradient(135deg, $accent-color, $light-accent);
-            color: $text-dark;
-            padding: 0.3rem 1rem;
-            border-radius: 20px;
-            font-size: 1rem;
-            font-weight: 500;
-        }
     }
 
     .locations-grid {
@@ -345,7 +297,6 @@ $info-color: #d4af37; // Couleur dorée du banner
         overflow-y: auto;
         padding: 0 1rem;
 
-        // Personnalisation de la scrollbar
         &::-webkit-scrollbar {
             width: 8px;
         }
@@ -405,7 +356,6 @@ $info-color: #d4af37; // Couleur dorée du banner
         }
     }
 
-    // Déplacer cette définition en dehors de .headquarters
     .secretariat-badge {
         position: absolute;
         top: 1rem;
@@ -419,8 +369,7 @@ $info-color: #d4af37; // Couleur dorée du banner
         box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
     }
 
-    // Ajuster la position si les deux badges sont présents
-    .location-card.headquarters .secretariat-badge {
+    &.headquarters .secretariat-badge {
         top: 4rem;
     }
 
@@ -486,114 +435,16 @@ $info-color: #d4af37; // Couleur dorée du banner
                 font-weight: 500;
                 transition: all 0.3s ease;
                 flex: 1;
-            }
-        }
-    }
 
-    .location-actions {
-        .contact-btn {
-            width: 100%;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(135deg, $accent-color, $light-accent);
-            color: $text-dark;
-            border: none;
-            border-radius: 15px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-
-            &::before {
-                content: '';
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                width: 0;
-                height: 0;
-                background: linear-gradient(135deg, $primary-color, $secondary-color);
-                border-radius: 50%;
-                transition: all 0.3s ease;
-                transform: translate(-50%, -50%);
-                z-index: 0;
-            }
-
-            span {
-                position: relative;
-                z-index: 1;
-            }
-        }
-    }
-}
-
-// ===== SECTION CONTACT =====
-.contact-section {
-    .contact-card {
-        background: linear-gradient(135deg, $primary-color, $secondary-color);
-        color: white;
-        padding: 3rem;
-        border-radius: 20px;
-        text-align: center;
-        box-shadow: 0 15px 40px rgba(139, 69, 19, 0.3);
-        position: relative;
-        overflow: hidden;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 40s linear infinite;
-        }
-
-        h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            position: relative;
-            z-index: 1;
-        }
-
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
-        }
-
-        .contact-details {
-            position: relative;
-            z-index: 1;
-
-            .email-link {
-                display: inline-block;
-                background: rgba(255, 255, 255, 0.2);
-                color: white;
-                padding: 1rem 2rem;
-                border-radius: 15px;
-                text-decoration: none;
-                font-weight: 500;
-                font-size: 1.1rem;
-                transition: all 0.3s ease;
-                margin-bottom: 1rem;
-                backdrop-filter: blur(10px);
-            }
-
-            .response-time {
-                font-size: 0.9rem;
-                opacity: 0.8;
-                margin: 1rem 0 0 0;
+                &:hover {
+                    color: $primary-color;
+                }
             }
         }
     }
 }
 
 // ===== RESPONSIVE DESIGN =====
-
-
 @media (max-width: 950px) {
     .reseau-container {
         padding: 0 1rem;
@@ -641,10 +492,6 @@ $info-color: #d4af37; // Couleur dorée du banner
         padding: 1.5rem;
     }
 
-    .contact-section .contact-card {
-        padding: 2rem;
-    }
-
     .map-point {
         width: 10px;
         height: 10px;
@@ -689,9 +536,7 @@ $info-color: #d4af37; // Couleur dorée du banner
 
         .carte-france {
             width: 320px;
-
         }
-
     }
 
     .location-card {
@@ -701,19 +546,6 @@ $info-color: #d4af37; // Couleur dorée du banner
             position: static;
             margin-bottom: 1rem;
             display: inline-block;
-        }
-    }
-
-    .contact-section .contact-card {
-        padding: 1.5rem;
-
-        h3 {
-            font-size: 1.5rem;
-        }
-
-        .email-link {
-            padding: 0.8rem 1.5rem;
-            font-size: 1rem;
         }
     }
 }
