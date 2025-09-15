@@ -107,7 +107,7 @@ $info-color: #d4af37;
     }
 
     .intro-text {
-        font-size: clamp(1rem, 2.5vw, 1.15rem);
+        font-size: 1.15rem;
         color: #5d4e37;
         text-align: center;
         position: relative;
@@ -131,7 +131,7 @@ $info-color: #d4af37;
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             color: $accent-color;
             position: absolute;
-            top: 0px;
+            bottom: -15px;
             right: clamp(5px, 2vw, 15px);
             font-family: serif;
             opacity: 0.8;
@@ -148,8 +148,8 @@ $info-color: #d4af37;
 
 // ===== STATISTIQUES =====
 .network-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    display: flex;
+    justify-content: center;
     gap: 2rem;
     margin-bottom: 3rem;
 
@@ -163,6 +163,7 @@ $info-color: #d4af37;
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
+        width: 100%;
 
         .stat-number {
             display: block;
@@ -342,12 +343,12 @@ $info-color: #d4af37;
 
         .headquarters-badge {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 0;
+            right: 0;
             background: linear-gradient(135deg, $success-color, $info-color);
             color: white;
             padding: 0.5rem 1rem;
-            border-radius: 15px;
+            border-radius: 0 0 0 15px;
             font-size: 0.8rem;
             font-weight: 600;
             box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
@@ -356,15 +357,16 @@ $info-color: #d4af37;
 
     .secretariat-badge {
         position: absolute;
-        top: 1rem;
-        right: 1rem;
+        top: 0;
+        right: 0;
         background: linear-gradient(135deg, $success-color, $info-color);
         color: white;
         padding: 0.5rem 1rem;
-        border-radius: 15px;
+        border-radius: 0 0 0 15px;
         font-size: 0.8rem;
         font-weight: 600;
         box-shadow: 0 3px 10px rgba(40, 167, 69, 0.3);
+        width: 50%;
     }
 
     &.headquarters .secretariat-badge {

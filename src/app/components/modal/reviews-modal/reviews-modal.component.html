@@ -21,12 +21,12 @@
         <button class="ig-modal-close-btn" (click)="onClose()" aria-label="Fermer">&times;</button>
       </div>
 
-      <div class="p-5">
+      <div class="p-2">
         <!-- Vue des avis existants -->
         @if (!showAddReviewForm) {
           <div>
             <div class="p-4 mb-5 text-center ig-reviews-summary">
-              <div class="d-flex flex-row justify-content-center align-items-center gap-2">
+              <div class="d-flex flex-row justify-content-between align-items-center gap-2">
                 <div class="d-flex flex-row align-items-center gap-2">
                   <div class="ig-rating-number">{{ getFormattedRating() }}/5</div>
                 </div>
@@ -76,17 +76,17 @@
 
         <!-- Formulaire d'ajout d'avis -->
         @if (showAddReviewForm) {
-          <div class="ig-add-review-form">
+          <div class="ig-study-form">
             <form (ngSubmit)="onSubmitReview()" #reviewForm="ngForm">
-              <div class="mb-4">
+              <div class="mb-4 ig-form-group">
                 <label for="reviewerName">Nom *</label>
                 <input type="text" id="reviewerName" name="name" [(ngModel)]="newReview.name" required
-                  placeholder="Votre nom" class="ig-form-control">
+                  placeholder="Votre nom">
               </div>
 
-              <div class="mb-4">
+              <div class="mb-4 ig-form-group">
                 <label for="serviceType">Service utilisé *</label>
-                <select id="serviceType" name="service" [(ngModel)]="newReview.service" required class="ig-form-control">
+                <select id="serviceType" name="service" [(ngModel)]="newReview.service" required>
                   <option value="">Sélectionnez un service</option>
                   <option value="Recherches d'Héritiers (Successorale)">Recherches d'Héritiers (Successorale)</option>
                   <option value="Généalogie Familiale">Généalogie Familiale</option>
@@ -96,7 +96,7 @@
                 </select>
               </div>
 
-              <div class="mb-4">
+              <div class="mb-4 ig-form-group">
                 <label>Note *</label>
                 <div class="ig-rating-input">
                   <span *ngFor="let star of [1,2,3,4,5]; let i = index" class="ig-star-input"
@@ -105,17 +105,17 @@
                 </div>
               </div>
 
-              <div class="mb-4">
+              <div class="mb-4 ig-form-group">
                 <label for="reviewComment">Commentaire *</label>
                 <textarea id="reviewComment" name="comment" [(ngModel)]="newReview.comment" required
-                  placeholder="Partagez votre expérience..." rows="4" class="ig-form-control"></textarea>
+                  placeholder="Partagez votre expérience..." rows="4"></textarea>
               </div>
 
-              <div class="d-flex gap-3 justify-content-end mt-5 pt-3 border-top">
-                <button type="button" class="ig-btn ig-btn-secondary" (click)="onBackToReviews()">
+              <div class="d-flex flex-column-reverse flex-md-row justify-content-md-around align-items-end gap-3 mt-5 pt-3 border-top">
+                <button type="button" class="ig-btn-secondary" (click)="onBackToReviews()">
                   Annuler
                 </button>
-                <button type="submit" class="ig-btn ig-btn-primary" [disabled]="!reviewForm.form.valid">
+                <button type="submit" class="ig-btn-primary" [disabled]="!reviewForm.form.valid">
                   Publier l'avis
                 </button>
               </div>

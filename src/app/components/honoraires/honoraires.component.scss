@@ -150,6 +150,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
     line-height: 1.8;
     margin: 0;
     text-align: justify;
+
     font-weight: 500;
     position: relative;
     z-index: 1;
@@ -212,6 +213,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
             align-items: flex-start;
             justify-content: center;
             text-align: center;
+
             background: white;
         }
     }
@@ -224,10 +226,9 @@ $shadow-color: rgba(93, 78, 55, 0.1);
 }
 
 .category-intro {
-    font-size: 1.2rem;
-    line-height: 1.8;
+    font-size: 1.1rem;
     margin-bottom: 1.5rem;
-    text-align: justify;
+    text-align: start;
     font-weight: 500;
     position: relative;
     padding-left: 1rem;
@@ -247,14 +248,13 @@ $shadow-color: rgba(93, 78, 55, 0.1);
 .category-text {
     font-size: 1.1rem;
     line-height: 1.8;
-    margin-bottom: 2rem;
-    text-align: justify;
+    text-align: start;
 }
 
 .category-conclusion {
     font-size: 1.1rem;
     line-height: 1.8;
-    text-align: justify;
+    text-align: start;
     font-style: italic;
     padding: 1.5rem;
     border-radius: 10px;
@@ -306,7 +306,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
     margin: 0;
     font-size: 1.1rem;
     line-height: 1.7;
-    text-align: justify;
+    text-align: center;
     font-weight: 500;
     color: darken($text-dark, 5%);
 }
@@ -350,7 +350,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
 
     .intro-section,
     .category-content {
-        padding: 2rem;
+        padding: 1rem;
     }
 
     .category-header {
@@ -363,7 +363,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         }
     }
 
-    // Adaptation pour les classes Bootstrap sur mobile
     .d-flex {
         flex-direction: column !important;
         gap: 2rem;
@@ -383,28 +382,32 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         font-size: 1.1rem;
     }
 
-    .intro-section,
-    .category-content {
+    .intro-section {
         padding: 1.5rem;
+
     }
 
     .category-header {
         padding: 1.5rem;
 
         h2 {
-            font-size: 1.3rem;
+            font-size: 1.3rem !important;
             margin: -1.5rem;
             padding: inherit;
         }
     }
 
-    .honoraire-list li {
-        padding: 0.8rem 0 0.8rem 2.5rem;
+    .honoraire-list {
+        padding-left: 0;
 
-        &::before {
-            width: 1.5rem;
-            height: 1.5rem;
-            font-size: 1rem;
+        li {
+            padding: 0.8rem 0 0.8rem 2.5rem;
+
+            &::before {
+                width: 1.5rem;
+                height: 1.5rem;
+                font-size: 1rem;
+            }
         }
     }
 }

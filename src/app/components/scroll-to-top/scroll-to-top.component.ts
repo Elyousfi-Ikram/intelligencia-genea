@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,12 +8,19 @@ import { CommonModule } from '@angular/common';
   templateUrl: './scroll-to-top.component.html',
   styleUrls: ['./scroll-to-top.component.scss']
 })
-export class ScrollToTopComponent implements OnInit, OnDestroy {
+export class ScrollToTopComponent {
   isVisible = false;
+  circumference = 2 * Math.PI * 21;
+  strokeDashoffset = this.circumference;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isVisible = window.pageYOffset > 300;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const progress = (scrollTop / scrollHeight);
+    
+    this.strokeDashoffset = this.circumference - (progress * this.circumference);
+    this.isVisible = scrollTop > 300;
   }
 
   scrollToTop() {
@@ -21,13 +28,5 @@ export class ScrollToTopComponent implements OnInit, OnDestroy {
       top: 0,
       behavior: 'smooth'
     });
-  }
-
-  ngOnInit() {
-    // Le HostListener gère automatiquement l'événement scroll
-  }
-
-  ngOnDestroy() {
-    // Le HostListener se nettoie automatiquement
   }
 }

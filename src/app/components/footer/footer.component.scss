@@ -470,7 +470,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
     }
 
     .contact-items {
-      align-items: center;
+      align-items: start;
     }
 
     .social-links {
@@ -483,10 +483,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         text-align: center;
         gap: 1rem;
       }
-    }
-
-    .footer-legal {
-      flex-direction: row;
     }
   }
 

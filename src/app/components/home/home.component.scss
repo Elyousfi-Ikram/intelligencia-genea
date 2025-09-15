@@ -42,7 +42,7 @@
         align-items: center;
         width: 100vw;
         margin-left: calc(-50vw + 50%);
-        height: 100vh;
+        height: 80vh;
         justify-content: center;
 
         &::before {
@@ -154,7 +154,7 @@
     section {
         position: relative;
         z-index: 1;
-        padding: 0;
+        padding: 1rem;
         width: 100%;
         margin: 0;
         border-radius: 0;
@@ -383,8 +383,12 @@
 
 @media (min-width: 768px) and (max-width: 991px) {
     .home {
+        .home-hero {
+            height: 60vh;
+        }
+
         .welcome-grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr) !important;
             gap: 1.5rem;
 
             .welcome-card {
@@ -399,7 +403,8 @@
         }
 
         .services-grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr) !important;
+
             gap: 1.5rem;
 
             .service-card {
@@ -430,7 +435,7 @@
 @media (max-width: 767px) {
     .home {
         .welcome-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr !important;
             gap: 1rem;
 
             .welcome-card {
@@ -445,7 +450,8 @@
         }
 
         .services-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr !important;
+
             gap: 1rem;
 
             .service-card {
@@ -460,7 +466,7 @@
         }
 
         .trust-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr !important;
             gap: 1.5rem;
 
             .trust-card {

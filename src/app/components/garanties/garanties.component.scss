@@ -7,7 +7,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
 
 .garanties-page {
     min-height: 100vh;
-    background: linear-gradient(135deg, $background-light 0%, $background-white 100%);
     color: $text-dark;
     position: relative;
 
@@ -48,7 +47,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         font-size: 1.2rem;
         color: $text-dark;
         opacity: 0.85;
-        margin: 0 8rem;
+        margin: 0 1rem;
         line-height: 1.6;
         font-weight: 400;
     }
@@ -118,7 +117,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         position: relative;
         z-index: 1;
         color: #5d4e37;
-        padding: 1.5rem;
+        padding: 1.5rem 0;
     }
 }
 
@@ -144,7 +143,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
 
 .garantie-highlight {
     color: $text-dark;
-    padding: 1.5rem;
+    padding: 1.5rem 0;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -229,26 +228,48 @@ $shadow-color: rgba(93, 78, 55, 0.1);
     .garantie-layout {
         flex-direction: row-reverse;
     }
-}
 
-.garantie-item--contracts {
-    background: linear-gradient(135deg, #faf9f6 0%, #f2f0ea 100%);
-}
-
-.garantie-item--methodology {
-    background: linear-gradient(135deg, #f7f8f9 0%, #e9ecef 100%);
-}
-
-.garantie-item--insurance {
-    background: linear-gradient(135deg, #f8f6f0 0%, #e8e2d5 100%);
+    background: $background-light;
 }
 
 .garantie-item--values {
-    background: linear-gradient(135deg, #f9f7f4 0%, #f0ebe3 100%);
+    background: $background-light;
 
     .garantie-layout {
         flex-direction: row-reverse;
     }
+}
+
+.garantie-item--contracts {
+    background: $background-white;
+}
+
+.garantie-item--methodology {
+    background: $background-light;
+}
+
+.garantie-item--insurance {
+    background: $background-white;
+}
+
+.garantie-item--legal,
+.garantie-item--timing {
+    background: $background-white;
+}
+
+// Articles avec image à gauche - couleur $background-white (#ffffff)
+.garantie-item--legal,
+.garantie-item--timing,
+.garantie-item--contracts,
+.garantie-item--insurance {
+    background: $background-white !important;
+}
+
+// Articles avec image à droite - couleur $background-light (#f8f9fa)
+.garantie-item--ethics,
+.garantie-item--methodology,
+.garantie-item--values {
+    background: $background-light !important;
 }
 
 .garantie-item--timing {
@@ -259,7 +280,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
     }
 
     .garantie-visual {
-        flex: 0 0 30%;
+        flex: 0 0 35%;
         display: flex;
         overflow: hidden;
 
@@ -302,7 +323,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: rgba(255, 255, 255, 0.9);
+        // background: rgba(255, 255, 255, 0.9);
     }
 }
 
@@ -315,22 +336,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
 .copyright-text {
     position: relative;
     top: -10px;
-}
-
-
-@media (max-width: 992px) {
-
-    .garantie-item--legal,
-    .garantie-item--ethics,
-    .garantie-item--contracts {
-        .garantie-visual {
-            flex: 0 0 40%;
-        }
-
-        .garantie-content {
-            padding: 1.5rem;
-        }
-    }
 }
 
 @media (max-width: 900px) {
@@ -353,7 +358,6 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         .garantie-visual {
             margin-left: 0;
             margin-top: 0;
-            margin-bottom: 1rem;
         }
     }
 
@@ -371,50 +375,11 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         .garantie-visual {
             flex: none;
             width: 100%;
-            margin-bottom: 1rem;
         }
 
         .garantie-content {
             flex: none;
             width: 100%;
-        }
-    }
-}
-
-@media (max-width: 768px) {
-    .garanties-page {
-        .garanties-container {
-            padding: 1rem;
-        }
-
-        .garanties-header {
-            margin-bottom: 2rem;
-            padding: 2rem 0;
-
-            .garanties-title {
-                font-size: 2.5rem;
-            }
-
-            .garanties-subtitle {
-                font-size: 1.2rem;
-            }
-        }
-
-        .garantie-item .garantie-body {
-            padding: 2rem;
-        }
-    }
-
-    .garantie-intro,
-    .garantie-quote-text {
-        font-size: 1rem;
-    }
-
-    .garantie-item--legal,
-    .garantie-item--ethics,
-    .garantie-item--contracts {
-        .garantie-visual {
-            flex: 1;
         }
     }
 }
@@ -432,7 +397,7 @@ $shadow-color: rgba(93, 78, 55, 0.1);
         }
 
         .garantie-item .garantie-body {
-            padding: 1.5rem;
+            padding: 0.5rem;
 
             .garantie-list li {
                 padding: 0.8rem 0 0.8rem 2.5rem;

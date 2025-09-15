@@ -1,9 +1,12 @@
-<button 
-  *ngIf="isVisible"
-  class="scroll-to-top"
-  (click)="scrollToTop()"
-  aria-label="Retour en haut de la page"
-  title="Retour en haut"
->
-  <!-- Suppression de l'icône Font Awesome -->
+@if (isVisible) {
+<button class="scroll-to-top" (click)="scrollToTop()" aria-label="Retour en haut de la page" title="Retour en haut">
+  <!-- Cercle de progression SVG -->
+  <svg class="progress-ring" width="50" height="50">
+    <circle class="progress-ring-circle" stroke="rgba(255, 255, 255, 0.3)" stroke-width="3" fill="transparent" r="21"
+      cx="25" cy="25" />
+    <circle class="progress-ring-progress" stroke="white" stroke-width="3" fill="transparent" r="21" cx="25" cy="25"
+      [style.stroke-dasharray]="circumference" [style.stroke-dashoffset]="strokeDashoffset" />
+  </svg>
+  <i class="fa-solid fa-chevron-up"></i>
 </button>
+}

@@ -5,71 +5,79 @@
   width: 50px;
   height: 50px;
   background: linear-gradient(135deg, #5d4e37, #8b6914);
-  color: white;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
   box-shadow: 0 4px 15px rgba(93, 78, 55, 0.3);
   transition: all 0.3s ease;
   z-index: 1000;
-
-  // Chevron CSS pur
-  &::before {
-    content: '';
-    width: 12px;
-    height: 12px;
-    border-top: 2px solid white;
-    border-right: 2px solid white;
-    transform: rotate(-45deg);
-    transition: transform 0.3s ease;
-  }
+  animation: fadeInUp 0.3s ease;
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(93, 78, 55, 0.4);
-    
-    &::before {
-      transform: rotate(-45deg) translateY(-1px);
-    }
   }
 
   &:active {
     transform: translateY(0);
   }
+
+  .fa-solid {
+    font-size: 24px;
+    color: #fff;
+  }
+
 }
 
-// Animation d'apparition
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(-90deg);
+  pointer-events: none;
+}
+
+.progress-ring-circle,
+.progress-ring-progress {
+  transition: stroke-dashoffset 0.1s ease;
+}
+
+.progress-ring-progress {
+  stroke-linecap: round;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-.scroll-to-top {
-  animation: fadeInUp 0.3s ease;
-}
-
-// Responsive
 @media (max-width: 768px) {
   .scroll-to-top {
     bottom: 15px;
     right: 15px;
     width: 45px;
     height: 45px;
-    font-size: 1rem;
-    
-    &::before {
-      width: 10px;
-      height: 10px;
-    }
+  }
+
+  .progress-ring {
+    width: 45px;
+    height: 45px;
+  }
+
+  .progress-ring-circle,
+  .progress-ring-progress {
+    r: 18.5;
+    cx: 22.5;
+    cy: 22.5;
   }
 }

@@ -10,7 +10,7 @@ $small-spacing: 20px;
 
 // Variables pour les breakpoints
 $mobile: 480px;
-$tablet: 768px;
+$tablet: 900px;
 
 // ===== MIXINS =====
 @mixin gradient-background($color1: #ffffff, $color2: #f8f9fa) {
@@ -142,16 +142,10 @@ $tablet: 768px;
 }
 
 .intro-text {
-  @include responsive-text(1rem, 1.2rem);
+  // font-size: clamp(1rem, 4vw, 1.2rem);
   line-height: 1.8;
-  color: $primary-color;
+  color: #5d4e37;
   text-align: center;
-  padding: 30px;
-  @include gradient-background();
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(243, 225, 194, 0.2);
-  @include card-shadow(0.08);
 
   h3 {
     position: relative;
@@ -485,11 +479,6 @@ $tablet: 768px;
   gap: 40px;
   align-items: center;
   margin-top: 30px;
-
-  @media (max-width: $tablet) {
-    flex-direction: column;
-    gap: 25px;
-  }
 }
 
 .slide-image {
@@ -499,11 +488,6 @@ $tablet: 768px;
   overflow: hidden;
   box-shadow: 0 15px 40px rgba(93, 78, 55, 0.2);
   position: relative;
-
-  @media (max-width: $tablet) {
-    flex: 0 0 150px;
-    height: 150px;
-  }
 
   img {
     width: 100%;
@@ -571,10 +555,6 @@ $tablet: 768px;
   @include flex-center;
   gap: 10px;
   padding: 30px 0;
-
-  @media (max-width: $tablet) {
-    gap: 5px;
-  }
 }
 
 .carousel-dot {
@@ -586,23 +566,9 @@ $tablet: 768px;
   transition: all 0.3s ease;
   border: 1px solid white;
 
-  @media (max-width: $tablet) {
-    width: 10px;
-    height: 10px;
-  }
-
-  @media (max-width: $mobile) {
-    width: 8px;
-    height: 8px;
-  }
-
   &.active {
     background-color: #8b6914;
     transform: scale(1.3);
-
-    @media (max-width: $mobile) {
-      transform: scale(1.2);
-    }
   }
 
   &:hover {
@@ -613,11 +579,6 @@ $tablet: 768px;
   &:focus {
     outline: 2px solid rgba(139, 105, 20, 0.8);
     outline-offset: 2px;
-
-    @media (max-width: $mobile) {
-      outline: 1px solid rgba(139, 105, 20, 0.8);
-      outline-offset: 1px;
-    }
   }
 }
 
@@ -630,11 +591,10 @@ $tablet: 768px;
   box-shadow: 0 15px 40px rgba(93, 78, 55, 0.1);
   border: 1px solid rgba(243, 225, 194, 0.3);
 
-
   h2 {
     @include responsive-text(1.8rem, 2.5rem);
     color: $primary-color;
-    margin-bottom: 30px;
+    margin: 30px;
   }
 
   .expertise-content {
@@ -649,22 +609,19 @@ $tablet: 768px;
   }
 
   .expertise-highlights {
-    display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    gap: 10px;
     margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     .highlight-item {
-      padding: 20px;
+      padding: 10px;
       background: linear-gradient(135deg, rgba(139, 105, 20, 0.1), rgba(139, 105, 20, 0.05));
       border-radius: 15px;
       border: 1px solid rgba(243, 225, 194, 0.4);
       transition: all 0.3s ease;
-
-      &:hover {
-        transform: translateY(-5px);
-        @include card-shadow(0.15);
-      }
 
       strong {
         color: $secondary-color;
@@ -681,7 +638,6 @@ $tablet: 768px;
     }
   }
 }
-
 
 // Classes utilitaires
 .sr-only {
@@ -701,10 +657,21 @@ $tablet: 768px;
   vertical-align: super;
 }
 
-// Media queries pour responsive
+// ===== MEDIA QUERIES =====
+// Toutes les media queries regroupées ici pour une meilleure organisation
+
 @media (max-width: $tablet) {
   .genealogie-container {
-    padding: 0 20px;
+    padding: 1px 20px;
+
+    .genealogie-header {
+      margin-bottom: 40px;
+    }
+  }
+
+  .section-badge {
+    left: 0;
+    right: 0;
   }
 
   .section-card-container {
@@ -712,18 +679,59 @@ $tablet: 768px;
     gap: 30px;
   }
 
+  .section-header {
+    h2 {
+      margin-top: 2rem;
+    }
+  }
+
   .carousel-slide {
     padding: 40px 30px;
   }
 
+  .slide-image {
+    width: 100%;
+    height: 100%;
+  }
+
   .slide-main-layout {
     flex-direction: column;
+    gap: 25px;
+  }
+
+  .slide-content {
+    margin-bottom: 3rem;
+  }
+
+  .carousel-btn {
+    top: 30%;
+  }
+
+  .carousel-indicators {
+    gap: 5px;
+  }
+
+  .carousel-dot {
+    width: 10px;
+    height: 10px;
+  }
+
+  .expertise-content {
+    padding: 0 15px;
   }
 }
 
 @media (max-width: $mobile) {
   .genealogie-container {
-    padding: 0 15px;
+    padding: 1px 15px;
+  }
+
+  .section-header {
+    height: 350px !important;
+
+    h2 {
+      margin-top: 4rem;
+    }
   }
 
   .carousel-slide {
@@ -738,5 +746,23 @@ $tablet: 768px;
       width: 24px;
       height: 24px;
     }
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+
+    &.active {
+      transform: scale(1.2);
+    }
+
+    &:focus {
+      outline: 1px solid rgba(139, 105, 20, 0.8);
+      outline-offset: 1px;
+    }
+  }
+
+  .expertise-highlights {
+    flex-direction: column;
   }
 }

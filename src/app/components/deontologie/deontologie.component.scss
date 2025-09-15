@@ -510,6 +510,12 @@
       color: var(--primary-color);
       margin-bottom: 0.5rem;
       font-weight: 600;
+
+      .copyright-title {
+        position: relative;
+        top: -12px;
+        font-size: small;
+      }
     }
 
     .subtitle {
@@ -537,15 +543,16 @@
           border: 4px solid white;
           box-shadow: 0 0 0 3px var(--accent-color);
           position: relative;
+          top: -11px;
           z-index: 2;
         }
 
         .timeline-line {
           position: absolute;
           left: 50%;
-          top: 20px;
+          top: 10px;
           width: 2px;
-          height: 95%;
+          height: 100%;
           background: var(--accent-color);
           transform: translateX(-50%);
           z-index: 1;
@@ -730,11 +737,12 @@
 
 @media (max-width: 768px) {
   .tablet-version {
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 1.063rem 0.5rem;
+    margin: 2rem 1rem;
 
     .tablet-header {
       padding: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 4rem;
 
       h1 {
         font-size: 1.8rem;
