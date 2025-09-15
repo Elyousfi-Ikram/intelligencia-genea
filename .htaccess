@@ -1,3 +1,22 @@
+# Activer le moteur de réécriture d'URL
+RewriteEngine On
+
+# Forcer HTTPS - Configuration optimisée pour Ionos
+# Méthode 1: Vérification standard
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [OR]
+RewriteCond %{HTTP:X-Forwarded-SSL} !on [OR]
+RewriteCond %{SERVER_PORT} 80
+
+# Redirection vers HTTPS
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Alternative pour Ionos si la méthode ci-dessus ne fonctionne pas
+# Décommentez les lignes suivantes et commentez les lignes ci-dessus
+# RewriteCond %{ENV:HTTPS} !on
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Headers de sécurité HTTPS (après la redirection)
 # Headers de sécurité HTTPS
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
 Header always set X-Content-Type-Options "nosniff"
@@ -20,6 +39,29 @@ RewriteCond %{SERVER_PORT} 80
 
 # Rediriger tout le trafic HTTP vers HTTPS avec code 301 (permanent)
 RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Alternative pour Ionos si la méthode ci-dessus ne fonctionne pas
+# Décommentez les lignes suivantes et commentez les lignes ci-dessus
+# RewriteCond %{ENV:HTTPS} !on
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Headers de sécurité HTTPS (après la redirection)
+<IfModule mod_headers.c>
+    # HSTS - Forcer HTTPS pendant 1 an
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+    
+    # Empêcher le sniffing de type MIME
+    Header always set X-Content-Type-Options "nosniff"
+    
+    # Protection contre le clickjacking
+    Header always set X-Frame-Options "SAMEORIGIN"
+    
+    # Protection XSS
+    Header always set X-XSS-Protection "1; mode=block"
+    
+    # Politique de référent
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
 
 
 # Facultatif : forcer www (décommente si tu veux que ton site s'ouvre toujours avec www)
