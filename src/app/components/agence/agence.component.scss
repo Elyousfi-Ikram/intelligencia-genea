@@ -92,7 +92,7 @@ $text-dark: #5d4e37;
 .agence-content {
     padding: 0 clamp(1rem, 3vw, 2rem);
     z-index: 1;
-    max-width: 1200px;
+    max-width: 100%;
 }
 
 // 4. intro-section - Pseudo-éléments décoratifs
@@ -125,7 +125,7 @@ $text-dark: #5d4e37;
         color: $accent-color;
         position: absolute;
         top: 0px;
-        left: clamp(5px, 2vw, 15px);
+        left: clamp(5px, 0vw, 15px);
         font-family: serif;
         opacity: 0.8;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -136,11 +136,15 @@ $text-dark: #5d4e37;
         font-size: clamp(2.5rem, 6vw, 4.5rem);
         color: $accent-color;
         position: absolute;
-        top: 0px;
-        right: clamp(5px, 2vw, 15px);
+        bottom: 0px;
+        right: clamp(5px, 0vw, 15px);
         font-family: serif;
         opacity: 0.8;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    p{
+         text-align: justify; 
     }
 }
 
@@ -199,7 +203,7 @@ $text-dark: #5d4e37;
             content: '◆';
             position: absolute;
             left: clamp(0.8rem, 2vw, 1.2rem);
-            top: 50%;
+            top: 10px;
             transform: translateY(-50%);
             color: $accent-color;
             font-weight: bold;
@@ -221,12 +225,11 @@ $text-dark: #5d4e37;
 .service-section {
     background: linear-gradient(145deg, #ffffff, #f8f9fa);
     border-radius: 25px;
-    padding: clamp(2rem, 4vw, 3rem);
+    padding: clamp(1.3rem, 4vw, 3rem);
     margin-bottom: clamp(2rem, 4vw, 3rem);
     box-shadow: 0 15px 40px rgba(139, 69, 19, 0.1);
     border: 1px solid rgba(139, 69, 19, 0.1);
     transition: all 0.4s ease;
-    min-width: 265px;
 
     &::before {
         content: '';
@@ -306,7 +309,7 @@ $text-dark: #5d4e37;
             content: '✓';
             position: absolute;
             left: clamp(0.8rem, 2vw, 1rem);
-            top: 50%;
+            top: 25%;
             transform: translateY(-50%);
             color: #D2691E;
             font-weight: bold;
@@ -373,7 +376,7 @@ $text-dark: #5d4e37;
             content: '✓';
             position: absolute;
             left: clamp(0.8rem, 2vw, 1rem);
-            top: 50%;
+            top: 25%;
             transform: translateY(-50%);
             color: #D2691E;
             font-weight: bold;
@@ -411,8 +414,6 @@ $text-dark: #5d4e37;
 
 // 18. about-section - Effets radiaux
 .about-section {
-    border-radius: 25px;
-    padding: clamp(2rem, 4vw, 3rem);
     transition: all 0.3s ease;
 
     &::before {
@@ -469,43 +470,6 @@ $text-dark: #5d4e37;
 }
 
 // ===== MEDIA QUERIES OPTIMISÉES =====
-
-// Large screens (1200px+)
-@media (min-width: 1200px) {
-    .agence-content {
-        max-width: 1400px;
-    }
-
-    .service-section {
-        min-width: 400px;
-    }
-
-    .agence-title {
-        font-size: 4rem !important;
-    }
-
-    .intro-text-agence {
-        font-size: 1.3rem !important;
-    }
-
-    .approaches h2,
-    .about-section h2 {
-        font-size: 2.5rem !important;
-    }
-
-    .service-section h3 {
-        font-size: 2.8rem !important;
-    }
-
-    .competences h4,
-    .prestations h4 {
-        font-size: 1.5rem !important;
-    }
-
-    .about-content p {
-        font-size: 1.3rem !important;
-    }
-}
 
 // Medium screens (768px - 1199px)
 @media (min-width: 768px) and (max-width: 1199px) {
