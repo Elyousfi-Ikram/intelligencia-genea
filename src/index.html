@@ -131,450 +131,12 @@
     fetchpriority="high">
   <link rel="preload" href="/assets/homePage/enqueteur.webp" as="image" type="image/webp">
 
-  <!-- Service Worker pour mise en cache -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .catch(err => console.log('SW registration failed'));
-      });
-    }
-  </script>
-
   <!-- Chargement différé de Font Awesome -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style"
     onload="this.onload=null;this.rel='stylesheet'">
   <noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   </noscript>
-
-  <!-- Données structurées Schema.org - Organisation principale -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "INTELLIGENCIA-GENEA",
-    "legalName": "INTELLIGENCIA-GENEA",
-    "description": "Réseau national de généalogistes experts. 18 bureaux en France spécialisés en généalogie successorale, recherche d'héritiers et reconstitution d'arbres généalogiques pour notaires et particuliers.",
-    "url": "http://intelligencia-genea.com",
-    "logo": "http://intelligencia-genea.com/logo.webp",
-    "image": "http://intelligencia-genea.com/logo.webp",
-    "telephone": "+33645820697",
-    "email": "intelligencia.lagarde@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "67 Cours Mirabeau",
-      "addressLocality": "Aix-en-Provence",
-      "postalCode": "13100",
-      "addressRegion": "Provence-Alpes-Côte d'Azur",
-      "addressCountry": "FR"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": "43.529742",
-      "longitude": "5.447427"
-    },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+33645820697",
-      "contactType": "customer service",
-      "email": "intelligencia.lagarde@gmail.com",
-      "availableLanguage": "French"
-    },
-    "areaServed": [
-      {
-        "@type": "Country",
-        "name": "France"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Provence-Alpes-Côte d'Azur"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Nouvelle-Aquitaine"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Bretagne"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Centre-Val de Loire"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Normandie"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Corse"
-      },
-      {
-        "@type": "AdministrativeArea",
-        "name": "Île-de-France"
-      }
-    ],
-    "serviceType": [
-      "Généalogie successorale",
-      "Recherche d'héritiers",
-      "Généalogie familiale",
-      "Arbres généalogiques",
-      "Expertise juridique généalogique"
-    ],
-    "priceRange": "€€",
-    "sameAs": [
-      "https://www.linkedin.com/company/intelligencia-genea"
-    ],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Services de généalogie",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Généalogie successorale",
-            "description": "Recherche d'héritiers et constitution d'arbres successoraux pour notaires"
-          }
-        },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Généalogie familiale",
-            "description": "Reconstitution d'arbres généalogiques et recherche d'ancêtres pour particuliers"
-          }
-        }
-      ]
-    }
-  }
-  </script>
-
-  <!-- Données structurées - Bureaux multiples -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    "@id": "http://intelligencia-genea.com/#organization",
-    "name": "INTELLIGENCIA-GENEA",
-    "description": "Réseau national de généalogistes professionnels avec 18 bureaux en France",
-    "url": "http://intelligencia-genea.com",
-    "telephone": "+33645820697",
-    "email": "intelligencia.lagarde@gmail.com",
-    "priceRange": "€€",
-    "openingHours": "Mo-Fr 09:00-18:00",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "67 Cours Mirabeau",
-      "addressLocality": "Aix-en-Provence",
-      "postalCode": "13100",
-      "addressCountry": "FR"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 43.529742,
-      "longitude": 5.447427
-    },
-    "branch": [
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Aix-en-Provence",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "11 Rue du RICM",
-          "addressLocality": "Aix-en-Provence",
-          "postalCode": "13100",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33645820697"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Aix-en-Provence Cours Mirabeau",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "67 Cours Mirabeau",
-          "addressLocality": "Aix-en-Provence",
-          "postalCode": "13100",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Nice",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "6 av Henri Barbusse",
-          "addressLocality": "Nice",
-          "postalCode": "06200",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Marseille",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "8 Boulevard des Frères Godchot",
-          "addressLocality": "Marseille",
-          "postalCode": "13005",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Cannes",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "29 Avenue des Hespérides",
-          "addressLocality": "Cannes",
-          "postalCode": "06400",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Saint-Tropez",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Boulevard Louis Blanc",
-          "addressLocality": "Saint-Tropez",
-          "postalCode": "83990",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Pierrevert",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "L'Orée du Golf",
-          "addressLocality": "Pierrevert",
-          "postalCode": "04860",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Roquebrune-Cap-Martin",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Avenue Bellevue",
-          "addressLocality": "Roquebrune-Cap-Martin",
-          "postalCode": "06190",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Bordeaux",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Rue François de Sourdis",
-          "addressLocality": "Bordeaux",
-          "postalCode": "33000",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Biarritz",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Rue du Régina",
-          "addressLocality": "Biarritz",
-          "postalCode": "64200",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Nantes",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "5 Rue Le Nôtre",
-          "addressLocality": "Nantes",
-          "postalCode": "44000",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Rennes",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "63 Rue de Robien",
-          "addressLocality": "Rennes",
-          "postalCode": "35000",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Tours",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "6 Rue Victor Laloux",
-          "addressLocality": "Tours",
-          "postalCode": "37000",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Le Havre",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "333 Rue Félix Faure",
-          "addressLocality": "Le Havre",
-          "postalCode": "76620",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Le Vésinet",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Rue Pierre Curie",
-          "addressLocality": "Le Vésinet",
-          "postalCode": "78110",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Ajaccio",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Route Sanguinaires",
-          "addressLocality": "Ajaccio",
-          "postalCode": "20000",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      },
-      {
-        "@type": "LocalBusiness",
-        "name": "INTELLIGENCIA-GENEA Bastia",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "12 Quai des Martyrs de la Libération",
-          "addressLocality": "Bastia",
-          "postalCode": "20200",
-          "addressCountry": "FR"
-        },
-        "telephone": "+33607257427"
-      }
-    ]
-  }
-  </script>
-
-  <!-- Service Schema étendu -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Généalogie Successorale et Familiale",
-    "description": "Services professionnels de généalogie avec réseau national de 18 bureaux. Recherche d'héritiers, généalogie successorale, arbres généalogiques pour notaires, avocats et particuliers.",
-    "provider": {
-      "@type": "Organization",
-      "name": "INTELLIGENCIA-GENEA"
-    },
-    "areaServed": [
-      "Aix-en-Provence", "Nice", "Marseille", "Cannes", "Saint-Tropez", "Pierrevert", "Roquebrune-Cap-Martin",
-      "Bordeaux", "Biarritz", "Nantes", "Rennes", "Tours", "Le Havre", "Le Vésinet", "Ajaccio", "Bastia",
-      "Provence-Alpes-Côte d'Azur", "Nouvelle-Aquitaine", "Bretagne", "Centre-Val de Loire", "Normandie", "Corse", "Île-de-France"
-    ],
-    "serviceType": "Généalogie professionnelle",
-    "category": [
-      "Généalogie successorale",
-      "Recherche d'héritiers",
-      "Généalogie familiale",
-      "Expertise juridique"
-    ]
-  }
-  </script>
-
-  <!-- WebPage Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "INTELLIGENCIA-GENEA - Accueil",
-    "description": "Page d'accueil INTELLIGENCIA-GENEA - Généalogistes experts avec réseau national de 18 bureaux en France",
-    "url": "http://intelligencia-genea.com",
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "INTELLIGENCIA-GENEA"
-    },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Accueil",
-          "item": "http://intelligencia-genea.com"
-        }
-      ]
-    },
-    "speakable": {
-      "@type": "SpeakableSpecification",
-      "cssSelector": [".header-title", ".header-subtitle"]
-    }
-  }
-  </script>
-
-  <!-- FAQ Schema -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Comment demander une étude généalogique gratuite ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Contactez-nous via notre formulaire en ligne ou par téléphone au +33645820697. Nous vous proposons une étude gratuite et confidentielle de votre dossier généalogique."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Dans quelles villes INTELLIGENCIA-GENEA est-elle présente ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Nous avons 18 bureaux en France : Aix-en-Provence, Nice, Marseille, Cannes, Saint-Tropez, Pierrevert, Roquebrune-Cap-Martin, Bordeaux, Biarritz, Nantes, Rennes, Tours, Le Havre, Le Vésinet, Ajaccio, Bastia."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Quels sont les délais pour une recherche généalogique ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Les délais varient selon la complexité du dossier. Nous vous fournissons une estimation précise lors de l'étude gratuite de votre demande."
-        }
-      }
-    ]
-  }
-  </script>
-
 </head>
 
 <body>
@@ -589,3 +151,440 @@
 <noscript>
   <link rel="stylesheet" href="/styles.css">
 </noscript>
+
+<!-- Service Worker pour mise en cache -->
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/sw.js')
+        .catch(err => console.log('SW registration failed'));
+    });
+  }
+</script>
+
+<!-- Données structurées Schema.org - Organisation principale -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "INTELLIGENCIA-GENEA",
+  "legalName": "INTELLIGENCIA-GENEA",
+  "description": "Réseau national de généalogistes experts. 18 bureaux en France spécialisés en généalogie successorale, recherche d'héritiers et reconstitution d'arbres généalogiques pour notaires et particuliers.",
+  "url": "http://intelligencia-genea.com",
+  "logo": "http://intelligencia-genea.com/logo.webp",
+  "image": "http://intelligencia-genea.com/logo.webp",
+  "telephone": "+33645820697",
+  "email": "intelligencia.lagarde@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "67 Cours Mirabeau",
+    "addressLocality": "Aix-en-Provence",
+    "postalCode": "13100",
+    "addressRegion": "Provence-Alpes-Côte d'Azur",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "43.529742",
+    "longitude": "5.447427"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+33645820697",
+    "contactType": "customer service",
+    "email": "intelligencia.lagarde@gmail.com",
+    "availableLanguage": "French"
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "France"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Provence-Alpes-Côte d'Azur"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Nouvelle-Aquitaine"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Bretagne"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Centre-Val de Loire"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Normandie"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Corse"
+    },
+    {
+      "@type": "AdministrativeArea",
+      "name": "Île-de-France"
+    }
+  ],
+  "serviceType": [
+    "Généalogie successorale",
+    "Recherche d'héritiers",
+    "Généalogie familiale",
+    "Arbres généalogiques",
+    "Expertise juridique généalogique"
+  ],
+  "priceRange": "€€",
+  "sameAs": [
+    "https://www.linkedin.com/company/intelligencia-genea"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Services de généalogie",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Généalogie successorale",
+          "description": "Recherche d'héritiers et constitution d'arbres successoraux pour notaires"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Généalogie familiale",
+          "description": "Reconstitution d'arbres généalogiques et recherche d'ancêtres pour particuliers"
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<!-- Données structurées - Bureaux multiples -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "http://intelligencia-genea.com/#organization",
+  "name": "INTELLIGENCIA-GENEA",
+  "description": "Réseau national de généalogistes professionnels avec 18 bureaux en France",
+  "url": "http://intelligencia-genea.com",
+  "telephone": "+33645820697",
+  "email": "intelligencia.lagarde@gmail.com",
+  "priceRange": "€€",
+  "openingHours": "Mo-Fr 09:00-18:00",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "67 Cours Mirabeau",
+    "addressLocality": "Aix-en-Provence",
+    "postalCode": "13100",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 43.529742,
+    "longitude": 5.447427
+  },
+  "branch": [
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Aix-en-Provence",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "11 Rue du RICM",
+        "addressLocality": "Aix-en-Provence",
+        "postalCode": "13100",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33645820697"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Aix-en-Provence Cours Mirabeau",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "67 Cours Mirabeau",
+        "addressLocality": "Aix-en-Provence",
+        "postalCode": "13100",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Nice",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "6 av Henri Barbusse",
+        "addressLocality": "Nice",
+        "postalCode": "06200",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Marseille",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "8 Boulevard des Frères Godchot",
+        "addressLocality": "Marseille",
+        "postalCode": "13005",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Cannes",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "29 Avenue des Hespérides",
+        "addressLocality": "Cannes",
+        "postalCode": "06400",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Saint-Tropez",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Boulevard Louis Blanc",
+        "addressLocality": "Saint-Tropez",
+        "postalCode": "83990",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Pierrevert",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "L'Orée du Golf",
+        "addressLocality": "Pierrevert",
+        "postalCode": "04860",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Roquebrune-Cap-Martin",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Avenue Bellevue",
+        "addressLocality": "Roquebrune-Cap-Martin",
+        "postalCode": "06190",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Bordeaux",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rue François de Sourdis",
+        "addressLocality": "Bordeaux",
+        "postalCode": "33000",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Biarritz",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rue du Régina",
+        "addressLocality": "Biarritz",
+        "postalCode": "64200",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Nantes",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "5 Rue Le Nôtre",
+        "addressLocality": "Nantes",
+        "postalCode": "44000",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Rennes",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "63 Rue de Robien",
+        "addressLocality": "Rennes",
+        "postalCode": "35000",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Tours",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "6 Rue Victor Laloux",
+        "addressLocality": "Tours",
+        "postalCode": "37000",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Le Havre",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "333 Rue Félix Faure",
+        "addressLocality": "Le Havre",
+        "postalCode": "76620",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Le Vésinet",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rue Pierre Curie",
+        "addressLocality": "Le Vésinet",
+        "postalCode": "78110",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Ajaccio",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Route Sanguinaires",
+        "addressLocality": "Ajaccio",
+        "postalCode": "20000",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    },
+    {
+      "@type": "LocalBusiness",
+      "name": "INTELLIGENCIA-GENEA Bastia",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "12 Quai des Martyrs de la Libération",
+        "addressLocality": "Bastia",
+        "postalCode": "20200",
+        "addressCountry": "FR"
+      },
+      "telephone": "+33607257427"
+    }
+  ]
+}
+</script>
+
+<!-- Service Schema étendu -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Généalogie Successorale et Familiale",
+  "description": "Services professionnels de généalogie avec réseau national de 18 bureaux. Recherche d'héritiers, généalogie successorale, arbres généalogiques pour notaires, avocats et particuliers.",
+  "provider": {
+    "@type": "Organization",
+    "name": "INTELLIGENCIA-GENEA"
+  },
+  "areaServed": [
+    "Aix-en-Provence", "Nice", "Marseille", "Cannes", "Saint-Tropez", "Pierrevert", "Roquebrune-Cap-Martin",
+    "Bordeaux", "Biarritz", "Nantes", "Rennes", "Tours", "Le Havre", "Le Vésinet", "Ajaccio", "Bastia",
+    "Provence-Alpes-Côte d'Azur", "Nouvelle-Aquitaine", "Bretagne", "Centre-Val de Loire", "Normandie", "Corse", "Île-de-France"
+  ],
+  "serviceType": "Généalogie professionnelle",
+  "category": [
+    "Généalogie successorale",
+    "Recherche d'héritiers",
+    "Généalogie familiale",
+    "Expertise juridique"
+  ]
+}
+</script>
+
+<!-- WebPage Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "INTELLIGENCIA-GENEA - Accueil",
+  "description": "Page d'accueil INTELLIGENCIA-GENEA - Généalogistes experts avec réseau national de 18 bureaux en France",
+  "url": "http://intelligencia-genea.com",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "INTELLIGENCIA-GENEA"
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Accueil",
+        "item": "http://intelligencia-genea.com"
+      }
+    ]
+  },
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": [".header-title", ".header-subtitle"]
+  }
+}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Comment demander une étude généalogique gratuite ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Contactez-nous via notre formulaire en ligne ou par téléphone au +33645820697. Nous vous proposons une étude gratuite et confidentielle de votre dossier généalogique."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Dans quelles villes INTELLIGENCIA-GENEA est-elle présente ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nous avons 18 bureaux en France : Aix-en-Provence, Nice, Marseille, Cannes, Saint-Tropez, Pierrevert, Roquebrune-Cap-Martin, Bordeaux, Biarritz, Nantes, Rennes, Tours, Le Havre, Le Vésinet, Ajaccio, Bastia."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quels sont les délais pour une recherche généalogique ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Les délais varient selon la complexité du dossier. Nous vous fournissons une estimation précise lors de l'étude gratuite de votre demande."
+      }
+    }
+  ]
+}
+</script>
