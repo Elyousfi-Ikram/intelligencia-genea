@@ -21,8 +21,4 @@ export class ContactComponent {
       this.studyModalService.openModal();
     }
   }
-
-  navigateToHonoraires() {
-    this.router.navigate(['/nos-honoraires']);
-  }
 }
