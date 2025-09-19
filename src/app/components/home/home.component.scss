@@ -65,7 +65,7 @@
             @media (max-width: 1023px) {
                 // Sur mobile, on peut simuler un effet avec transform
                 transform: translateZ(0); // Force l'ccélération matérielle
-                will-change: transform;   // Optimisation des performances
+                will-change: transform; // Optimisation des performances
             }
 
             // Support pour Safari desktop et autres navigateurs
@@ -74,6 +74,7 @@
                     background-attachment: fixed;
                 }
             }
+
             z-index: -2;
         }
 
@@ -243,6 +244,7 @@
 
         p {
             text-align: center;
+            font-family: 'Cinzel', serif;
         }
 
         .services-grid {
@@ -324,6 +326,7 @@
         p {
             text-align: center;
             font-size: 1.2rem;
+            font-family: 'Cinzel', serif;
         }
 
         .trust-grid {
